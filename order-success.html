@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>order-success</title>
+    <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f5f5f5;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .red { color: red; }
+    .black { color: black; }
+    .gray { color: gray; font-size: 12px; }
+
+    .success {
+      font-size: 20px;
+      color: green;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">
+            <span class="red">cric</span><span class="black">heroes</span><br>
+            <span class="gray">Your cricket matters</span>
+        </div>
+
+        <div class="success">✅ Order Placed Successfully!</div>
+        
+        <p>Your order has been placed.</p>
+
+        <button onclick="goHome()">Go to Home</button>
+    </div>
+
+    <script>
+        function goHome() {
+            window.location.href = "index.html";
+        }
+  </script>
+</body>
+</html>

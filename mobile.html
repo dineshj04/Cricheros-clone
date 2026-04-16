@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile login </title>
+    <style>
+        .mobilelogin{
+            display: flex;
+            height: 100vh;
+            align-items: center;
+        }
+        .login{
+            width: 40%;
+            padding: 40px;
+            font-size: 20px;
+            margin: 5px;
+        }
+        .login h1{
+            width: 70%;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        .login label{
+            font-size: 14px;
+            color: #555;
+            margin-top: 15px;
+            padding: 10px;
+        }
+        .select,input{
+            width: 70%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 15px;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            outline: none;
+        }
+        .captcha{
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            margin: 15px;
+            width: 50%;
+        }
+        .captcha img{
+            width: 60px;
+            margin-left: auto;
+        }
+        .terms{
+            width: 50%;
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: #666;
+            text-align: center;
+        }
+        .terms a{
+            color:rgb(24, 149, 143);
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .btns{
+            display: flex;
+            gap: 15px;
+            text-decoration: none;
+        }
+        /* .button{
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+        } */
+         .btns .otp{
+            background:rgb(24, 149, 143) ;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .appcode{
+            background: rgb(24, 149, 143);
+            color: white;
+            font-size:20px ;
+            text-decoration: none;
+        }
+        .banner img{
+            width: 100%;
+            height:100vh;
+            margin-bottom: 60px;
+        }
+        @media(max-width: 900px){
+            .banner {
+                flex-direction: column;
+                width: 100%;
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="mobilelogin"> 
+        <div class="login">
+                <h1>Sign in to continue</h1>
+                <div class="label">Country</div>
+                <select class="select">
+                    <option> Select Country</option>
+                    <option>India</option>
+                    <option>Austraila</option>
+                    <option>England</option>
+                    <option>USA</option>
+                    <option>New Zealand</option>
+                    <option>West Indies</option>
+                </select>
+               <div class="label"></div>
+                <input type="text" class="input-box" placeholder="Mobile number" max="10">
+
+                <div class="captcha">
+                    <input type="checkbox">
+                    <span>I'm not a robot</span>
+                    <img src="recaptcha.jpeg">
+                </div>
+
+                <div class="terms">
+                    By signing in, you agree to our
+                    <a href="#">Terms of Service</a> 
+                    and
+                    <a href="#">Privacy Policy</a>
+                </div>
+
+                <div class="btns">
+                    <button class="otp" onclick="generateOTP()"><a href="OTP.html" class="otp">Get OTP</a></button>
+                    <button class="appcode"><a href="Via.html" class="appcode">Via app code</a> </button>
+                </div>
+        </div>
+        <div class="banner">
+            <img src="otp picture.png" alt="otp">
+        </div>
+    </section>
+    
+</body>
+</html>

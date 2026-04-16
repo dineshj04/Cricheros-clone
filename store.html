@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stores</title>
+  <style>
+    body {
+      margin: 20px 0 0 40% ;
+      font-family: Arial, sans-serif;
+      background: whitesmoke;
+      width: 30%;
+      align-items: center;
+    }
+    .store-header {
+      background: #e21c28;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .icons span {
+      margin-left: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .offer-banner {
+      background:#10044a;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .category-scroll {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px;
+      gap: 10px;
+      background: white;
+      position: relative;
+    }
+    .category-scroll button {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      background: white;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .category-scroll .active {
+      background: #eee;
+    }
+    .slider {
+      margin: 15px;
+      border-radius: 15px;
+      overflow: hidden;
+      background: white;
+      position: relative;
+    }
+    .slide {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+    .slide.active {
+      display: block;
+    }
+    .slide img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .dot {
+      height: 8px;
+      width: 8px;
+      margin: 0 5px;
+      background: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot.active {
+      background: #333;
+    }
+
+/* HELLO */
+    .hello-section {
+      padding: 20px;
+      text-align: center;
+      font-size: 20px;
+    }
+    .hello-section p {
+      font-size: 14px;
+      color: #555;
+    }
+    .products {
+      display: flex;
+      grid-template-columns: repeat(2,1fr);
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px;
+    }
+    .products ::-webkit-scrollbar{
+      display: none;
+    }
+    .product-card{
+      background:#555;
+      min-width: 220px;
+      border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      padding:15px;
+      text-align:center;
+      transition:0.3s;
+    }
+    .product-card:hover{
+      transform:translateY(-5px);
+    }
+    .product-card img{
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .product-name{
+      font-size:15px;
+      margin:10px 0;
+    }
+    .price{
+      color:white;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+   
+                                               /* jer */
+    .contain {
+      width: 95%;
+      margin-top:20px;
+      background:#f2f2f2;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+
+.main-image {
+  width: 100%;
+  height: 260px;
+  border: 1px solid black;
+  border-radius: 12px;
+  background:#f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.main-image img {
+  width: 200px;
+}
+
+/* THUMBNAILS */
+.sl {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.thumbnails {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  scrollbar-width: none;
+}
+
+.thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.thumb {
+  min-width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.thumb.active {
+  border: 2px solid teal;
+}
+
+/* INPUTS */
+.form {
+  margin-top: 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-group {
+  width: 48%;
+}
+
+input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 5px;
+  outline: none;
+}
+
+/* BUTTON */
+.butt {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #1f9d8a;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+}                                           
+  </style>
+</head>
+<body>
+  
+    <header class="store-header">
+      <div class="logo"><img src="unnamed.png" alt="unnamed" width="30px" height="30px"> Store</div>
+        <div class="icons">
+          <span>👤</span>
+          <span><img src="share-icon.jpg" alt="share-icon" width="30px" height="20px"></span>
+          <span>🛒</span>
+        </div>
+    </header>
+    
+    <div class="offer-banner">
+        Extra 20% off Equipment. Code: <b>GEARUP20</b>
+    </div>
+
+    <div class="category-scroll">
+        <button class="active">☰ Menu</button>
+        <button>T-Shirts</button>
+        <button>Track Pants</button>
+        <button>Compression wear</button>
+        <button>Bowling</button>
+        <button>Batting</button>
+        <button>Caps</button>
+        <button>Sleeves</button>
+        <button>Wristband</button>
+        <button>Hat</button>
+        <button>Socks</button>
+        <button>Upper</button>
+        <button>Toss coin</button>
+    </div>
+
+    <div class="slider">
+        <div class="slide active">
+          <a href="#"><img src="Screenshot tsrt.png" alt="tshirt"></a>
+        </div>
+
+        <div class="slide">
+          <a href="#"><img src="Screenshot wear.png" alt="wear"></a>
+        </div>
+
+        <div class="silde ">
+          <a href="#"><img src="Screenshot ball.png" alt="ball"></a>
+        </div>
+
+        <div class="slide ">
+          <a href="#"><img src="Screenshot coin.png" alt="cap"></a>
+        </div>
+    </div>
+
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <div class="hello-section">
+      <b>Hello, Cricketer</b>
+      <p>Gear up like 91,081+ champions</p>
+    </div>
+
+    <div class="category-scroll">
+      <div class="products" onclick="openPro()">
+        <div class="product-card">
+          <img src="Screenshot jers.png" alt="">
+          <div class="product-name">Team Jersey</div>
+  
+          <button>
+            <span>Get it now</span>
+            <span>→</span>
+          </button>
+        </div>
+
+        <div class="product-card">
+          <img src="Screenshot kitbag.png" alt="">
+          <div class="product-name">Professional kitbag</div>
+          <div class="price">₹2,499</div>
+         
+          <button>
+            <span>Get it now</span>
+            <span>→</span>
+          </button>
+        </div>
+
+        <div class="product-card">
+          <img src="Screenshot ball.png" alt="">
+          <div class="product-name">Cricket Ball</div>
+          <div class="price">₹699</div>
+         
+          <button>
+            <span>Get it now</span>
+            <span>→</span>
+          </button>
+        </div>
+
+        <div class="product-card">
+          <img src="Screenshot cap.png" alt="">
+          <div class="product-name">Baggy Cap (Non-Personalised)</div>
+          <div class="price">₹599</div>
+          
+          <button>
+            <span>Get it now</span>
+            <span>→</span>
+          </button>
+        </div>
+    
+        <div class="product-card">
+          <img src="Screenshot gloves.png" class="product-img" width="200px" height="200px">
+          <div class="title">Destroyer Batting Gloves (Adult Size)</div>
+          <div class="price"> ₹2599</div>
+          
+          <button>
+            <span>Get it now</span>
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+
+      function openPro() {
+        window.location.href = "jersey.html";
+      }
+
+    </script>
+
+
+    <div class="contain">
+      <h2>Personalise Your Cricket Jersey</h2>
+      
+      <div class="main-image">
+        <img id="mainImg" src="Screenshot jer.png">
+      </div>
+
+      <div class="sl">
+        
+        <div class="thumbnails" id="thumbContainer">
+          <img class="thumb active" src="Screenshot jer.png" onclick="changeImg(this)">
+          <img class="thumb" src="Screenshot jer1.png" onclick="changeImg(this)">
+          <img class="thumb" src="Screenshot jer2.png" onclick="changeImg(this)">
+          <img class="thumb" src="Screenshot jer3.png" onclick="changeImg(this)">
+          <img class="thumb" src="Screenshot jer4.png" onclick="changeImg(this)">
+          <img class="thumb" src="Screenshot jer5.png" onclick="changeImg(this)">
+          <img class="thumb" src="Screenshot jer6.png" onclick="changeImg(this)">
+          <img class="thumb" src="Screenshot jer7.png" onclick="changeImg(this)">
+          <img class="thumb" src="Screenshot jer8.png" onclick="changeImg(this)">
+          <img class="thumb" src="Screenshot jer9.png" onclick="changeImg(this)">
+        </div>
+      </div>
+
+      <div class="form">
+        <!-- <div class="row">
+          <div class="input-group">
+            <label>Name*</label>
+              <input type="text" maxlength="12">
+          </div>
+
+          <div class="input-group">
+            <label>Number*</label>
+              <input type="number" maxlength="3">
+          </div>
+        </div> -->
+        
+          <button class="butt" onclick="openProduct()">
+            <span>Get it now</span>
+            <span>→</span>
+          </button>
+      </div>
+    </div>
+    
+    <script>
+
+      
+      function openProduct() {
+        window.location.href = "product.html";
+      }
+
+      function changeImg(el) {
+        document.getElementById("mainImg").src = el.src;
+        document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+        el.classList.add("active");
+      }
+    
+      function scrollLeft() {
+        document.getElementById("thumbContainer").scrollBy({
+        left: -100,
+        behavior: "smooth"
+        });
+      }
+
+      function scrollRight() {
+        document.getElementById("thumbContainer").scrollBy({
+        left: 100,
+        behavior: "smooth"
+       });
+      }
+    </script>
+
+</body>
+</html>

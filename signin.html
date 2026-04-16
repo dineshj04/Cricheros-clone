@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signin</title>
+    <style>
+        .container{
+            display: flex;
+            height: 100vh;
+        }
+        .login-box {
+           width: 40%;
+           background: #fff;
+           padding: 60px;
+        }
+        .login-box h1 {
+           font-size: 32px;
+           margin-bottom: 30px;
+           text-align: center;
+        }
+        .label{
+            font-size: 14px;
+            color: #555;
+        }
+        .select{
+            width: 100%;
+            padding:20px;
+            margin:10px 0 30px; 
+            border: 1px solid #ccc;
+            font-size: 20px;
+        }
+        .divide {
+           display: flex;
+           align-items: center;
+           margin: 20px 0;
+        }
+        .divide span{
+            font-size: 16px;
+            color: #555;
+        }
+        .divide::before,
+        .divide::after {
+           content: "";
+           flex: 1;
+           height: 1px;
+           background: #ddd;
+           margin: 0 10px;
+        }  
+        .btn-whats{
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 10px;
+           padding: 14px;
+           border: 1px solid white;
+           border-radius: 8px;
+           margin-bottom: 5px;
+           cursor: pointer;
+           font-weight: 600;
+           background: rgb(242, 242, 242);
+           text-decoration: none;
+        }
+        .btn-whats img {
+           width: 25px;
+           text-align: right;
+        }
+        .btn-mobile {
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 10px;
+           padding: 14px;
+           border: 1px solid white;
+           border-radius: 8px;
+           margin-bottom: 5px;
+           cursor: pointer;
+           font-weight: 600;
+           background: #f2f2f2;
+        }
+        .whatsapplogin{
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            padding: 5px;
+        }
+        .mobilelogin{
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            padding: 5px;
+        }
+        .terms{
+            margin-top: 20px;
+            font-size: 20px;
+            color: #555;
+        }
+        .terms a{
+            text-decoration: none;
+            color: rgb(24, 149, 143);
+        }
+        .banner img{
+            width: 100%;
+            margin-bottom: 60px;
+        }
+    </style>
+</head>
+<body>
+    <section class="signin-btn">
+        <div class="container">
+            <div class="login-box">
+                <h1>Sign in to continue</h1>
+                <label>Country</label><br>
+                <select>
+                    <option>--select your Country--</option>
+                    <option>India</option>
+                    <option>Austraila</option>
+                    <option>England</option>
+                    <option>USA</option>
+                    <option>New Zealand</option>
+                    <option>West Indies</option>
+                </select>
+                <div class="divide">
+                    <span>CONTINUE WITH</span>
+                </div>
+
+                <div class="btn-whats">
+
+                   <a href="whatsapp.html" class="whatsapplogin" onclick="goWhatsApp()">
+                    <img src="whatsapp (1).png" alt="whatsapp">
+                    
+                    <span>WHATSAPP</span> </a>
+                </div>
+
+                <div class="btn-whats">
+                  <a href="mobile.html" class="mobilelogin" onclick="goMobile()"><img src ="cell-phone.png" alt="cell-phone">
+                <span>MOBILE NUMBER</span> </a>
+                </div>
+                <p class="terms">
+                    By signing in, you agree to our
+                    <a href="#">Terms of Service</a> and
+                    <a href="#">Privacy Policy</a>
+                </p>
+            </div>
+            <div class="banner">
+               <img src="otp picture.png" alt="otp">
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+</body>
+</html>

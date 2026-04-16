@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart UI</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    margin-left: 30%;
+    width: 40%;
+    align-items: center;
+  }
+
+  .header {
+    background: #e41e2b;
+    color: white;
+    padding: 15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header span {
+    margin-left: 10px;
+  }
+
+  .container {
+    padding: 15px;
+    width: 95%;
+  }
+                                                            /* card */
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+                                                          /* Product */
+  .product {
+    display: flex;
+    gap: 12px;
+  }
+  .product img {
+    width: 90px;
+    border-radius: 10px;
+  }
+  .product-info {
+    flex: 1;
+  }
+  .title {
+    font-weight: bold;
+  }
+  .label {
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+.edit-btn {
+  padding: 2px 8px;
+  font-size: 12px;
+  margin-left: 50%;
+  cursor: pointer;
+}
+  
+  .dropdown {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  select {
+    padding: 6px;
+    border-radius: 6px;
+  }
+
+                                                            /* Price */
+  .price {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .old-price {
+    text-decoration: line-through;
+    color: gray;
+    margin-left: 70%;
+  }
+  .new-price {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+                                                         /* Address */
+  .address-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .address-box span {
+    color: teal;
+    cursor: pointer;
+  }
+
+                                                            /* Coupon */
+  .coupon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .apply-btn {
+    background: teal;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+                                                        /* Price details */
+  .details div {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+  }
+  .total {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+                                                           /* Bottom button */
+  .bottom-btn {
+    position: fixed;
+    bottom: 0;
+    width: 40%;
+    background: white;
+    padding: 10px;
+  }
+  .bottom-btn button {
+    width: 100%;
+    padding: 12px;
+    background: teal;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+                                                          /* model */
+  .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: flex-end; /* 👈 bottom sheet */
+  z-index: 999;
+}
+
+.modal-content {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  animation: slideUp 0.3s ease;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.options button {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  min-width: 55px;
+}
+
+.options button.active {
+  background: teal;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+}
+
+.actions button:first-child {
+  background: #eee;
+}
+
+.update {
+  background: teal;
+  color: white;
+}
+.bottom-btn {
+  z-index: 1; /* 👈 lower than modal */
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+        .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+}
+
+.buttons {
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: space-between;
+}          
+              
+</style>
+
+</head>
+<body>
+  <div class="header">← <span>Cart</span></div>
+  
+  <div class="container">
+    
+    <div class="card">
+      <div class="product">
+        <img src="Screenshot jer.png" alt="jersey">
+        
+        <div class="product-info">
+          <div class="title">Bright Blaze Half Sleeve</div>
+                                             
+                                        <!-- edit -->
+       
+          <div class="label">
+            Name: <span id="nameText">---</span>
+            <button class="edit-btn" onclick="openEdit()">Edit</button>
+          </div>
+          
+          <div class="label">
+            Number: <span id="numberText">---</span>
+          </div>
+          
+          <div id="editModal" class="modal">
+            <div class="modal-content">
+              <h3>Edit Details</h3>
+              <label>Name:</label>
+              <input type="text" id="editName">
+                
+              <label>Number:</label>
+              <input type="number" id="editNumber">
+
+              <div class="buttons">
+                <button onclick="closeEdit()">Cancel</button>
+                <button onclick="updateDetails()">Update</button>
+              </div>
+            </div>
+          </div>
+          
+          <script>
+            function openEdit() {
+              document.getElementById("editModal").style.display = "flex";
+
+              document.getElementById("editName").value =
+              document.getElementById("nameText").innerText;
+
+              document.getElementById("editNumber").value =
+              document.getElementById("numberText").innerText;
+            }
+
+            function closeEdit() {
+              document.getElementById("editModal").style.display = "none";
+            }
+
+            function updateDetails() {
+              let newName = document.getElementById("editName").value;
+              let newNumber = document.getElementById("editNumber").value;
+
+              document.getElementById("nameText").innerText = newName;
+              document.getElementById("numberText").innerText = newNumber;
+
+              closeEdit();
+            }
+          </script>
+
+          <div class="dropdown">
+
+            <button onclick="openModal('size')">
+              Size: <span id="sizeValue">M</span>
+            </button>
+
+            <button onclick="openModal('qty')">
+              Qty: <span id="qtyValue">1</span>
+            </button>
+
+            <div class="modal" id="modal">
+              <div class="modal-content">
+                <h3 id="modalTitle">Select</h3>
+                
+                <div id="options" class="options"></div>
+                
+                <div class="actions">
+                  <button onclick="closeModal()">Cancel</button>
+                  <button class="update" onclick="updateValue()">Update</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+      <div class="price">
+        <div>Coupon Discount: ₹0 </div>
+          <span class="old-price" id="oldPrice">₹1,149</span>
+          <span class="new-price" id="newPrice">₹699</span>
+        <div>PRO Discount: ₹0</div>
+      </div> 
+
+    </div>
+    
+    <div class="card address-box">
+      <div>Where do we send this?</div>
+        <span>Add Address</span>
+      </div>
+      
+      <div class="card coupon">
+        <div>Save ₹139.8 with 'WELCOME20'</div>
+        <button class="apply-btn">Apply</button>
+      </div>
+      <div class="note">
+        To ensure faster delivery, we begin processing your order immediately after it is placed. 
+        Because of this, cancellations or edits aren’t possible, so we request you to please review 
+        your details carefully before confirming your order.<br><br>
+
+        If something isn’t right with your product after delivery, please let us know within 48 hours and 
+        team will be assit you.
+      </div>
+      <div class="card details">
+        <h3>Price Details</h3>
+        <div><span>Total MRP</span><span>₹1,149</span></div>
+        <div><span>Discount</span><span>- ₹450</span></div>
+        <div><span>Delivery</span><span>Free</span></div>
+        <hr>
+        <div class="total"><span>Total</span><span>₹699</span></div>
+      </div>
+    </div>
+    
+    <div class="bottom-btn">
+      <button onclick="addAddress()">Add address</button>
+    </div>
+    
+    <script>
+      function addAddress() {
+        window.location.href = "address.html"
+      }
+    </script>
+    
+    <script>
+      let currentType = "";
+      let selectedValue = "";
+
+// Open Modal
+      function openModal(type) {
+        document.getElementById("modal").style.display = "flex";
+        currentType = type;
+
+        let optionsDiv = document.getElementById("options");
+        optionsDiv.innerHTML = "";
+
+        if (type === "size") {
+          document.getElementById("modalTitle").innerText = "Select Size";
+          let sizes = ["XS","S","M","L","XL","2XL","3XL","4XL"];
+
+          sizes.forEach(size => {
+            let btn = document.createElement("button");
+            btn.innerText = size;
+            btn.onclick = () => selectOption(btn, size);
+            optionsDiv.appendChild(btn);
+          });
+
+        } else {
+          document.getElementById("modalTitle").innerText = "Qty";
+          let qty = [1,2,3,4,5,6];
+          
+          qty.forEach(q => {
+            let btn = document.createElement("button");
+            btn.innerText = q;
+            btn.onclick = () => selectOption(btn, q);
+            optionsDiv.appendChild(btn);
+          });
+        }
+      }
+
+// Select option
+function selectOption(btn, value) {
+  selectedValue = value;
+
+  // remove active from all
+  let allBtns = document.querySelectorAll(".options button");
+  allBtns.forEach(b => b.classList.remove("active"));
+
+  btn.classList.add("active");
+}
+
+// Update value
+function updateValue() {
+  if (!selectedValue) return;
+
+  if (currentType === "size") {
+    document.getElementById("sizeValue").innerText = selectedValue;
+  } else {
+    document.getElementById("qtyValue").innerText = selectedValue;
+    updatePrice(selectedValue); // 👈 update price
+  }
+
+  closeModal();
+}
+
+// Close modal
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+  selectedValue = "";
+}
+window.onclick = function(e) {
+  let modal = document.getElementById("modal");
+  if (e.target === modal) {
+    closeModal();
+  }
+}
+// Price Update Logic
+function updatePrice(qty) {
+  let baseOld = 1149;
+  let baseNew = 699;
+
+  let totalOld = baseOld * qty;
+  let totalNew = baseNew * qty;
+
+  document.getElementById("oldPrice").innerText = "₹" + totalOld;
+  document.getElementById("newPrice").innerText = "₹" + totalNew;
+
+  // Update price details section also
+  document.querySelector(".details div:nth-child(2) span:last-child").innerText = "₹" + totalOld;
+  document.querySelector(".total span:last-child").innerText = "₹" + totalNew;
+}
+</script>
+</body>
+</html>

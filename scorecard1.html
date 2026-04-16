@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    margin: 0;
+    padding: 20px;
+}
+
+.scorecard-container {
+    /* max-width: 800px; */
+    width: 90%;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 20px;
+}
+
+.scorecard-header {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+.TROPHY{
+    font-size: 30px;
+    color: #009688;
+}
+.match-title {
+    font-size: 24px;
+    margin: 0;
+}
+
+.live-status {
+    background: red;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.match-info {
+    color: #555;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.teams-summary {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.team-score h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.team-score .score {
+    color: #666;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.tab {
+    padding: 8px 14px;
+    background: #eee;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tab.active {
+    background: #009688;
+    color: white;
+}
+
+.score-table-wrapper {
+    margin-top: 15px;
+}
+
+.score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+}
+
+.score-table th, .score-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.score-table th {
+    background: #f3f3f3;
+}
+
+.stats-section {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+}
+
+.stats-section p {
+    margin: 6px 0;
+}
+
+    </style>
+</head>
+<body>
+  
+<div class="scorecard-container">
+
+    <!-- Header -->
+    <div class="scorecard-header">
+        <p class="TROPHY">TN TROPHY</p>
+        <h2 class="match-title">Vijay cc vs Super Kings cc</h2>
+        <span class="live-status">LIVE</span>
+        <p class="match-info">chepak Chennai</p>
+        <p class="match-info">League match - 50 over match</p>
+    </div>
+
+    <!-- Team Score Summary -->
+    <div class="teams-summary">
+        <div class="team-score">
+            <h3>Vijay cc</h3>
+            <p class="score"> 359/9 <span> (50 Ov) </span></p>
+        </div>
+        <div class="team-score">
+            <h3>Jolly Rovers cc</h3>
+            <p class="score">144/2 <span>(25.0)</span></p>
+        </div>
+    </div>
+
+    <!-- Main Scorecard Tabs -->
+    <div class="tabs">
+        <button class="tab active">Scorecard</button>
+        <button class="tab">Commentary</button>
+        <button class="tab">Analysis</button>
+        <button class="tab">Teams</button>
+        <button class="tab">Gallery</button>
+    </div>
+
+    <!-- Batters Table -->
+    <div class="score-table-wrapper">
+        <h4>Batters</h4>
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Runs</th>
+                    <th>Balls</th>
+                    <th>4s</th>
+                    <th>6s</th>
+                    <th>SR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rohit</td>
+                    <td>44</td>
+                    <td>24</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>85.38</td>
+                </tr>
+                <tr>
+                    <td>Nimalan</td>
+                    <td>58</td>
+                    <td>43</td>
+                    <td>6</td>
+                    <td>3</td>
+                    <td>88.89</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bowlers Table -->
+    <div class="score-table-wrapper">
+        <h4>Bowlers</h4>
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>Bowler</th>
+                    <th>Overs</th>
+                    <th>Median</th>
+                    <th>Runs</th>
+                    <th>Wk</th>
+                    <th>Eco</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mukul Krishna *</td>
+                    <td>4.1</td>
+                    <td>10</td>
+                    <td>27</td>
+                    <td>1</td>
+                    <td>9.23</td>
+                </tr>
+                <tr>
+                    <td>Adi Dubey</td>
+                    <td>3.0</td>
+                    <td>6</td>
+                    <td>12</td>
+                    <td>1</td>
+                    <td>4.67</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <p><strong>Current Partnership:</strong> 49 (31)</p>
+        <p><strong>Current RR:</strong> 6.48</p>
+        <p><strong>Required RR:</strong> 9.13</p>
+    </div>
+
+</div>
+
+<script>
+    function updateBatting(batters) {
+    let tbody = document.querySelector(".score-table tbody");
+    tbody.innerHTML = "";
+    batters.forEach(b => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${b.name}</td><td>${b.r}</td><td>${b.b}</td><td>${b.fours}</td>
+            <td>${b.sixes}</td><td>${b.sr}</td>
+          </tr>`;
+    });
+}
+
+// Example data
+updateBatting([
+  {name:"Pradyun *",r:44,b:24,fours:6,sixes:2,sr:140.00},
+  {name:"Nimalan",r:58,b:56,fours:3,sixes:3,sr:106.67}
+]);
+
+</script>
+
+</body>
+</html>

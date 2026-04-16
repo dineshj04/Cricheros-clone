@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address</title>
+    <style>
+         .container {
+    max-width: 400px;
+    margin: auto;
+    background: #fff;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: #e21b23;
+    color: #fff;
+    padding: 15px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header span {
+    margin-left: 10px;
+  }
+
+  /* Section */
+  .section {
+    padding: 15px;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  label {
+    font-size: 13px;
+    color: #666;
+  }
+
+  .input-group {
+    margin-bottom: 18px;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0;
+    font-size: 16px;
+    outline: none;
+  }
+
+  input:focus {
+    border-bottom: 1px solid #000;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .change-btn {
+    background: #1fa293;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .save-btn {
+    width: 90%;
+    margin: 20px auto;
+    display: block;
+    background: #1fa293;
+    color: #fff;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }.radio-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 15px;
+  color: #333;
+}
+
+.radio input {
+  display: none;
+}
+
+/* Custom circle */
+.custom-radio {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #999;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+}
+
+/* Selected state */
+.radio input:checked + .custom-radio {
+  border-color: #1fa293;
+}
+
+.radio input:checked + .custom-radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #1fa293;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            ← <span>Add Delivery Address</span>
+        </div>
+
+        <div class="section">
+            <h3>Contact Details</h3>
+
+            <div class="input-group">
+                <label>Full name *</label>
+                <input type="text" placeholder="Enter your name">
+            </div>
+
+            <div class="input-group row">
+              <div style="flex:1; margin-right:10px;">
+                <label>Mobile Number *</label>
+                <input type="number" placeholder="" >
+              </div>
+              <button class="change-btn">Change</button>
+            </div>
+            
+            <div class="input-group">
+              <label>Email *</label>
+              <input type="email" placeholder="Email">
+            </div>
+
+            <h3>Address</h3>
+
+            <div class="input-group">
+              <label>House No. / Building Name *</label>
+              <input type="text">
+            </div>
+
+            <div class="input-group">
+              <label>Locality / Town *</label>
+              <input type="text">
+            </div>
+
+            <div class="input-group">
+              <label>Landmark *</label>
+              <input type="text">
+            </div>
+
+            <div class="input-group">
+              <label>Pincode *</label>
+              <input type="text">
+            </div>
+
+            <div class="input-group">
+              <label>City *</label>
+              <input type="text">
+            </div>
+
+            <div class=""input-group>
+              <label>State *</label>
+              <input type="text">
+            </div>
+
+            <div class="input-group">
+              <label>Address Type *</label>
+              
+              <div class="radio-group">
+                <label class="radio">
+                  <input type="radio" name="addressType">
+                  <span class="custom-radio"></span>
+                    Home
+                </label>
+
+                <label class="radio">
+                  <input type="radio" name="addressType" checked>
+                  <span class="custom-radio"></span>
+                    Office
+                </label>
+              </div>
+            </div>
+
+            <button class="save-btn" onclick="saveAddress()">Save address</button>
+            
+          </div>
+        </div>
+        
+        <script>
+
+          // function saveAddress() {
+          //   const inputs = document.querySelectorAll('input');
+          //   let isValid = true;
+
+          //   inputs.forEach(input => {
+          //     if (input.type !== "radio") {
+          //       if (input.value.trim() === "") {
+          //         input.style.border = "1px solid red";
+          //         isValid = false;
+          //       }else {
+          //         input.style.border = "1px solid #ccc";
+          //       }
+          //     }
+          //   });
+
+          //   const addressType = document.querySelector('input[name="addressType"]:checked');
+          //   if(!addressType) {
+          //     alert("please select Address Type");
+          //     isValid = false;
+          //   }
+
+          //   if(isValid) {
+          //     localStorage.setItem("addressSaved", "true");
+          //   } else {
+          //     alert("Please fill all required field!");
+          //   }
+  
+          // }
+          function saveAddress() {
+  const inputs = document.querySelectorAll('input');
+  let isValid = true;
+
+  inputs.forEach(input => {
+    if (input.type !== "radio") {
+      if (input.value.trim() === "") {
+        input.style.border = "1px solid red";
+        isValid = false;
+      } else {
+        input.style.border = "1px solid #ccc";
+      }
+    }
+  });
+
+  const addressType = document.querySelector('input[name="addressType"]:checked');
+  if (!addressType) {
+    alert("Please select Address Type");
+    isValid = false;
+  }
+
+  if (isValid) {
+    localStorage.setItem("addressSaved", "true");
+
+    // ✅ Redirect to order success page
+    window.location.href = "order-success.html";
+  } else {
+    alert("Please fill all required fields!");
+  }
+}
+</script>
+</body>
+</html>

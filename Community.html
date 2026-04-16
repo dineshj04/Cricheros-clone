@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Section</title>
+    <style>
+        .hero{
+            background: linear-gradient(rgba(220,0,0,0.85),rgba(180,0,0,0.85)),url(contactbg.jpg) center/cover no-repeat;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-content h1{
+            font-size: 35px;
+            font-weight: 700;
+        }
+        .hero-content p{
+            margin: 15px 0;
+            font-size: 18px;
+        }
+        .register-btn {
+            padding: 12px 30px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .register-btn:hover {
+            color:white;
+            transform: scale(1.1);
+            box-shadow: 0 12px 24px gold;
+        }
+        .community-grid{
+            max-width: 1200px;
+            display: grid;
+            margin: 30px auto;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            padding: 0 20px;
+        }
+        .card{
+            background: white;
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .card img{
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+        .card h3{
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            background: #e7c0c0;
+        }
+
+        @media (max-width: 992px) { 
+            .community-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+        }
+        .numbers-section {
+            padding: 80px 8%;
+            text-align: center;
+            background: rgb(24, 149, 143);
+        }
+        .main-title{
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 60px;
+            color: white;
+        }
+        .stats-row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+        .stat-box{
+            min-width: 200px;
+            color: white;
+        }
+        .stat-box h2{
+            font-size: 42px;
+            font-weight: 400px;
+            margin-bottom: 10px;
+        }
+        .stat-box p{
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        .divider{
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        .associate-title{
+            font-size: 42px;
+            font-weight: 400;
+            margin-bottom: 50px;
+            color: white;
+        }
+        .second-row {
+            margin-bottom: 60px;
+        }
+        .line{
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin: 40px 0;
+        }
+        .cta{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .cta p {
+            font-size: 22px;
+            color: white;
+        }
+        .cta button {
+            padding: 12px 28px;
+            font-size: 16px;
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .cta button:hover {
+            background:rgb(24, 149, 143);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 12px 24px gold;
+
+        }
+        .footer{
+            background: #0f0f0f;
+            padding: 30px 10%;
+            text-align: center;
+            color: #bbb;
+        }
+        .footer-links{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 15px;
+        }
+        .footer-links a{
+            text-decoration: none;
+            color:rgb(152, 152, 152);
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .footer-links a:hover {
+            color: #fff;
+        }
+        .footer-divider {
+            height: 1px;
+            background: #2a2a2a;
+            margin: 15px auto;
+            width: 80%;
+        }
+        .copyright {
+            font-size: 18px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Community</h1>
+            <p>Explore and connect with people who make grassroots cricket possible.</p>
+            <button class="register-btn" onclick="opencont()">Register now</button>
+        </div>
+ 
+        <script>
+            function opencont() {
+               window.location.href = "http://127.0.0.1:5500/Contactus.html";
+            }
+        </script>
+
+    </section>
+    <section class="community-grid">
+        <div class="card">
+            <img src="screenshot1.png" alt="screenshot1">
+            <h3>Academies</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot 2.png" alt="screenshot">
+            <h3>Grounds</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot3.png" alt="screenshot">
+            <h3>Shops</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot4.png" alt="screenshot">
+            <h3>Organizers</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot5.png" alt="screenshot">
+            <h3>Scorers</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot6.png" alt="screenshot">
+            <h3>Umpires</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot7.png" alt="screenshot">
+            <h3>Commentators</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot8.png" alt="screenshot">
+            <h3>Streamers</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot9.png" alt="screenshot">
+            <h3>Physio and Fitness Trainer</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot10.png" alt="screenshot">
+            <h3>Personal coaching</h3>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot11.png" alt="screenshot">
+            <h3>Box Cricket & nets</h3>
+        </div>
+    </section>
+
+    <section class="numbers-section">
+        <h1 class="main-title">CricHeroes in numbers</h1>
+        <div class="stats-row">
+
+            <div class="stat-box">
+                <h2>17<sup>th</sup> Oct 2016</h2>
+                <p>First match scored</p>
+            </div>
+            <div class="divider"></div>
+
+            <div class="stat-box">
+                <h2>1.4 Crores+</h2>
+                <p>Matches</p>
+            </div>
+            <div class="divider"></div>
+
+            <div class="stat-box">
+                <h2>8.7 Lakhs+</h2>
+                <p>Tournaments</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="stat-box">
+                <h2>4.2 Crores+</h2>
+                <p>Players</p>
+            </div>
+        </div>
+
+        <h2 class="associate-title">Proud associates</h2>
+
+        <div class="stats-row second-row">
+            <div class="stat-box">
+                <h2>52+</h2>
+                <p>ICC</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="stat-box">
+                <h2>23+</h2>
+                <p>BCCI</p>
+            </div>
+            <div class="divider"></div>
+
+            <div class="stat-box">
+                <h2>200+</h2>
+                <p>Districts</p>
+            </div>
+        </div>
+
+        <hr class="line">
+
+        <div class="cta">
+            <p>Join world's largest cricket network.</p>
+            <button onclick="openAwards()">Download app</button>
+        </div>
+
+        <script>
+            function openAwards() {
+               window.location.href = "http://127.0.0.1:5500/Getapp.html";
+            }
+        </script>
+        
+    </section>
+
+    <footer class="footer">
+
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Jobs</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Service</a>
+            <a href="#">Paid Service Terms</a>
+            <a href="#">ICC Policy</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="copyright"> © CricHeroes Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
+
+    </footer>
+</body>
+</html>

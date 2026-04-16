@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CricHeroes</title>
+    <style>
+        .hero{
+            height: 20vh;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color:brown;
+        }
+        .hero img{
+            width: 50px;
+            height: 50px;
+        }
+        .logo{
+            font-size: 30px;
+            text-align: center;
+            align-items: center;
+            margin-top: 20px;
+            padding: 30px;
+        }
+        .red{
+            color: goldenrod;
+        }
+        .black{
+            color: goldenrod;
+        }
+        .her {
+            display: flex;
+            height: 80vh;
+        }
+        .sec{
+            background-color: #f2c94c;
+        }
+/* LEFT IMAGE */
+        .left {
+            flex: 1;
+            background: url('your-image.jpg') no-repeat center;
+            background-size: cover;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+        }
+
+/* RIGHT CONTENT */
+        .right {
+            flex: 1;
+            background: #f2c94c;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+        }
+        .right h1 {
+            color: #7b1e1e;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+        .right p {
+           color: #7b1e1e;
+           margin-bottom: 20px;
+        }
+
+/* BUTTON */
+        button {
+            padding: 12px 25px;
+            width: 30%;
+            border: 2px solid #7b1e1e;
+            background: transparent;
+            color: #7b1e1e;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #7b1e1e;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="logo">
+            <span class="red">Cric</span><span class="black">heroes</span><br>
+            <img src="unnamed.png" alt="cricheroes">
+        </div>
+    </section>
+
+    <section class="sec">
+        <div class="her">
+            <div class="left">
+                <img src="frontpageimage.png" alt="frontpageimage">
+            </div>
+
+            <div class="right">
+                <h1>Dream For Every Cricketers</h1>
+                <p>Experience the thrill of cricket and achieve your goals.</p>
+
+                <button onclick="goToWelcome()">Register Now</button>
+            </div>
+        </div>
+        
+        <script>
+            function goToWelcome() {
+                window.location.href = "welcome.html";
+            }
+        </script>
+
+    </section>
+
+</body>
+</html>

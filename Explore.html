@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore awards</title>
+    <style>
+        body{
+            background: #0b0b0b;
+            color: #fff;
+        }
+        .awards-section{
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .content{
+            text-align: center;
+            max-width: 700px;
+            padding: 40px 20px;
+        }
+        .award-logo{
+            font-size: 60px;
+            color: #c89b5c;
+            margin-bottom: 15px;
+        }
+        h1{
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        .desc{
+            font-size: 15px;
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .know-more{
+            color: #c89b5c;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        .cards{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card{
+            border: 1px solid #c89b5c;
+            border-radius: 14px;
+            padding: 20px;
+            background: #121212;
+        }
+        .card-header{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+        .card-header i {
+            color: #c89b5c;
+        }
+        .card-header img{
+            width: 30px;
+            height: 30px;
+        }
+        .card button{
+            width: 50%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #8b5a2b, #c89b5c);
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .card button:hover{
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <section class="awards-section">
+        <div class="content">
+            <div class="award-logo">
+                <img src="awards-logo" alt="award">
+            </div>
+            <h1>Awards 2025</h1>
+            <p class="desc"> This is our tribute to the passion and dedication of players and 
+                community members who created sheer magic in grassroots cricket throughout 2025.
+            </p>
+            <a href="#" class="know-more">Know more</a>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="card-header">
+                        <img src="awardtrophy.png" alt="award">
+                        <span>Award winners</span>
+                    </div>
+                    <button onclick="goToWinners()">Explore</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>Categories & criteria</span>
+                    </div>
+                    <button onclick="goToCategories()">Explore</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <script>
+        function goToWinners(){
+            window.location.href ="award-winners.html"
+        }
+        function goToCategories(){
+            window.location.href = "categories.html";
+        }
+    </script>
+</body>
+</html>

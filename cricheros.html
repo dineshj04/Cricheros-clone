@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricheros</title>    
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          background:#f2f2f2;
+          scroll-behavior: smooth;
+          scroll-snap-type: y mandatory;
+          height: 100%;
+          overflow-y:scroll;
+        }
+                                           /* navbar */
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background:white;
+          padding: 12px 30px;
+          position: fixed;
+          width: 97%;
+          top: 0;
+          z-index: 10;
+        }
+
+        .logo{
+          font-size: 22px;
+          font-weight: bold;
+          color: #d32f2f;
+          cursor: pointer;
+        }
+        .logo img{
+          width: 30px;
+          height: 30px;
+          margin-left: 10px;
+        }
+        .red{
+          color: black;
+          font-size: 32px;
+        }
+        .black{
+          color: red;
+          font-size: 32px;
+        }
+        .gray{
+          color: #333;
+          font-size: 23px;
+        }
+        .navbar a {
+          font-size: 18px;
+          text-decoration: none;
+          color: black;
+          font-weight: 500;
+        }
+        .nav{
+          display: flex;
+          gap: 20px;
+          align-items: center;
+        }
+        .nav a{
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+        }
+        .dropdown{
+          position:relative;
+        }                   
+        .drop-btn{
+          background: none;
+          border: none;
+          font-size: 18px;
+          cursor: pointer;
+        }        
+        .dropdown-content{
+          position: absolute;
+          top: 30px;
+          left: 0;
+          background: #fff;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          display: none;
+          flex-direction: column;
+          width: 150px;
+        }  
+        .dropdown-content a{
+          padding: 10px;
+          text-decoration: none;
+          color: #333;
+          font-size: 16px;
+        }     
+        .dropdown-content a:hover{
+          background: #f2f2f2;
+          color: #1aa3a3;
+        }    
+        .dropdown:hover .dropdown-content{
+          display: inline-flex;
+          color: #1aa3a3;
+        }  
+                                                /* SIGN IN */
+        .signin-btn {
+          background: #00a88f;
+          color: white;
+          border: 2px solid green;
+          padding: 10px 20px;
+          border-radius: 6px;
+          cursor: pointer;
+          text-decoration: none;
+          border-radius: 8px;
+        }
+        .signin-btn:hover{
+          color: white;
+        }
+
+                                                  /* hero */
+        .hero{
+          height: 80vh;
+          background: linear-gradient(rgba(220,0,0,0.85),rgba(180,0,0,0.85)),url(imgback.png) center/cover no-repeat;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          padding: 10px 30px;
+          color: white;
+          scroll-snap-align: start;
+        }
+        .hero-content{
+          max-width: 700px;
+        }
+        .hero h1{
+          font-size: 42px;
+          line-height: 1.3;
+          text-align: center;
+        }
+        .hero h1 span{
+          font-weight:bolder;
+        }
+        .hero p{
+          margin: 20px 0;
+          font-size: 18px
+        }
+        .store-buttons img{
+          border: 1px solid black;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+        .ratings{
+          margin-top: 15px;
+          font-size: 14px;
+        }
+        .ratings img{
+          width: 70px;
+        }
+                                       /* Awards */
+        .awards{
+          height: 40vh;
+          background: linear-gradient(to right,#131211,#3e352e);
+          color: white;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          text-align: center;
+          padding: 60px;
+        }
+        .award-content h1{
+          font-size: 48px;
+          color: #b28960;
+          align-items: center;
+        }
+        .award-content p {
+          font-size: 48px;
+          text-align: center;
+          align-items: center;
+        }  
+        .btn-ex{
+          padding: 12px 24px;
+          background: transparent;
+          border: 2px solid #b28960;
+          color:#b28960;
+          font-size: 18px;
+          transition: transform 0.3s; 
+          transform: translateY(10px);
+          text-decoration: none;
+          cursor: pointer;
+        }
+        .btn-ex:hover{
+          transform: scale(1.1);
+          box-shadow: 0 12px 24px rgb(229, 175, 100);
+        }
+                                                /* why */
+        .why{
+          padding: 40px 20px;
+          text-align: center;
+          background: rgb(255, 255, 255);
+        }
+        .why h1{
+          color: rgb(226, 28, 40);
+          font-size: 42px;
+          margin-bottom: 50px;
+          text-align: center;
+        }
+        .container{
+          max-width: 1000px;
+          margin: auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 20px;
+        }
+        .features-left{
+          width: 30%;
+        }
+        .item {
+          margin-bottom: 40px;
+        }
+        .item h3{
+          font-size: 20px;
+          margin-bottom: 6px;
+        }
+        .item p{
+          font-size: 18px;
+          color: #666;
+          line-height: 1.5;
+        }
+        .number{
+          font-size: 42px;
+          font-weight: bold;
+          color: #ddd;
+          display: block;
+          margin-bottom: 5px;
+        }
+        .mobile{
+          width:50%;
+          justify-content: center;
+          align-items: center;
+        }
+        .mobile img{
+          width: 280px;
+          transform: scale(0.95);
+          transition: all 0.6s ease;
+          text-align: center;
+        }
+        .mobileimg.active {
+          opacity: 1;
+          transform: scale(1);
+        }
+      @media (max-width: 900px) {
+        .container {
+          flex-direction: column;
+        }
+        .features .mobile{
+          width: 100%;
+          text-align: center;
+        }
+        .number {
+          font-size: 32px;
+        }
+      }
+
+                                             /* cricket kits */
+      .kits{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 80px;
+        background: rgb(242, 242, 242);
+        min-height: 80vh;
+      }        
+      .crickits{
+        max-width: 420px;
+      }          
+      .crickits h1{
+        font-size: 36px;
+        color: black;
+        line-height: 1.3;
+        margin-bottom: 25px;
+      }         
+      .btn{
+          padding: 12px 24px;
+          background: lightseagreen;
+          border: 1px solid #b28960;
+          color: white;
+          font-size: 16px;
+          transition: transform 0.3s;
+          transform: translateY(10px);
+          margin: 5px;
+          cursor: pointer;
+        }
+        .btn:hover{
+          box-shadow: 0.3s;
+          transform: translateX(10px);
+        }
+      .kitsimage img{
+        max-width: 700px;
+        width: 100%;
+      }      
+       @media (max-width: 900px) {
+      .kits {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .crickits {
+        margin-bottom: 30px;
+      }
+     }   
+
+                                        /* stats */
+    .stats{
+      background: #1c9a92;
+      color: #fff;
+      padding: 20px 20px;
+      text-align: center;
+      height: 85vh;
+    }
+    .stats h1{
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .stat-box {
+      flex: 1;
+      min-width: 80px;
+      padding:15px;
+      border-right: 1px solid rgba(255,255,255,0.3);
+    }
+    .stat-box:last-child{
+       border-right: none;
+    }
+    .stat-box h3{
+      font-size: 30px;
+      margin-bottom:5px;
+    }
+    .stat-box .small{
+      font-size: 18px;
+      opacity: 0.9;
+    }
+    .stat-box .desc{
+      font-size: 18px;
+      opacity: 0.9;
+    }
+    hr{
+      margin: 10px auto;
+      width: 100%;
+      border: 0.5px solid rgba(255,255,255,0.3);
+    }
+    .sub-title{
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .cta p {
+      font-size: 22px;
+      color: white;
+    }
+    .cta button {
+      padding: 12px 28px;
+      font-size: 16px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .cta button:hover {
+      background:#1a9c95;
+      color: #fff;
+    }
+
+                                                /* .youtube */
+    .you{
+      position: relative;
+      height: 100vh;
+      background: url('ground.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    } 
+    .you-tube{
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+    }     
+    .yousta{
+      position: relative;
+      color: white;
+      text-align: center;
+      max-width: 900px;
+      padding: 20px;
+    }  
+    .yousta h1{
+      font-size: 36px;
+      margin-bottom: 10px;
+    }     
+    .yousta p{
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .yousta h2{
+      font-size: 28px;
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+    .video{
+      max-width: 700px;
+      margin: auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
+    .video iframe {
+      width: 100%;
+      height: 400px;
+    }
+
+                                     /* featured */
+    .featured {
+      background: #e9e9e9;
+      text-align: center;
+      padding: 60px 0;
+      overflow: hidden;
+      height: 20%;
+    }
+    .featured h1{
+      color: red;
+      font-size: 48px;
+      margin-bottom: 40px;
+    }
+    .slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .slide{
+      display: flex;
+      width: calc(250px * 6);
+      animation: scroll 20s linear infinite;
+    }
+    .slide img{
+      width: 250px;
+      margin: 0 60px;
+    }
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    .dot {
+      width: 16px;
+      height: 16px;
+      background: #2bb3a3;
+      border-radius: 50%;
+      margin: 40px auto 0;
+    }
+                                       /* join */
+    .join {
+      padding: 60px 40px;
+      text-align: center;
+      background: rgb(255, 255, 255);
+    }
+    .join h1 {
+      color: red;
+      margin-bottom: 40px;
+    }
+    .join-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+    }
+    .joinimage img {
+      width: 480px;
+    }
+    .joining{
+      text-align: left;
+      max-width: 400px;
+    }
+    .joining h3{
+      margin-bottom: 10px;
+      font-size: 30px;
+    }
+    .joining p {
+      margin-bottom: 20px;
+      color: black;
+      font-size: 20px;
+    }
+    .cas{
+      background: teal;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    
+    .follow {
+      text-align: center;
+      margin-top: 60px; 
+      background: rgb(255, 255, 255);
+    }
+    .follow h2 {
+      color: red;
+      margin: 10px 0;
+    }
+    .social img{
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      border-radius: 50%;
+      background: #eee;
+      margin: 8px;
+      font-size: 18px;
+    }
+    .footer{
+      background: #0f0f0f;
+      padding: 30px 10%;
+      text-align: center;
+      color: #bbb;
+    }
+    .footer-links{
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 15px;
+    }
+    .footer-links a{
+      text-decoration: none;
+      color:rgb(152, 152, 152);
+      font-size: 18px;
+      transition: 0.3s;
+    }
+    .footer-links a:hover {
+      color: #fff;
+    }
+    .footer-divider {
+      height: 1px;
+      background: #2a2a2a;
+      margin: 15px auto;
+      width: 80%;
+    }
+    .copyright {
+      font-size: 18px;
+      color: #aaa;
+    }
+    body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+}
+
+.header {
+    padding: 20px;
+    background: #ffffff;
+}
+
+.search-container {
+    position: relative;
+    width: 500px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+.search-container input:focus {
+    border-color: #1abc9c;
+}
+
+.close-btn {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #777;
+}
+
+.search-dropdown {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    display: none;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.dropdown-title {
+    font-size: 14px;
+    color: #888;
+    padding: 0 20px 10px;
+}
+
+.dropdown-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.dropdown-item:hover {
+    background: #f2f2f2;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+                                      /* search button */
+                                      .search-box {
+  position: absolute;
+  top: 70px; /* below header */
+  right: 20px;
+  width: 350px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000;
+}
+
+/* TOP INPUT */
+.search-top {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.search-top input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.search-top span {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* DROPDOWN */
+.search-dropdown {
+  padding: 10px;
+  background: #f5f5f5;
+}
+
+.search-dropdown p {
+  color: gray;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.search-dropdown div {
+  padding: 10px;
+  cursor: pointer;
+  background: white;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.search-dropdown div:hover {
+  background: #eee;
+}
+#popularBox {
+  display: none;
+}
+
+    </style>
+<body>
+    <header class="navbar">
+
+      <div class="logo" onclick="goHome()">
+        <a href="#"><img src="unnamed.png" alt="unnamed">
+          <span class="red">cric</span><span class="black">heroes</span><br>
+          <span class="gray">Your cricket matters</span>
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <div class="dropdown">
+          <button class="drop-btn" onclick="toggleDropdown()">Live Scores ▾</button>
+          <div id="dropdown-menu" class="dropdown-content">
+            <a href="matches.html">Matches</a>
+            <a href="Tournaments.html">Tournaments</a>
+            <a href="Associations.html">Associations</a>
+          </div>
+        </div>
+
+                           <!--  Network -- -->
+        <div class="dropdown">
+          <button class="drop-btn" onclick="toggleDropdown()">Network ▾</button>
+          <div id="dropdown-menu" class="dropdown-content">
+            <a href="Community.html">Community</a>
+            <a href="#">Looking</a>
+          </div>
+        </div>      
+
+                                     <!-- Add ons -->
+        <div class="dropdown">
+          <button class="drop-btn" onclick="toggleDropdown()">Add ons ▾</button>
+            <div id="dropdown-Menu" class="dropdown-content">
+              <a href="Cricheros#">CricHeroes PRO</a>
+              <a href="GoLive#" class="submenu">Go Live ▶</a>
+              <a href="Yourapp#">Yourapp</a>  
+              <a href="Yourweb#">Yourweb</a> 
+              <a href="Supersponser.html">Supersponser</a>
+          </div>
+        </div>
+
+                                    <!--more  -->
+    <div class="dropdown">
+      <button class="drop-btn" onclick="toggleDropdown()">More ▾</button>
+      <div id="dropdown-menu" class="dropdown-content">
+       <a href="Tournamentsguide.html">Tournaments guide</a>
+       <a href="cricket#">Cricket tips</a>
+       <a href="News#">News</a>
+       <a href="FAQs#">FAQs</a>
+       <a href="Blogs#">Blogs</a>
+       <a href="OrganizeTournaments#">Organize Tournaments</a>
+       <a href="CricHeroesAwards#">CricHeroes Awards</a>
+      </div>
+    </div> 
+      </nav>
+ 
+
+      <a href="Store.html">Store</a>
+      <a href="Jobs.html">Jobs</a>
+      <a href="Contactus.html">Contact us</a>
+  
+      <a href="https://play.google.com/store/apps/details?id=com.cricheroes.cricheroes.alpha"><img src="play-store-.png" alt="play-store-" width="60px" height="40px"></a>
+      <a href="https://apps.apple.com/us/app/cricheroes-cricket-scoring-app/id1222844050"><img src="App-Store-Logo.png" alt="App-Store-Logo" width="60px" height="40px"></a>
+      <a href="signin.html" class="signin-btn">Sign In</a>
+      
+      <img src="search.png" alt="search" width="25" style="cursor:pointer;" onclick="toggleSearch()">
+     
+     
+<div id="searchBox" class="search-box">
+  
+  <div class="search-top">
+    <input type="text" id="searchInput"
+      placeholder="Search Tournaments, Matches, Teams, Players..."
+      onfocus="showPopular()">
+    <span onclick="closeSearch()">✖</span>
+  </div>
+
+  <!-- Popular (hidden initially) -->
+  <div id="popularBox" class="search-dropdown">
+    <p>Popular searches</p>
+
+    <div onclick="goPage('matches.html')">Matches Near Me</div>
+    <div onclick="goPage('tournaments.html')">Tournaments Near Me</div>
+    <div onclick="goPage('associations.html')">Cricket Associations</div>
+    <div onclick="goPage('search.html')">Looking For - Tournament, Team, Player</div>
+  </div>
+
+</div>
+<script>
+function toggleSearch() {
+  const box = document.getElementById("searchBox");
+  box.style.display = "block";
+
+  // focus input automatically
+  document.getElementById("searchInput").focus();
+}
+
+function closeSearch() {
+  document.getElementById("searchBox").style.display = "none";
+  document.getElementById("popularBox").style.display = "none";
+}
+
+// ✅ Show popular when input is focused
+function showPopular() {
+  document.getElementById("popularBox").style.display = "block";
+}
+
+// Optional: show while typing also
+document.getElementById("searchInput").addEventListener("input", function() {
+  document.getElementById("popularBox").style.display = "block";
+});
+
+// Close when clicking outside
+document.addEventListener("click", function(e) {
+  const box = document.getElementById("searchBox");
+
+  if (!box.contains(e.target) && !e.target.closest("img")) {
+    closeSearch();
+  }
+});
+</script>
+</header> 
+
+  <script>
+    function toggleDropdown() {
+      document.getElementById("dropdownMenu").classList.toggle("show");
+    }
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        let dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+          dropdowns[i].classList.remove('show');
+        }
+      }
+    };
+  </script>
+    
+                                       <!-- hero -->
+      <section class="hero">
+          <div class="hero-content">
+            <h1>we make <span> grassroots cricketers </span> heros;</h1>
+            <h1>one match at a time.</h1>
+            <p>Download the award winning app and start <b>scoring for free.</b></p>
+            <div class="store-buttons">
+              <a href="https://play.google.com/store/apps/details?id=com.cricheroes.cricheroes.alpha&utm_source=android_button_on_home_page_cric&utm_campaign=android_button_on_home_page_cric"><img src="Google-Play-Logo-PNG.png" alt="Google-Play-Logo-PNG" width="200px" height="100px"></a>
+              <a href="https://apps.apple.com/us/app/cricheroes-cricket-scoring-app/id1222844050"><img src="app.png" alt="app" width="200px" height="100px"></a>
+            </div>
+            <div class="ratings">
+              ⭐ 4.8 Ratings | 2.7Cr+ Downloads ⭐
+              ⭐ 4.7 Ratings | 40L+ Downloads ⭐
+            </div>
+          </div>
+      </section>
+             
+                                            
+                                                 <!--awards  -->
+      <section class="awards">
+          <div class="award-content">
+            <h1>Your cricket matters</h1>
+            <p>This is when we recognise it.</p>
+            <button class="btn-ex" onclick="openExplore()">Explore now</button>
+            <script>
+              function openExplore(){
+                window.location.href="explore.html";
+              }
+            </script>
+          </div>
+          <div class="award-logo">
+            <img src="awards-logo" alt="award">
+          </div>
+      </section>
+                                            
+                                          <!-- why cricheros -->
+    <section class="why">
+      <h1>Why Cricheros?</h1>
+      <div class="container">
+        <div class="features-left">
+          <div class="item">
+            <span class="number">01</span>
+            <h3>Live Scoring</h3>
+            <p>Get instant updates on ongoing matches with live scoring.</p>
+          </div>
+
+          <div class="item">
+            <span class="number">02</span>
+            <h3>Scorecard</h3>
+            <p>Explore player performances and match outcomes.</p>
+          </div>
+
+          <div class="item">
+            <span class="number">03</span>
+            <h3>Organise Tournaments</h3>
+            <p>Seamlessly organise tournaments and plan them better.</p>
+          </div>
+
+          <div class="item">
+            <span class="number">04</span>
+            <h3>Live Streaming</h3>
+            <p>Real-time cricket match updates with live streaming.</p>
+          </div>
+
+          <div class="item">
+            <span class="number">05</span>
+            <h3>Store</h3>
+            <p>Explore customised merchandise and equipment.</p>
+          </div>
+        </div>
+
+        <div class="mobile">
+          <img src="cricInsights.jpg" alt="cricInsights">
+        </div>
+
+        <div class="features-left">
+          <div class="item">
+            <span class="number">06</span>
+            <h3>Leaderboards</h3>
+            <p>Track and compare cricket stats with others.</p>
+          </div>
+
+          <div class="item">
+            <span class="number">07</span>
+            <h3>CricInsights</h3>
+            <p>In-depth analysis of matches, players and opponents.</p>
+          </div>
+
+          <div class="item">
+            <span class="number">08</span>
+            <h3>Highlights</h3>
+            <p>AI-generated highlights for your live stream matches.</p>
+          </div>
+
+          <div class="item">
+            <span class="number">09</span>
+            <h3>Looking</h3>
+            <p>Find players, teams, umpires and scorers.</p>
+          </div>
+
+          <div class="item">
+            <span class="number">10</span>
+            <h3>Community</h3>
+            <p>Enter the world of the entire cricket community.</p>
+          </div>
+        </div>
+        </div>
+    </section>
+
+
+                                        <!-- cricket kits -->
+    <section class="kits">
+      <div class="crickits">
+        <h1> A store by CricHeroes to celebrate<br>
+          your passion for cricket.</h1>
+           <button onclick="openstore()" class="btn">Explore now  </button>
+            <script>
+              function openstore() {
+                window.location.href = "store.html";
+             }
+            </script>
+      </div>
+      <div class="kitsimage">
+       <a href="store.html"> <img src="kit.png" alt="kits"></a>
+      </div>
+    </section>       
+                   
+                                          <!-- stats -->
+    <section class="stats">
+      <h1>CricHeroes in numbers</h1>
+      <div class="stats-row">
+            <div class="stat-box">
+                <h3>17th</h3>
+                <p class="small">OCT 2016</p>
+                <p class="desc">First match scored</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>1.4 Crores+</h3>
+                <p class="desc">Matches</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>8.7 Lakhs+</h3>
+                <p class="desc">Tournaments</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>4.2 Crores+</h3>
+                <p class="desc">Players</p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h3 class="sub-title">Proud associates</h3>
+        <div class="stats-row">
+
+            <div class="stat-box">
+                <h3>52+</h3>
+                <p class="desc">ICC</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>23+</h3>
+                <p class="desc">BCCI</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>200+</h3>
+                <p class="desc">Districts</p>
+            </div>
+        </div>
+        <hr>
+                                   <!-- CTA -->
+        <div class="cta">
+          <p>Join world's largest cricket network.</p>
+          <button onclick="openAwards()"> Getapp</button>
+            <script>
+              function openAwards() {
+               window.location.href = "Getapp.html";
+              }
+            </script>
+        </div>
+    </section>
+
+                                     <!-- youtube -->
+    <section class="you">
+      <div class="you-tube"></div>
+      <div class="yousta">
+        <h1>Cricket brings people closer.</h1>
+        <p>It's those moments of happiness that remind us why</p>
+        <h2>Your cricket matters</h2>
+        <div class="video">
+           <iframe src="youtube.mp4" 
+              title="you-tube"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+           </iframe>
+        </div>
+      </div>
+    </section>
+     
+                                             <!-- featured -->
+    <section class="featured">
+      <h1>featured in</h1>
+      <div class="slider">
+        <div class="slide">
+          <a href="https://echai.ventures/stream"> <img src="echai.jpeg" alt="echai"></a>
+          <a href="https://www.hindustantimes.com/lifestyle/art-culture/runs-venues-teams-to-join-the-cricheroes-app-is-making-wicket-connections-101619170019274.html"><img src="hindustan.jpeg" alt="hindustan"></a>
+          <a href="https://www.deccanherald.com/sports/cricket/an-app-for-gully-cricketer-959111.html"><img src="deccon.jpeg" alt="deccon"></a>
+          <a href="https://thebridge.in/featured/startup-moulding-grassroots-cricketers-stars-through-data-driven-approach"><img src="yourstory.png.png" alt="yourstory"></a>
+          <a href="https://themiddlestump.xyz/blog/post/Data-Analyst's-Paradise-CricHeroes"><img src="middle.png.png" alt="middle"></a>
+          <a href="https://thebridge.in/featured/startup-moulding-grassroots-cricketers-stars-through-data-driven-approach"><img src="bridge.png.png" alt="bridge"></a>
+        </div>
+      </div>
+      <div class="dot"></div>
+    </section>
+    <script>
+      const slider =document.querySelector('.slide');
+      slider.addEventListener('mouseover', () =>{
+        slider.style.animationPlayState = 'paused';
+      });
+      slider.addEventListener('mouseout', () => {
+       slider.style.animationPlayState = 'running';
+      });
+    </script>
+
+                                         <!-- join -->
+    <section class="join">
+      <h1>Join CricHeroes team</h1>
+        <div class="join-content">
+            <div class="joinimage">
+              <img src="hiring.png" alt="hiring">
+            </div>
+            <div class="joining">
+              <h3>Love technology & sports?</h3>
+              <p>
+                Well, you have already passed the first test!
+                Now just check the available spots and apply.
+              </p>
+              <button onclick="opencheck()" class="cas"><a href="http://127.0.0.1:5500/Jobs.html"></a>Check available spots</button>
+              <script>
+               function opencheck() {
+                window.location.href = "http://127.0.0.1:5500/Jobs.html"
+              }
+              </script>
+            </div>
+        </div>
+
+      <p>For latest news and updates please</p>
+      <h2>follow us on</h2>
+        <div class="social">
+          <a href="https://www.facebook.com/CricHeroesApp/"><img src="facebook.png" alt="facebook"></a>
+          <a href="https://www.instagram.com/cricheroes_app/"><img src="instagram.png" alt="instagram"></a>
+          <a href="https://x.com/CricHeroes"><img src="twitter.png" alt="twitter"></a>
+          <a href="https://www.youtube.com/channel/UCcPRnmuKgYRF0DUkEI0v75g"><img src="youtube.png" alt="youtube"></a>
+        </div>
+    </section>
+
+    <footer class="footer">
+
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Jobs</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Service</a>
+            <a href="#">Paid Service Terms</a>
+            <a href="#">ICC Policy</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="copyright"> © CricHeroes Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
+
+    </footer>
+    
+
+
+
+</body>
+</html>

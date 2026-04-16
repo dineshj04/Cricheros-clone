@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getapp</title>
+    <style>
+         body {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          background: #f2f4f6;
+          scroll-behavior: smooth;
+          scroll-snap-type: y mandatory;
+          height: 100%;
+          overflow-y:scroll;
+        }
+         .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background:white;
+          padding: 12px 30px;
+          position: fixed;
+          width: 97%;
+          top: 0;
+          z-index: 10;
+        }
+
+        .logo{
+          font-size: 22px;
+          font-weight: bold;
+          color: #d32f2f;
+          cursor: pointer;
+        }
+        .logo img{
+          width: 30px;
+          height: 30px;
+          margin-left: 10px;
+        }
+        .red{
+          color: black;
+          font-size: 32px;
+        }
+        .black{
+          color: red;
+          font-size: 32px;
+        }
+        .gray{
+          color: #333;
+          font-size: 23px;
+        }
+        .navbar a {
+          font-size: 18px;
+          text-decoration: none;
+          color: black;
+          font-weight: 500;
+        }
+        .nav{
+          display: flex;
+          gap: 20px;
+          align-items: center;
+        }
+        .nav a{
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+        }
+        .dropdown{
+          position:relative;
+        }                   
+        .drop-btn{
+          background: none;
+          border: none;
+          font-size: 18px;
+          cursor: pointer;
+        }        
+        .dropdown-content{
+          position: absolute;
+          top: 30px;
+          left: 0;
+          background: #fff;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          display: none;
+          flex-direction: column;
+          width: 150px;
+        }  
+        .dropdown-content a{
+          padding: 10px;
+          text-decoration: none;
+          color: #333;
+          font-size: 16px;
+        }     
+        .dropdown-content a:hover{
+          background: #f2f2f2;
+          color: #1aa3a3;
+        }    
+        .dropdown:hover .dropdown-content{
+          display: inline-flex;
+          color: #1aa3a3;
+        }  
+                                                /* SIGN IN */
+        .signin-btn {
+          background: #00a88f;
+          color: white;
+          border: 2px solid green;
+          padding: 10px 20px;
+          border-radius: 6px;
+          cursor: pointer;
+          text-decoration: none;
+          border-radius: 8px;
+        }
+        .signin-btn:hover{
+          color: white;
+        }
+
+
+        .error-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 80px;
+        }
+        .error-left{
+            max-width: 55%;
+        }
+        .error-left h1{
+            font-size: 40px;
+            margin-bottom: 16px;
+            color: rgb(43, 55, 63);
+        }
+        .subtitle{
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .desc{
+            font-size: 20px;
+            margin-bottom: 24px;
+        }
+        .store-buttons img{
+            height: 100px;
+            width: 250px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+        .ratings {
+           margin: 10px 0 25px;
+           font-weight: 600;
+        }
+
+        .back-text{
+            margin:20px 0 ;
+            font-size: 20px;
+        }
+        .back-text a{
+            color: #00a6a6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .links{
+            color: gray;
+        }
+        .links li{
+            margin: 8px 0;
+            font-size: 20px;
+            color: black;
+        }
+        .links a{
+            color: #00a6a6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .error-right{
+            width: 45%;
+            margin-left: auto;
+        }
+        .error-right img {
+            width: 380px;
+        }
+        @media (max-width:900px){
+            .error-container{
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .error-left, .error-right{
+                width: 100%;
+            }
+            .error-right img{
+                width: 260px;
+                margin-bottom: 30px;
+            }
+        }
+        
+       .footer{
+            background: #0f0f0f;
+            padding: 30px 10%;
+            text-align: center;
+            color: #bbb;
+        }
+        .footer-links{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 15px;
+        }
+        .footer-links a{
+            text-decoration: none;
+            color:rgb(152, 152, 152);
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .footer-links a:hover {
+            color: #fff;
+        }
+        .footer-divider {
+            height: 1px;
+            background: #2a2a2a;
+            margin: 15px auto;
+            width: 80%;
+        }
+        .copyright {
+            font-size: 18px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body> 
+    <header class="navbar">
+
+      <div class="logo" onclick="goHome()">
+        <a href="#"><img src="unnamed.png" alt="unnamed">
+          <span class="red">cric</span><span class="black">heroes</span><br>
+          <span class="gray">Your cricket matters</span>
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <div class="dropdown">
+          <button class="drop-btn" onclick="toggleDropdown()">Live Scores ▾</button>
+          <div id="dropdown-menu" class="dropdown-content">
+            <a href="matches#">Matches</a>
+            <a href="Tournaments#">Tournaments</a>
+            <a href="Associations#">Associations</a>
+          </div>
+        </div>
+
+                           <!--  Network -- -->
+        <div class="dropdown">
+          <button class="drop-btn" onclick="toggleDropdown()">Network ▾</button>
+          <div id="dropdown-menu" class="dropdown-content">
+            <a href="Community#">Community</a>
+            <a href="Looking#">Looking</a>
+          </div>
+        </div>      
+
+                                     <!-- Add ons -->
+        <div class="dropdown">
+          <button class="drop-btn" onclick="toggleDropdown()">Add ons ▾</button>
+            <div id="dropdown-Menu" class="dropdown-content">
+             <a href="Cricheros#">CricHeroes PRO</a>
+             <a href="GoLive#" class="submenu">Go Live ▶</a>
+            <a href="Yourapp#">Yourapp</a>  
+            <a href="Yourweb#">Yourweb</a> 
+            <a href="Supersponser#">Super Sponser</a>
+          </div>
+        </div>
+
+                                    <!--more  -->
+    <div class="dropdown">
+      <button class="drop-btn" onclick="toggleDropdown()">More ▾</button>
+      <div id="dropdown-menu" class="dropdown-content">
+       <a href="Tournamentsguide#">Tournaments guide</a>
+       <a href="cricket#">Cricket tips</a>
+       <a href="News#">News</a>
+       <a href="FAQs#">FAQs</a>
+       <a href="Blogs#">Blogs</a>
+       <a href="OrganizeTournaments#">Organize Tournaments</a>
+       <a href="CricHeroesAwards#">CricHeroes Awards</a>
+      </div>
+    </div> 
+      </nav>
+ 
+
+      <a href="Store#">Store</a>
+      <a href="Jobs.html">Jobs</a>
+      <a href="Contactus.html">Contact us</a>
+  
+      <a href="https://play.google.com/store/apps/details?id=com.cricheroes.cricheroes.alpha"><img src="play-store-.png" alt="play-store-" width="60px" height="40px"></a>
+      <a href="https://apps.apple.com/us/app/cricheroes-cricket-scoring-app/id1222844050"><img src="App-Store-Logo.png" alt="App-Store-Logo" width="60px" height="40px"></a>
+      <a href="signin.html" class="signin-btn">Sign In</a>
+
+      <a href="#"><img src="search.png" alt="search" onclick="openSearch()"></a>
+
+</header> 
+      
+<script>
+  function toggleDropdown() {
+  document.getElementById("dropdownMenu").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    let dropdowns = document.getElementsByClassName("dropdown-content");
+    for (let i = 0; i < dropdowns.length; i++) {
+      dropdowns[i].classList.remove('show');
+    }
+  }
+};
+</script>
+    
+
+    <section class="error-container">
+        <div class="error-left">
+            <h1>Hey buddy!</h1>
+            <p class="subtitle">Looks like you have played a wrong shot.</p>
+            <p class="desc"> Were you looking for a particular match? Our <b>Mobile App</b> provides a better experience.</p>
+            <p class="desc">Would you like to check out?</p>
+            <div class="store-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.cricheroes.cricheroes.alpha&utm_source=android_button_on_home_page_cric&utm_campaign=android_button_on_home_page_cric"><img src="Google-Play-Logo-PNG.png" alt="Google-Play-Logo-PNG"></a>
+                <a href="https://apps.apple.com/us/app/cricheroes-cricket-scoring-app/id1222844050"><img src="app.png" alt="app"></a>
+            </div>
+             <div class="ratings">
+                <span>4.8 Ratings</span>
+                <span>4.7 Ratings</span>
+            </div>
+            <p class="back-text">If not then you can <a href="#">go back</a> or <a href="#">report this error</a>.</p>
+            <ul class="links">
+                <li><a href="#">Home</a> - To return to CricHeroes Home page</li>
+                <li><a href="#">Matches</a> - Check live matches around you</li>
+                <li><a href="#">Tournaments</a> - Explore tournaments near you</li>
+            </ul>
+        </div>
+            
+        <div class="error-right">
+            <img src="404.png" alt="cricket">
+        </div>
+        
+    </section>
+
+    <footer class="footer">
+
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Jobs</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Service</a>
+            <a href="#">Paid Service Terms</a>
+            <a href="#">ICC Policy</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="copyright"> © CricHeroes Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
+
+    </footer>
+
+</body>
+</html>

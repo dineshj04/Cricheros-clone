@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP generator</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .terms{
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .terms a{
+            color: teal;
+            text-decoration: none;
+        }
+        button{
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            background: teal;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .login-btn{
+            background: teal;
+            color: white;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+        .back-btn{
+            background: #e0e0e0;
+        } 
+
+        .container {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #0a3d62;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #082a45;
+}
+#otpSection {
+    display: none;
+}
+
+#message {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+    <h2>Login with OTP</h2>
+
+    <div id="mobileSection">
+        <input type="text" id="mobile" placeholder="Enter Mobile Number" maxlength="10">
+        <button onclick="sendOTP()">Send OTP</button>
+    </div>
+
+    <div id="otpSection">
+        <input type="text" id="otpInput" placeholder="Enter OTP">
+
+        <button onclick="verifyOTP()">Verify OTP</button>
+    </div>
+
+    <p id="message"></p>
+</div>
+<script>
+let generatedOTP = "";
+
+// 📲 Send OTP
+function sendOTP() {
+    const mobile = document.getElementById("mobile").value;
+    const message = document.getElementById("message");
+
+    // Validate mobile
+    if (mobile.length !== 10 || isNaN(mobile)) {
+        message.style.color = "red";
+        message.innerText = "Enter valid 10-digit mobile number";
+        return;
+    }
+
+    // Generate OTP (4-digit)
+    generatedOTP = Math.floor(1000 + Math.random() * 9000);
+
+    // ✅ Show OTP inside card
+    message.style.color = "blue";
+    message.innerText = "Your OTP is: " + generatedOTP;
+
+    // Show OTP input section
+    document.getElementById("otpSection").style.display = "block";
+}
+
+// 🔐 Verify OTP
+function verifyOTP() {
+    const userOTP = document.getElementById("otpInput").value;
+    const message = document.getElementById("message");
+
+    if (userOTP.trim() === "") {
+        message.style.color = "red";
+        message.innerText = "Please enter OTP";
+        return;
+    }
+
+    if (userOTP === generatedOTP.toString()) {
+        message.style.color = "green";
+        message.innerText = "✅ OTP verified successfully";
+
+        // ⏳ Redirect to home page
+        setTimeout(() => {
+            window.location.href = "cricheros.html";
+        }, 2000);
+
+    } else {
+        message.style.color = "red";
+        message.innerText = "❌ Incorrect OTP";
+    }
+}
+</script>
+</body>
+</html>

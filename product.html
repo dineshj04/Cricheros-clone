@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>products</title>
+    <style>
+        body {
+            margin: 20px 0 0 40% ;
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            width: 35%;
+            align-items: center;
+        }
+        .header{
+            color: white;
+            background:#e21c28;
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            
+        }
+        .container{
+            padding: 15px;
+            background: white;
+        }
+        .container img{
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            background: #fff;
+        }
+        .price{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .oldprice{
+            text-decoration: line-through;
+            color: gray;
+            margin-left: 10px;
+        }
+        .discount{
+            color: green;
+            margin-left: 10px;
+        }
+        .sizes{
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .sizes button{
+            padding: 10px 15px;
+            margin: 5px;
+            background: #eee;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .sizes button.active {
+            background: teal;
+            color: white;
+        }
+       
+                                                     
+                                                         /* flex */
+        .section{
+            margin-top: 20px;
+        }
+        .flex{
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }                       
+        .inputbox{
+            margin: 10px 0;
+        }                  
+        input{
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 8px;
+            outline: none;
+        }   
+        .jersey{
+            position: relative;
+            width: 250px;
+        }     
+        .jersey img{
+            width: 100%;
+        }
+        .jersey h2 {
+            margin-left: 15%;
+        }
+        .jersey p {
+            margin-left: 15%;
+        }
+        .bottom{
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 30%;
+            background: #fff;
+        }
+        .buy{
+            flex: 1;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid black;
+            background: white;
+        }
+        .cart{
+            flex: 1;
+            padding: 15px;
+            border-radius: 10px;
+            border:none;
+            background:  teal;
+            color: white;
+        }
+
+        #jerseyName {
+  position: absolute;
+  top: 90px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+/* NUMBER */
+#jerseyNumber {
+  position: absolute;
+  top: 120px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+
+        Green Blaze 2.0 Full Sleeve Jersey
+    </div>
+
+    <div class="container">
+        <img src="Screenshot jer.png" alt="Jersey">
+        <div>
+            <span class="price">₹699</span>
+            <span class="oldprice">₹1,199</span>
+            <span class="discount">42% off</span>
+        </div>
+
+        <h4>Select Size</h4>
+        <div class="sizes">
+            <button  onclick="selectSize(this)">XS</button>
+            <button  onclick="selectSize(this)">S</button>
+            <button  onclick="selectSize(this)">M</button>
+            <button  onclick="selectSize(this)">L</button>
+            <button  onclick="selectSize(this)">XL</button>
+            <button  onclick="selectSize(this)">2XL</button>
+            <button  onclick="selectSize(this)">3XL</button>
+            <button  onclick="selectSize(this)">4XL</button>
+        </div>
+
+        <div class="section">
+            <h3>Personalise</h3>
+            <div class="flex">
+
+            <div style="flex: 1;">
+                
+            <div class="inputbox">
+                <label>Name on T-Shirt</label>
+                <input type="text" id="name" placeholder="Enter Name" maxlength="12">
+            </div>
+
+            <div class="inputbox">
+                <label>Number on T-Shirt</label>
+                <input type="text" id="number" placeholder="Enter Number" maxlength="3">
+            </div>
+
+            <p id="error" style="color:red;"></p>
+
+        </div>
+
+        <div class="jersey">
+            <img src="Screenshot jer.png">
+            <h2 id="jerseyName">YOUR NAME</h2>
+            <p id="jerseyNumber">00</p>
+        </div>
+
+
+        <div class="bottom">
+            <button class="buy" onclick="buyNow()">Buy now</button>
+            <button class="cart" onclick="addcart()">Add to cart</button>
+        </div>
+    </div> 
+    </div>  
+    </div>
+    
+    <script>
+       
+        function addcart() {
+            alert("Product added to cart!");
+        }
+
+        let selectedSize = "";
+
+                                                //  Select Size
+        function selectSize(btn) {
+            let buttons = document.querySelectorAll(".sizes button");
+            buttons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            selectedSize = btn.innerText;
+        }
+
+                                                 // Buy Now Validation
+        function buyNow() {
+            let name = document.getElementById("name").value.trim();
+            let number = document.getElementById("number").value.trim();
+            let error = document.getElementById("error");
+            
+            if (!selectedSize) {
+                error.innerText = "Please select size";
+                return;
+            }
+            if (name === "") {
+                error.innerText = "Please enter name";
+                return;
+            }
+            if (number === "") {
+                error.innerText = "Please enter number";
+                return;
+            }
+            error.innerText = "";
+            window.location.href = "buy.html";
+        }
+    </script>
+    
+    <script>
+        let nameInput = document.getElementById("name");
+        let numberInput = document.getElementById("number");
+
+        let jerseyName = document.getElementById("jerseyName");
+        let jerseyNumber = document.getElementById("jerseyNumber");
+
+        nameInput.addEventListener("input", () => {
+        jerseyName.innerText = nameInput.value || "YOUR NAME";
+      });
+        numberInput.addEventListener("input", () => {
+        jerseyNumber.innerText = numberInput.value || "00";
+      });
+    </script>
+</body>
+</html>

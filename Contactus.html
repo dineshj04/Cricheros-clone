@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactus.html</title>
+    <style>
+        .Contact{
+           width: 100%;
+        }
+        .Contact-banner{
+           width: 91%;
+           background: linear-gradient(rgba(200,0,0,0.85), rgba(200,0,0,0.85)),url(contactbg.jpg);
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           text-align: center;
+           background-size: cover;
+           background-position: center;
+           padding: 60px;
+        }
+        .Contact-banner h1{
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .Contact-banner p{
+            font-size: 16px;
+            opacity: 0.9;
+            color: white;
+        }
+        .Contact-cards{
+            padding: 10px 10px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .card{
+            background:rgb(242, 242, 242) ;
+            padding: 25px;
+            border-radius: 10px;
+            width: 280px;
+            box-shadow: 0 5px 15px rgb(0,0,0,0.1);
+            text-align: left;
+        }
+        .card h2{
+            margin-bottom: 15px;
+            padding: 15px;
+        }
+        .card p{
+            margin-bottom: 15px;
+            padding: 15px;
+        }
+        .Email{
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+            padding: 15px;
+        }
+        .Email img{
+            width: 25px;
+            height: 25px;
+        }
+        .phone{
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+            padding: 20px;
+        }
+        .phone img{
+            width: 25px;
+            height: 25px;
+        }
+        .btn-demo{
+            padding: 10px;
+            margin-top: 10px;
+            background: rgb(24, 149, 143);
+            color: white;
+            border:none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+                                      /* grow */
+        .grow{
+            background:rgb(249, 210, 212);
+            text-align: center;
+            padding: 60px 20px;
+        }           
+        .grow h2{
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .grow p{
+            font-size: 20px;
+            margin-bottom: 25px;
+        }          
+        .btn{
+           margin-top: 15px;
+           padding: 10px 26px;
+           background: #1aa39a;
+           color: #fff;
+           border: none;
+           border-radius: 8px;
+           cursor: pointer;
+           font-size: 15px;
+        }   
+        .footer {
+           background: #111;
+           color: #fff;
+           text-align: center;
+           padding: 20px;
+           font-size: 25px;
+        }     
+    </style>
+</head>
+<body>
+    <section class="Contact">
+        <div class="Contact-banner">
+           <h1>Contact us</h1>
+           <p>Need help? Tell us more and we'll be happy to assist you</p>
+        </div>
+    </section>    
+                                          
+                                        <!-- cards -->
+    <section class="Contact-cards">
+        <div class="Contact-cards">
+            <div class="card">
+                <h2>Association</h2>
+                <p>For partnering with us</p>
+                
+                <a href="email#" class="Email"><img src="Email.jpg" alt="email#">dineshj0410@gamil.com</a><br><br>
+                <a href="phone#" class="phone"><img src="phone.jpg" alt="phone#">+91 8778234617</a><br><br>
+                <button class="btn-demo">Book a demo</button>
+            </div>
+        </div>
+        
+        <div class="Contact-cards">
+            <div class="card">
+                <h2>Support</h2>
+                <p>For player queries</p>
+                
+                <a href="email#" class="Email"><img src="Email.jpg" alt="email#">dineshj0410@gamil.com</a><br><br>
+                <a href="phone#" class="phone"><img src="phone.jpg" alt="phone#">+91 8778234617</a><br><br>
+                <button class="btn-demo">whatsapp</button>
+            </div>
+        </div>
+        
+        <div class="Contact-cards">
+            <div class="card">
+                <h2>Sales</h2>
+                <p>For growing with us</p>
+                
+                <a href="email#" class="Email"><img src="Email.jpg" alt="email#">dineshj0410@gamil.com</a><br><br>
+                <a href="phone#" class="phone"><img src="phone.jpg" alt="phone#">+91 8778234617</a><br><br>
+                <button class="btn-demo">whatsapp</button>
+            </div>
+        </div>
+        </div>
+    </section>
+
+                                            <!-- grow -->
+    <section class="grow">
+        <h2>We want you to Grow With Us!</h2>
+        <p>At CricHeroes, we are building a culture where passionate people (like you) can grow.</p>
+        <button class="btn">See all open position</button>
+    </section>
+ 
+                                        <!-- footer -->
+    <footer class="footer">
+        TF1 (3rd Floor) Zion Z1, Nr. Avalon Hotel, Sindhu Bhavan Road,Bodakdev, Ahmedabad, Gujarat - 380054.
+    </footer>
+</body>
+</html>

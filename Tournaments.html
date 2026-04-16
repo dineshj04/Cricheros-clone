@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament</title>
+    <style>
+        .container{
+            display: flex;
+            gap: 30px;
+            padding: 30px 40px;
+        }
+        .guide-box{
+            width: 320px;
+            height: 200px;
+            background:rgb(253, 236, 208);
+            padding: 25px;
+            border-radius: 12px;
+        }
+        .guide-box h3{
+            margin: 0 0 10px;
+            font-size: 22px;
+            color: black;
+        }
+        .guide-box p{
+            font-size: 18px;
+            color:black;
+            line-height: 1.5;
+        }
+        .guide-box button{
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius:8px;
+            background:#1aa392;
+            color:white;
+            font-size:15px;
+            cursor:pointer;
+        }
+        .guide-box a{
+            text-decoration: none;
+        }
+        .right-section{
+            flex: 1;
+        }
+        .right-section h2{
+            font-weight:500;
+            margin-bottom:20px;
+        }
+        .right-section h2 span{
+            color: #1aa392;
+        }
+        .grid{
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+        }
+        .card{
+            position: relative;
+            display: flex;
+            background: white;
+            padding: 18px;
+            border-radius: 5px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+        }
+        .premium{
+            position: absolute;
+            top: 0;
+            right: 0;
+            background:#1aa392;
+            color:white;
+            padding:6px 14px;
+            font-size:13px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+        .card img{
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .content{
+            margin-left:15px;
+            flex: 1;
+        }
+        .status{
+            display: inline-block;
+            padding:4px 12px;
+            font-size:12px;
+            border-radius:20px;
+            color:white;
+            margin-bottom:6px;
+        }
+        .ongoing{ background:#e53935; }
+        .upcoming{ background:#f9a825; }
+
+        .content h3{
+           margin:5px 0;
+           font-size:17px;
+           font-weight:600;
+        }
+        .content p{
+           margin:3px 0;
+           font-size:14px;
+           color:#777;
+        }
+        .distance{
+           position:absolute;
+           bottom:15px;
+           right:18px;
+           font-size:13px;
+           color:#333;
+        }
+
+        .distance p{
+           font-size:14px;
+           margin-right:5px;
+        }
+
+        @media(max-width:1000px){
+            .container{
+                flex-direction:column;
+            }
+            .guide-box{
+                width:100%;
+            }
+            .grid{
+                grid-template-columns:1fr;
+            }
+        }
+
+        .footer{
+            background: #0f0f0f;
+            padding: 30px 10%;
+            text-align: center;
+            color: #bbb;
+        }
+        .footer-links{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 15px;
+        }
+        .footer-links a{
+            text-decoration: none;
+            color:rgb(152, 152, 152);
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .footer-links a:hover {
+            color: #fff;
+        }
+        .footer-divider {
+            height: 1px;
+            background: #2a2a2a;
+            margin: 15px auto;
+            width: 80%;
+        }
+        .copyright {
+            font-size: 18px;
+            color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="guide-box">
+            <h3>Organising a cricket tournament?</h3>
+            <p>Here is a tournament guide with 9 easy steps to organise cricket tournament successfully.</p>
+            <a href="guide.html"><button>View tournament guide</button></a>
+        </div>
+
+    <!-- RIGHT SIDE -->
+        <div class="right-section">
+            <h2>Live cricket tournaments <span>(Near Me)</span></h2>
+
+        <div class="grid">
+
+            <!-- CARD 1 -->
+            <div class="card">
+                <div class="premium">Premium</div>
+                <img src="trnm1.jpeg" alt="trnm">
+                <div class="content">
+                    <span class="status ongoing">Ongoing</span>
+                    <h3>R1 Premier League 2025-26 Chennai Zone (Male Category)</h3>
+                    <p>30-March-26 To 28-April-26</p>
+                    <p>Chennai</p>
+                </div>
+                <div class="distance">
+                    <p> 📍 1.45 KM</p>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="card">
+                <div class="premium">Premium</div>
+                <img src="trnm2.jpeg" alt="trnm">
+                <div class="content">
+                    <span class="status ongoing">Upcoming</span>
+                    <h3>ROYAL STRIKERS RETAIL PREMIER LEAGUE</h3>
+                    <p>10-March-26 To 19-May-26</p>
+                    <p>Chennai</p>
+                </div>
+                <div class="distance">
+                   <p>📍 3.12 KM</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="premium">Premium</div>
+                <img src="trnm3.jpeg" alt="trnm">
+                <div class="content">
+                    <span class="status ongoing">Upcoming</span>
+                    <h3> TN PREMIER LEAGUE</h3>
+                    <p>18-March-26 To 29-May-26</p>
+                    <p>Salem</p>
+                </div>
+                <div class="distance">
+                   <p>📍 12.12 KM</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="premium">Premium</div>
+                <img src="trnm4.jpeg" alt="trnm">
+                <div class="content">
+                    <span class="status ongoing">Ongoing</span>
+                    <h3> Turf Tournament </h3>
+                    <p>1-April-26 To 24-May-26</p>
+                    <p>Kerala</p>
+                </div>
+                <div class="distance">
+                   <p>📍 8.12 KM</p>
+                </div>
+            </div>
+
+             <div class="card">
+                <div class="premium">Premium</div>
+                <img src="trnm4.jpeg" alt="trnm">
+                <div class="content">
+                    <span class="status ongoing">Finished</span>
+                    <h3> AK Tournament</h3>
+                    <p>1-April-26 To 31-May-26</p>
+                    <p>Villupuram</p>
+                </div>
+                <div class="distance">
+                   <p>📍 11.12 KM</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="premium">Premium</div>
+                <img src="trnm4.jpeg" alt="trnm">
+                <div class="content">
+                    <span class="status ongoing">Ongoing</span>
+                    <h3>Sundays Super League </h3>
+                    <p>14-April-26 To 23-May-26</p>
+                    <p>Arakkonam</p>
+                </div>
+                <div class="distance">
+                   <p>📍 6.12 KM</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+   <footer class="footer">
+
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Jobs</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Service</a>
+            <a href="#">Paid Service Terms</a>
+            <a href="#">ICC Policy</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="copyright"> © CricHeroes Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
+
+    </footer>
+
+
+</body>
+</html>
