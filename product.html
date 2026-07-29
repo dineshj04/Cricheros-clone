@@ -3,259 +3,527 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>products</title>
+    <title>Personalise Jersey - CricMates Store</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            margin: 20px 0 0 40% ;
-            font-family: Arial, sans-serif;
-            background: #f3f3f3;
-            width: 35%;
-            align-items: center;
-        }
-        .header{
-            color: white;
-            background:#e21c28;
-            padding: 15px;
-            font-size: 18px;
-            text-align: center;
-            
-        }
-        .container{
-            padding: 15px;
-            background: white;
-        }
-        .container img{
-            width: 100%;
-            height: 300px;
-            object-fit: contain;
-            background: #fff;
-        }
-        .price{
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .oldprice{
-            text-decoration: line-through;
-            color: gray;
-            margin-left: 10px;
-        }
-        .discount{
-            color: green;
-            margin-left: 10px;
-        }
-        .sizes{
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+        .product-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 50px;
+            align-items: flex-start;
         }
-        .sizes button{
-            padding: 10px 15px;
-            margin: 5px;
-            background: #eee;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
+
+        /* Left Column: Live Preview Mockup */
+        .product-media {
+            flex: 1.2;
+            position: sticky;
+            top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
-        .sizes button.active {
-            background: teal;
+
+        .jersey-canvas-card {
+            width: 100%;
+            max-width: 450px;
+            height: 420px;
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .jersey-canvas-card img {
+            max-height: 380px;
+            object-fit: contain;
+            user-select: none;
+        }
+
+        .jersey-name-overlay {
+            position: absolute;
+            top: 140px;
+            left: 38%;
+            width: 40%;
+            text-align: center;
             color: white;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            text-shadow: -1.5px -1px 0 rgba(0, 245, 196, 0.9), 1.5px 1px 0 rgba(255, 59, 92, 0.9), 0 3px 6px rgba(0,0,0,0.6);
+            pointer-events: none;
         }
-       
-                                                     
-                                                         /* flex */
-        .section{
+
+        .jersey-number-overlay {
+            position: absolute;
+            top: 178px;
+            left: 38%;
+            width: 40%;
+            text-align: center;
+            color: white;
+            font-size: 68px;
+            font-weight: 700;
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            line-height: 0.9;
+            text-shadow: -2.5px -1px 0 rgba(0, 245, 196, 0.9), 2.5px 1px 0 rgba(255, 59, 92, 0.9), 0 4px 8px rgba(0,0,0,0.6);
+            pointer-events: none;
+        }
+
+        /* Right Column: Customization Details */
+        .product-details {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .product-title-section h1 {
+            font-size: 32px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+        }
+
+        .price-row .price-current {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent-teal);
+            text-shadow: 0 0 15px var(--accent-teal-glow);
+        }
+
+        .price-row .price-old {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 18px;
+        }
+
+        .price-row .price-discount {
+            color: #00ff66;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .details-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 30px;
+        }
+
+        .details-card h3 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: var(--font-header);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        /* Size grid */
+        .size-selector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .size-selector-grid button {
+            height: 48px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .size-selector-grid button.active, .size-selector-grid button:hover {
+            background: var(--accent-teal);
+            color: #050508;
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 10px var(--accent-teal-glow);
+        }
+
+        .cta-action-row {
+            display: flex;
+            gap: 15px;
             margin-top: 20px;
         }
-        .flex{
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }                       
-        .inputbox{
-            margin: 10px 0;
-        }                  
-        input{
-            width: 100%;
+
+        .cta-action-row button {
+            flex: 1;
+            padding: 15px;
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-header);
+        }
+
+        .cta-action-row .btn-cart-outline {
+            background: transparent;
+            border: 2px solid var(--accent-teal);
+            color: var(--accent-teal);
+        }
+
+        .cta-action-row .btn-cart-outline:hover {
+            background: var(--accent-teal-glow);
+        }
+
+        .cta-action-row .btn-buy-solid {
+            background: linear-gradient(135deg, var(--accent-teal), #00c3ff);
             border: none;
-            border-bottom: 1px solid #ccc;
-            padding: 8px;
-            outline: none;
-        }   
-        .jersey{
-            position: relative;
-            width: 250px;
-        }     
-        .jersey img{
-            width: 100%;
-        }
-        .jersey h2 {
-            margin-left: 15%;
-        }
-        .jersey p {
-            margin-left: 15%;
-        }
-        .bottom{
-            display: flex;
-            gap: 10px;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 30%;
-            background: #fff;
-        }
-        .buy{
-            flex: 1;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid black;
-            background: white;
-        }
-        .cart{
-            flex: 1;
-            padding: 15px;
-            border-radius: 10px;
-            border:none;
-            background:  teal;
-            color: white;
+            color: #050508;
+            box-shadow: 0 4px 15px var(--accent-teal-glow);
         }
 
-        #jerseyName {
-  position: absolute;
-  top: 90px;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  letter-spacing: 1px;
-}
+        .cta-action-row .btn-buy-solid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--accent-teal-hover);
+        }
 
-/* NUMBER */
-#jerseyNumber {
-  position: absolute;
-  top: 120px;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-}
+        .error-message {
+            color: var(--accent-red);
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
 
+        @media (max-width: 900px) {
+            .product-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .product-media {
+                position: relative;
+                top: 0;
+                width: 100%;
+            }
+            .jersey-name-overlay {
+                top: 120px;
+                font-size: 16px;
+                left: 38%;
+                width: 40%;
+                font-family: 'Bebas Neue', Impact, sans-serif;
+                text-shadow: -1px -0.5px 0 rgba(0, 245, 196, 0.9), 1px 0.5px 0 rgba(255, 59, 92, 0.9), 0 2px 4px rgba(0,0,0,0.6);
+            }
+            .jersey-number-overlay {
+                top: 148px;
+                font-size: 52px;
+                left: 38%;
+                width: 40%;
+                font-family: 'Bebas Neue', Impact, sans-serif;
+                text-shadow: -1.5px -0.5px 0 rgba(0, 245, 196, 0.9), 1.5px 0.5px 0 rgba(255, 59, 92, 0.9), 0 3px 6px rgba(0,0,0,0.6);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-
-        Green Blaze 2.0 Full Sleeve Jersey
-    </div>
-
-    <div class="container">
-        <img src="Screenshot jer.png" alt="Jersey">
-        <div>
-            <span class="price">₹699</span>
-            <span class="oldprice">₹1,199</span>
-            <span class="discount">42% off</span>
+    <!-- Navbar Header -->
+    <header class="navbar">
+      <div class="logo">
+        <a href="cricmates.html">
+          <img src="unnamed.png" alt="CricMates Logo">
+          <div class="logo-text">
+            <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
+            <span class="tagline">Your cricket matters</span>
+          </div>
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <div class="dropdown">
+          <button class="drop-btn">Live Scores ▾</button>
+          <div class="dropdown-content">
+            <a href="matches.html">Matches</a>
+            <a href="Tournaments.html">Tournaments</a>
+            <a href="Associations.html">Associations</a>
+          </div>
         </div>
 
-        <h4>Select Size</h4>
-        <div class="sizes">
-            <button  onclick="selectSize(this)">XS</button>
-            <button  onclick="selectSize(this)">S</button>
-            <button  onclick="selectSize(this)">M</button>
-            <button  onclick="selectSize(this)">L</button>
-            <button  onclick="selectSize(this)">XL</button>
-            <button  onclick="selectSize(this)">2XL</button>
-            <button  onclick="selectSize(this)">3XL</button>
-            <button  onclick="selectSize(this)">4XL</button>
+        <div class="dropdown">
+          <button class="drop-btn">Network ▾</button>
+          <div class="dropdown-content">
+            <a href="Community.html">Community</a>
+            <a href="#">Looking</a>
+          </div>
+        </div>      
+
+        <div class="dropdown">
+          <button class="drop-btn">Add ons ▾</button>
+          <div class="dropdown-content">
+            <a href="#">CricMates PRO</a>
+            <a href="#">Go Live ▶</a>
+            <a href="#">Yourapp</a>  
+            <a href="#">Yourweb</a> 
+            <a href="Supersponser.html">Supersponser</a>
+          </div>
         </div>
 
-        <div class="section">
-            <h3>Personalise</h3>
-            <div class="flex">
+        <div class="dropdown">
+          <button class="drop-btn">More ▾</button>
+          <div class="dropdown-content">
+            <a href="Tournamentsguide.html">Tournaments guide</a>
+            <a href="#">Cricket tips</a>
+            <a href="#">News</a>
+            <a href="#">FAQs</a>
+            <a href="#">Blogs</a>
+          </div>
+        </div>
 
-            <div style="flex: 1;">
-                
-            <div class="inputbox">
-                <label>Name on T-Shirt</label>
-                <input type="text" id="name" placeholder="Enter Name" maxlength="12">
+        <a href="store.html" class="nav-link-item">Store</a>
+        <a href="Jobs.html" class="nav-link-item">Jobs</a>
+        <a href="Contactus.html" class="nav-link-item">Contact us</a>
+        <a href="buy.html" class="nav-link-item">Cart</a>
+        <a href="signin.html" class="signin-btn">Sign In</a>
+
+        <div class="search-icon-btn" onclick="toggleSearch()">
+          <img src="search.png" alt="Search" width="18" height="18">
+        </div>
+      </nav>
+
+      <div class="hamburger" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div id="searchBox" class="search-box">
+        <div class="search-top">
+          <input type="text" id="searchInput" placeholder="Search Tournaments, Matches, Teams, Players..." onfocus="showPopular()">
+          <span class="close-btn-span" onclick="closeSearch()">✖</span>
+        </div>
+        <div id="popularBox" class="search-dropdown">
+          <p>Popular searches</p>
+          <div onclick="goPage('matches.html')">Matches Near Me</div>
+          <div onclick="goPage('Tournaments.html')">Tournaments Near Me</div>
+          <div onclick="goPage('Associations.html')">Cricket Associations</div>
+          <div onclick="goPage('Community.html')">Looking For - Tournament, Team, Player</div>
+        </div>
+      </div>
+    </header> 
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="product-container">
+            
+            <!-- Left Side: Live Preview -->
+            <div class="product-media">
+                <div class="jersey-canvas-card">
+                    <img id="productMediaImg" src="Screenshot jer.png" alt="Custom Jersey Design">
+                    <div id="jerseyName" class="jersey-name-overlay">YOUR NAME</div>
+                    <div id="jerseyNumber" class="jersey-number-overlay">00</div>
+                </div>
+                <p style="font-size: 13px; color: var(--text-secondary); text-align: center;">Live 3D-Simulation Preview Canvas</p>
             </div>
 
-            <div class="inputbox">
-                <label>Number on T-Shirt</label>
-                <input type="text" id="number" placeholder="Enter Number" maxlength="3">
+            <!-- Right Side: Configurator Details -->
+            <div class="product-details">
+                <div class="product-title-section">
+                    <h1 id="productTitle">Green Blaze 2.0 Custom Team Jersey</h1>
+                    <div class="price-row">
+                        <span id="priceCurrent" class="price-current">₹699</span>
+                        <span id="priceOld" class="price-old">₹1,199</span>
+                        <span id="priceDiscount" class="price-discount">42% OFF</span>
+                    </div>
+                </div>
+
+                <!-- Customizer inputs -->
+                <div class="details-card">
+                    <h3>1. Size Selection</h3>
+                    <div class="size-selector-grid">
+                        <button onclick="selectSize(this)">XS</button>
+                        <button onclick="selectSize(this)">S</button>
+                        <button onclick="selectSize(this)">M</button>
+                        <button onclick="selectSize(this)">L</button>
+                        <button onclick="selectSize(this)">XL</button>
+                        <button onclick="selectSize(this)">2XL</button>
+                        <button onclick="selectSize(this)">3XL</button>
+                        <button onclick="selectSize(this)">4XL</button>
+                    </div>
+
+                    <h3>2. Personalisation Info</h3>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label class="form-label">Name on Back (Max 12 chars)</label>
+                        <input type="text" id="name" class="form-input" placeholder="e.g. DHONI" maxlength="12">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Number on Back (Max 3 digits)</label>
+                        <input type="text" id="number" class="form-input" placeholder="e.g. 7" maxlength="3">
+                    </div>
+
+                    <div id="error" class="error-message"></div>
+
+                    <!-- Checkout triggers -->
+                    <div class="cta-action-row">
+                        <button class="btn-cart-outline" onclick="addCart()">Add To Cart</button>
+                        <button class="btn-buy-solid" onclick="buyNow()">Buy Now &rarr;</button>
+                    </div>
+                </div>
             </div>
 
-            <p id="error" style="color:red;"></p>
-
         </div>
-
-        <div class="jersey">
-            <img src="Screenshot jer.png">
-            <h2 id="jerseyName">YOUR NAME</h2>
-            <p id="jerseyNumber">00</p>
-        </div>
-
-
-        <div class="bottom">
-            <button class="buy" onclick="buyNow()">Buy now</button>
-            <button class="cart" onclick="addcart()">Add to cart</button>
-        </div>
-    </div> 
-    </div>  
     </div>
-    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="Jobs.html">Careers</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Service</a>
+            <a href="#">Paid Service Terms</a>
+            <a href="#">ICC Policy</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. </p>
+    </footer>
+
+    <!-- Scripts -->
     <script>
-       
-        function addcart() {
-            alert("Product added to cart!");
-        }
-
         let selectedSize = "";
 
-                                                //  Select Size
         function selectSize(btn) {
-            let buttons = document.querySelectorAll(".sizes button");
-            buttons.forEach(b => b.classList.remove("active"));
+            document.querySelectorAll(".size-selector-grid button").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             selectedSize = btn.innerText;
+            document.getElementById("error").innerText = "";
         }
 
-                                                 // Buy Now Validation
+        function addCart() {
+            let name = document.getElementById("name").value.trim();
+            let number = document.getElementById("number").value.trim();
+            let error = document.getElementById("error");
+
+            if (!selectedSize) {
+                error.innerText = "Please select a size first.";
+                return;
+            }
+            if (!name) {
+                error.innerText = "Please enter a name for the jersey personalization.";
+                return;
+            }
+
+            localStorage.setItem("customJerseyName", name);
+            localStorage.setItem("customJerseyNumber", number);
+            localStorage.setItem("customJerseySize", selectedSize);
+            
+            alert("Customized Jersey added to your cart successfully!");
+            window.location.href = "buy.html";
+        }
+
         function buyNow() {
             let name = document.getElementById("name").value.trim();
             let number = document.getElementById("number").value.trim();
             let error = document.getElementById("error");
-            
+
             if (!selectedSize) {
-                error.innerText = "Please select size";
+                error.innerText = "Please select a size first.";
                 return;
             }
-            if (name === "") {
-                error.innerText = "Please enter name";
+            if (!name) {
+                error.innerText = "Please enter a name for the jersey personalization.";
                 return;
             }
-            if (number === "") {
-                error.innerText = "Please enter number";
+            if (!number) {
+                error.innerText = "Please enter a number for the jersey.";
                 return;
             }
+
             error.innerText = "";
+            
+            // Save specs to localStorage for checkout details
+            localStorage.setItem("customJerseyName", name);
+            localStorage.setItem("customJerseyNumber", number);
+            localStorage.setItem("customJerseySize", selectedSize);
+            
             window.location.href = "buy.html";
         }
-    </script>
-    
-    <script>
-        let nameInput = document.getElementById("name");
-        let numberInput = document.getElementById("number");
 
-        let jerseyName = document.getElementById("jerseyName");
-        let jerseyNumber = document.getElementById("jerseyNumber");
+        // Live text bindings
+        const nameInput = document.getElementById("name");
+        const numberInput = document.getElementById("number");
+        const jerseyName = document.getElementById("jerseyName");
+        const jerseyNumber = document.getElementById("jerseyNumber");
 
         nameInput.addEventListener("input", () => {
-        jerseyName.innerText = nameInput.value || "YOUR NAME";
-      });
+            jerseyName.innerText = nameInput.value.toUpperCase() || "YOUR NAME";
+        });
+
         numberInput.addEventListener("input", () => {
-        jerseyNumber.innerText = numberInput.value || "00";
-      });
+            jerseyNumber.innerText = numberInput.value || "00";
+        });
+
+        // Dynamic product configuration loading
+        const savedTitle = localStorage.getItem("cartProductTitle");
+        const savedImg = localStorage.getItem("cartProductImage");
+        const savedPrice = localStorage.getItem("cartProductPrice");
+        const savedMRP = localStorage.getItem("cartProductMRP");
+
+        if (savedTitle) {
+            document.getElementById("productTitle").innerText = savedTitle;
+        } else {
+            localStorage.setItem("cartProductTitle", "Green Blaze 2.0 Jersey (Customisable)");
+            localStorage.setItem("cartProductImage", "Screenshot jer.png");
+            localStorage.setItem("cartProductPrice", "699");
+            localStorage.setItem("cartProductMRP", "1199");
+            localStorage.setItem("cartProductCategory", "jerseys");
+        }
+
+        if (savedImg) {
+            let displayImg = savedImg;
+            if (savedImg === "Screenshot jers.png") {
+                displayImg = "Screenshot jer.png";
+            }
+            document.getElementById("productMediaImg").src = displayImg;
+        }
+
+        if (savedPrice) {
+            document.getElementById("priceCurrent").innerText = "₹" + savedPrice;
+            const priceVal = parseInt(savedPrice);
+            const mrpVal = parseInt(savedMRP || 1199);
+            document.getElementById("priceOld").innerText = "₹" + mrpVal;
+            const discountPercent = Math.round(((mrpVal - priceVal) / mrpVal) * 100);
+            document.getElementById("priceDiscount").innerText = discountPercent + "% OFF";
+        }
+
+        function toggleMobileNav() {
+            document.querySelector('.nav').classList.toggle('active');
+        }
+
+        
+
+        
+
+        
+
+        
     </script>
+    <script src="search.js"></script>
 </body>
 </html>

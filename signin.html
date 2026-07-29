@@ -3,152 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signin</title>
+    <title>Sign In - CricMates</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        .container{
-            display: flex;
+        body {
+            margin: 0;
             height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
         }
-        .login-box {
-           width: 40%;
-           background: #fff;
-           padding: 60px;
-        }
-        .login-box h1 {
-           font-size: 32px;
-           margin-bottom: 30px;
-           text-align: center;
-        }
-        .label{
-            font-size: 14px;
-            color: #555;
-        }
-        .select{
+
+        body::before {
+            content: "";
+            position: fixed; 
+            top: 0;
+            left: 0;
             width: 100%;
-            padding:20px;
-            margin:10px 0 30px; 
-            border: 1px solid #ccc;
-            font-size: 20px;
+            height: 100%;
+            background: linear-gradient(rgba(10, 12, 16, 0.85), rgba(10, 12, 16, 0.95)),
+                        url('https://img.freepik.com/free-photo/portrait-person-playing-cricket-sport_23-2151702096.jpg') no-repeat center center;
+            background-size: cover; 
+            z-index: -2;
+            animation: zoomBg 20s ease-in-out infinite alternate;
         }
+
+        @keyframes zoomBg {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        .signin-container {
+            max-width: 450px;
+            width: 90%;
+            display: flex;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .login-box {
+            flex: 1.2;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-box h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: var(--font-header);
+            color: var(--text-primary);
+        }
+
+        .login-box h1 span {
+            color: var(--accent-teal);
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-weight: 700;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .btn-social img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .btn-social.whatsapp {
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-social.whatsapp:hover {
+            background: rgba(37, 211, 102, 0.1);
+            border-color: rgb(37, 211, 102);
+            color: rgb(37, 211, 102);
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-social.mobile {
+            border-color: var(--accent-teal-glow);
+        }
+
+        .btn-social.mobile:hover {
+            background: var(--accent-teal-glow);
+            border-color: var(--accent-teal);
+            color: var(--accent-teal);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
         .divide {
-           display: flex;
-           align-items: center;
-           margin: 20px 0;
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
         }
-        .divide span{
-            font-size: 16px;
-            color: #555;
+
+        .divide span {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 10px;
         }
+
         .divide::before,
         .divide::after {
-           content: "";
-           flex: 1;
-           height: 1px;
-           background: #ddd;
-           margin: 0 10px;
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
         }  
-        .btn-whats{
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           gap: 10px;
-           padding: 14px;
-           border: 1px solid white;
-           border-radius: 8px;
-           margin-bottom: 5px;
-           cursor: pointer;
-           font-weight: 600;
-           background: rgb(242, 242, 242);
-           text-decoration: none;
+
+        .terms {
+            margin-top: 25px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.6;
         }
-        .btn-whats img {
-           width: 25px;
-           text-align: right;
-        }
-        .btn-mobile {
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           gap: 10px;
-           padding: 14px;
-           border: 1px solid white;
-           border-radius: 8px;
-           margin-bottom: 5px;
-           cursor: pointer;
-           font-weight: 600;
-           background: #f2f2f2;
-        }
-        .whatsapplogin{
+
+        .terms a {
             text-decoration: none;
-            color: black;
-            font-size: 20px;
-            padding: 5px;
+            color: var(--accent-teal);
+            font-weight: 600;
         }
-        .mobilelogin{
-            text-decoration: none;
-            color: black;
-            font-size: 20px;
-            padding: 5px;
+
+        .terms a:hover {
+            text-decoration: underline;
         }
-        .terms{
-            margin-top: 20px;
-            font-size: 20px;
-            color: #555;
-        }
-        .terms a{
-            text-decoration: none;
-            color: rgb(24, 149, 143);
-        }
-        .banner img{
-            width: 100%;
-            margin-bottom: 60px;
-        }
+
     </style>
 </head>
 <body>
-    <section class="signin-btn">
-        <div class="container">
-            <div class="login-box">
-                <h1>Sign in to continue</h1>
-                <label>Country</label><br>
-                <select>
-                    <option>--select your Country--</option>
+    
+    <div class="signin-container">
+        <!-- Form block -->
+        <div class="login-box">
+            <h1>Sign in to <span>CricMates</span></h1>
+            
+            <div class="form-group">
+                <label class="form-label">Country / Region</label>
+                <select class="form-input">
                     <option>India</option>
-                    <option>Austraila</option>
+                    <option>Australia</option>
                     <option>England</option>
                     <option>USA</option>
                     <option>New Zealand</option>
                     <option>West Indies</option>
+                    <option>South Africa</option>
                 </select>
-                <div class="divide">
-                    <span>CONTINUE WITH</span>
-                </div>
-
-                <div class="btn-whats">
-
-                   <a href="whatsapp.html" class="whatsapplogin" onclick="goWhatsApp()">
-                    <img src="whatsapp (1).png" alt="whatsapp">
-                    
-                    <span>WHATSAPP</span> </a>
-                </div>
-
-                <div class="btn-whats">
-                  <a href="mobile.html" class="mobilelogin" onclick="goMobile()"><img src ="cell-phone.png" alt="cell-phone">
-                <span>MOBILE NUMBER</span> </a>
-                </div>
-                <p class="terms">
-                    By signing in, you agree to our
-                    <a href="#">Terms of Service</a> and
-                    <a href="#">Privacy Policy</a>
-                </p>
             </div>
-            <div class="banner">
-               <img src="otp picture.png" alt="otp">
+
+            <div class="divide">
+                <span>Continue With</span>
             </div>
-        </div>
-        </div>
-    </section>
 
+            <!-- WhatsApp login -->
+            <a href="whatsapp.html" class="btn-social whatsapp" onclick="goWhatsApp(event)">
+                <img src="whatsapp (1).png" alt="WhatsApp Icon">
+                <span>WhatsApp Sign In</span>
+            </a>
 
+            <!-- Mobile number login -->
+            <a href="OTP.html" class="btn-social mobile">
+                <img src="cell-phone.png" alt="Mobile Icon" style="filter: invert(1);">
+                <span>Mobile Number OTP</span>
+            </a>
+
+            <p class="terms">
+                By signing in, you agree to CricMates's<br>
+                <a href="#">Terms of Service</a> and
+                <a href="#">Privacy Policy</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function goWhatsApp(e) {
+            // Simulated WhatsApp login redirection
+            e.preventDefault();
+            alert("Simulating WhatsApp Secure Sign In...");
+            window.location.href = "cricmates.html";
+        }
+    </script>
 </body>
 </html>

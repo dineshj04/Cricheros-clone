@@ -3,432 +3,559 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stores</title>
+  <title>CricMates Store</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      margin: 20px 0 0 40% ;
-      font-family: Arial, sans-serif;
-      background: whitesmoke;
-      width: 30%;
-      align-items: center;
-    }
-    .store-header {
-      background: #e21c28;
-      color: white;
-      padding: 15px;
+    .store-hero {
+      height: 300px;
+      background: linear-gradient(135deg, rgba(10, 12, 16, 0.9), rgba(226, 28, 40, 0.45)), url('contactbg.jpg') center/cover no-repeat;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-    }
-    .icons span {
-      margin-left: 15px;
-      font-size: 20px;
-      cursor: pointer;
-    }
-    .offer-banner {
-      background:#10044a;
-      color: white;
-      text-align: center;
-      padding: 12px;
-      font-size: 14px;
-    }
-
-    .category-scroll {
-      display: flex;
-      overflow-x: auto;
-      padding: 10px;
-      gap: 10px;
-      background: white;
-      position: relative;
-    }
-    .category-scroll button {
-      padding: 8px 18px;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-      background: white;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .category-scroll .active {
-      background: #eee;
-    }
-    .slider {
-      margin: 15px;
-      border-radius: 15px;
-      overflow: hidden;
-      background: white;
-      position: relative;
-    }
-    .slide {
-      display: none;
       text-align: center;
       padding: 20px;
     }
-    .slide.active {
-      display: block;
-    }
-    .slide img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .dots {
-      text-align: center;
-      margin-top: 10px;
-    }
-    .dot {
-      height: 8px;
-      width: 8px;
-      margin: 0 5px;
-      background: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .dot.active {
-      background: #333;
-    }
 
-/* HELLO */
-    .hello-section {
-      padding: 20px;
-      text-align: center;
-      font-size: 20px;
-    }
-    .hello-section p {
-      font-size: 14px;
-      color: #555;
-    }
-    .products {
-      display: flex;
-      grid-template-columns: repeat(2,1fr);
-      gap: 20px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 10px;
-    }
-    .products ::-webkit-scrollbar{
-      display: none;
-    }
-    .product-card{
-      background:#555;
-      min-width: 220px;
-      border-radius:10px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.1);
-      padding:15px;
-      text-align:center;
-      transition:0.3s;
-    }
-    .product-card:hover{
-      transform:translateY(-5px);
-    }
-    .product-card img{
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-    .product-name{
-      font-size:15px;
-      margin:10px 0;
-    }
-    .price{
-      color:white;
-      font-weight:bold;
-      margin-bottom:10px;
-    }
-   
-                                               /* jer */
-    .contain {
-      width: 95%;
-      margin-top:20px;
-      background:#f2f2f2;
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h2 {
-      font-size: 20px;
+    .store-hero h1 {
+      font-size: 44px;
+      color: white;
+      text-transform: uppercase;
       margin-bottom: 10px;
     }
 
+    .store-hero p {
+      font-size: 18px;
+      color: var(--text-secondary);
+    }
 
-.main-image {
-  width: 100%;
-  height: 260px;
-  border: 1px solid black;
-  border-radius: 12px;
-  background:#f2f2f2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
+    .store-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
 
-.main-image img {
-  width: 200px;
-}
+    .offer-strip {
+      background: linear-gradient(90deg, #10044a, #1b2030);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      border-radius: var(--radius-md);
+      margin-bottom: 40px;
+      border: 1px solid var(--border-color);
+      font-weight: 500;
+    }
 
-/* THUMBNAILS */
-.sl {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-}
+    .offer-strip b {
+      color: var(--accent-teal);
+    }
 
-.thumbnails {
-  display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  scrollbar-width: none;
-}
+    .store-categories {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
 
-.thumbnails::-webkit-scrollbar {
-  display: none;
-}
+    .store-categories button {
+      padding: 10px 24px;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
 
-.thumb {
-  min-width: 50px;
-  height: 50px;
-  border-radius: 8px;
-  border: 2px solid transparent;
-  cursor: pointer;
-}
+    .store-categories button.active, .store-categories button:hover {
+      background: var(--accent-teal);
+      color: #050508;
+      border-color: var(--accent-teal);
+      box-shadow: 0 0 15px var(--accent-teal-glow);
+    }
 
-.thumb.active {
-  border: 2px solid teal;
-}
+    /* Grid Layout */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
 
-/* INPUTS */
-.form {
-  margin-top: 15px;
-}
+    .store-product-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+      cursor: pointer;
+      height: 380px;
+    }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-}
+    .store-product-card:hover {
+      border-color: var(--accent-teal);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-glow);
+    }
 
-.input-group {
-  width: 48%;
-}
+    .store-product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.01);
+      padding: 10px;
+    }
 
-input {
-  width: 100%;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  padding: 5px;
-  outline: none;
-}
+    .product-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      height: 44px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
 
-/* BUTTON */
-.butt {
-  margin-top: 15px;
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background: #1f9d8a;
-  color: white;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-}                                           
+    .product-price {
+      color: var(--accent-teal);
+      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .store-product-card button {
+      width: 100%;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .store-product-card:hover button {
+      background: var(--accent-teal);
+      color: #050508;
+      border-color: var(--accent-teal);
+    }
+
+    /* Personalisation Showcase Section */
+    .customise-banner-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      margin-top: 60px;
+      display: flex;
+      gap: 50px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .customise-left {
+      flex: 1.2;
+      min-width: 300px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .customise-left-canvas {
+      width: 100%;
+      max-width: 380px;
+      height: 320px;
+      border-radius: var(--radius-md);
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .customise-left-canvas img {
+      max-height: 280px;
+      object-fit: contain;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .customise-right {
+      flex: 1.5;
+      min-width: 300px;
+    }
+
+    .customise-right h2 {
+      font-size: 32px;
+      color: var(--text-primary);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .customise-right p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .store-thumb-slider {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      margin-bottom: 30px;
+      padding: 5px 0;
+    }
+
+    .store-thumb-slider img {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      border: 2px solid transparent;
+      cursor: pointer;
+      object-fit: cover;
+      background: var(--bg-tertiary);
+      padding: 4px;
+      transition: var(--transition);
+    }
+
+    .store-thumb-slider img.active, .store-thumb-slider img:hover {
+      border-color: var(--accent-teal);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 900px) {
+      .customise-banner-card {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 30px;
+      }
+      .customise-left-canvas {
+        height: 260px;
+      }
+      .store-hero h1 {
+        font-size: 32px;
+      }
+    }
   </style>
 </head>
 <body>
-  
-    <header class="store-header">
-      <div class="logo"><img src="unnamed.png" alt="unnamed" width="30px" height="30px"> Store</div>
-        <div class="icons">
-          <span>👤</span>
-          <span><img src="share-icon.jpg" alt="share-icon" width="30px" height="20px"></span>
-          <span>🛒</span>
+  <!-- Navbar Header -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="cricmates.html">
+        <img src="unnamed.png" alt="CricMates Logo">
+        <div class="logo-text">
+          <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
+          <span class="tagline">Your cricket matters</span>
         </div>
+      </a>
+    </div>
+    
+    <nav class="nav">
+      <div class="dropdown">
+        <button class="drop-btn">Live Scores ▾</button>
+        <div class="dropdown-content">
+          <a href="matches.html">Matches</a>
+          <a href="Tournaments.html">Tournaments</a>
+          <a href="Associations.html">Associations</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="drop-btn">Network ▾</button>
+        <div class="dropdown-content">
+          <a href="Community.html">Community</a>
+          <a href="#">Looking</a>
+        </div>
+      </div>      
+
+      <div class="dropdown">
+        <button class="drop-btn">Add ons ▾</button>
+        <div class="dropdown-content">
+          <a href="#">CricMates PRO</a>
+          <a href="#">Go Live ▶</a>
+          <a href="#">Yourapp</a>  
+          <a href="#">Yourweb</a> 
+          <a href="Supersponser.html">Supersponser</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="drop-btn">More ▾</button>
+        <div class="dropdown-content">
+          <a href="Tournamentsguide.html">Tournaments guide</a>
+          <a href="#">Cricket tips</a>
+          <a href="#">News</a>
+          <a href="#">FAQs</a>
+          <a href="#">Blogs</a>
+        </div>
+      </div>
+
+      <a href="store.html" class="nav-link-item">Store</a>
+        <a href="Jobs.html" class="nav-link-item">Jobs</a>
+      <a href="Contactus.html" class="nav-link-item">Contact us</a>
+        <a href="buy.html" class="nav-link-item">Cart</a>
+      <a href="signin.html" class="signin-btn">Sign In</a>
+
+      <div class="search-icon-btn" onclick="toggleSearch()">
+        <img src="search.png" alt="Search" width="18" height="18">
+      </div>
     </header>
-    
-    <div class="offer-banner">
-        Extra 20% off Equipment. Code: <b>GEARUP20</b>
+
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
-    <div class="category-scroll">
-        <button class="active">☰ Menu</button>
-        <button>T-Shirts</button>
-        <button>Track Pants</button>
-        <button>Compression wear</button>
-        <button>Bowling</button>
-        <button>Batting</button>
-        <button>Caps</button>
-        <button>Sleeves</button>
-        <button>Wristband</button>
-        <button>Hat</button>
-        <button>Socks</button>
-        <button>Upper</button>
-        <button>Toss coin</button>
-    </div>
-
-    <div class="slider">
-        <div class="slide active">
-          <a href="#"><img src="Screenshot tsrt.png" alt="tshirt"></a>
-        </div>
-
-        <div class="slide">
-          <a href="#"><img src="Screenshot wear.png" alt="wear"></a>
-        </div>
-
-        <div class="silde ">
-          <a href="#"><img src="Screenshot ball.png" alt="ball"></a>
-        </div>
-
-        <div class="slide ">
-          <a href="#"><img src="Screenshot coin.png" alt="cap"></a>
-        </div>
-    </div>
-
-    <div class="dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-
-    <div class="hello-section">
-      <b>Hello, Cricketer</b>
-      <p>Gear up like 91,081+ champions</p>
-    </div>
-
-    <div class="category-scroll">
-      <div class="products" onclick="openPro()">
-        <div class="product-card">
-          <img src="Screenshot jers.png" alt="">
-          <div class="product-name">Team Jersey</div>
-  
-          <button>
-            <span>Get it now</span>
-            <span>→</span>
-          </button>
-        </div>
-
-        <div class="product-card">
-          <img src="Screenshot kitbag.png" alt="">
-          <div class="product-name">Professional kitbag</div>
-          <div class="price">₹2,499</div>
-         
-          <button>
-            <span>Get it now</span>
-            <span>→</span>
-          </button>
-        </div>
-
-        <div class="product-card">
-          <img src="Screenshot ball.png" alt="">
-          <div class="product-name">Cricket Ball</div>
-          <div class="price">₹699</div>
-         
-          <button>
-            <span>Get it now</span>
-            <span>→</span>
-          </button>
-        </div>
-
-        <div class="product-card">
-          <img src="Screenshot cap.png" alt="">
-          <div class="product-name">Baggy Cap (Non-Personalised)</div>
-          <div class="price">₹599</div>
-          
-          <button>
-            <span>Get it now</span>
-            <span>→</span>
-          </button>
-        </div>
-    
-        <div class="product-card">
-          <img src="Screenshot gloves.png" class="product-img" width="200px" height="200px">
-          <div class="title">Destroyer Batting Gloves (Adult Size)</div>
-          <div class="price"> ₹2599</div>
-          
-          <button>
-            <span>Get it now</span>
-            <span>→</span>
-          </button>
-        </div>
+    <div id="searchBox" class="search-box">
+      <div class="search-top">
+        <input type="text" id="searchInput" placeholder="Search Tournaments, Matches, Teams, Players..." onfocus="showPopular()">
+        <span class="close-btn-span" onclick="closeSearch()">✖</span>
+      </div>
+      <div id="popularBox" class="search-dropdown">
+        <p>Popular searches</p>
+        <div onclick="goPage('matches.html')">Matches Near Me</div>
+        <div onclick="goPage('Tournaments.html')">Tournaments Near Me</div>
+        <div onclick="goPage('Associations.html')">Cricket Associations</div>
+        <div onclick="goPage('Community.html')">Looking For - Tournament, Team, Player</div>
       </div>
     </div>
-    <script>
+  </header> 
 
-      function openPro() {
-        window.location.href = "jersey.html";
-      }
+  <!-- Main Content -->
+  <div class="main-content">
+    
+    <!-- Hero Header -->
+    <section class="store-hero">
+      <h1>CricMates Gear Store</h1>
+      <p>Premium customized merchandise and cricket equipment for champions</p>
+    </section>
 
-    </script>
-
-
-    <div class="contain">
-      <h2>Personalise Your Cricket Jersey</h2>
+    <!-- Main Container -->
+    <div class="store-container">
       
-      <div class="main-image">
-        <img id="mainImg" src="Screenshot jer.png">
+      <!-- Promo Offer Strip -->
+      <div class="offer-strip">
+        Gear up like 91,081+ local champions. Extra 20% off all batting gear! Code: <b>GEARUP20</b>
       </div>
 
-      <div class="sl">
-        
-        <div class="thumbnails" id="thumbContainer">
-          <img class="thumb active" src="Screenshot jer.png" onclick="changeImg(this)">
-          <img class="thumb" src="Screenshot jer1.png" onclick="changeImg(this)">
-          <img class="thumb" src="Screenshot jer2.png" onclick="changeImg(this)">
-          <img class="thumb" src="Screenshot jer3.png" onclick="changeImg(this)">
-          <img class="thumb" src="Screenshot jer4.png" onclick="changeImg(this)">
-          <img class="thumb" src="Screenshot jer5.png" onclick="changeImg(this)">
-          <img class="thumb" src="Screenshot jer6.png" onclick="changeImg(this)">
-          <img class="thumb" src="Screenshot jer7.png" onclick="changeImg(this)">
-          <img class="thumb" src="Screenshot jer8.png" onclick="changeImg(this)">
-          <img class="thumb" src="Screenshot jer9.png" onclick="changeImg(this)">
+      <!-- Category selectors -->
+      <div class="store-categories">
+        <button class="active" data-category="all">All Products</button>
+        <button data-category="jerseys">Jerseys</button>
+        <button data-category="bags">Bags</button>
+        <button data-category="balls">Balls</button>
+        <button data-category="caps">Caps</button>
+        <button data-category="gloves">Gloves & Pads</button>
+      </div>
+
+      <!-- Products shelf grid -->
+      <div class="products-grid">
+        <!-- Jersey -->
+        <div class="store-product-card" data-category="jerseys" onclick="selectCustomProduct('Green Blaze 2.0 Jersey (Customisable)', 'Screenshot jers.png', 699, 1199, 'jerseys')">
+          <img src="Screenshot jers.png" alt="Team Jersey">
+          <div>
+            <div class="product-title">Green Blaze 2.0 Jersey (Customisable)</div>
+            <div class="product-price">₹699</div>
+          </div>
+          <button>Personalise & Buy &rarr;</button>
+        </div>
+
+        <!-- Kitbag -->
+        <div class="store-product-card" data-category="bags" onclick="buyProduct('Professional Wheeled Duffle Kitbag', 'Screenshot kitbag.png', 2499, 3999, 'bags')">
+          <img src="Screenshot kitbag.png" alt="Kitbag">
+          <div>
+            <div class="product-title">Professional Wheeled Duffle Kitbag</div>
+            <div class="product-price">₹2,499</div>
+          </div>
+          <button>Buy Now &rarr;</button>
+        </div>
+
+        <!-- Ball -->
+        <div class="store-product-card" data-category="balls" onclick="buyProduct('Super-Test Alum Tanned Leather Ball', 'Screenshot ball.png', 699, 999, 'balls')">
+          <img src="Screenshot ball.png" alt="Ball">
+          <div>
+            <div class="product-title">Super-Test Alum Tanned Leather Ball</div>
+            <div class="product-price">₹699</div>
+          </div>
+          <button>Buy Now &rarr;</button>
+        </div>
+
+        <!-- Cap -->
+        <div class="store-product-card" data-category="caps" onclick="buyProduct('CricMates Baggy Cap (Non-Personalised)', 'Screenshot cap.png', 599, 899, 'caps')">
+          <img src="Screenshot cap.png" alt="Cap">
+          <div>
+            <div class="product-title">CricMates Baggy Cap (Non-Personalised)</div>
+            <div class="product-price">₹599</div>
+          </div>
+          <button>Buy Now &rarr;</button>
+        </div>
+
+        <!-- Gloves -->
+        <div class="store-product-card" data-category="gloves" onclick="buyProduct('Destroyer Batting Gloves (Adult Size)', 'Screenshot gloves.png', 2599, 3499, 'gloves')">
+          <img src="Screenshot gloves.png" alt="Gloves">
+          <div>
+            <div class="product-title">Destroyer Batting Gloves (Adult Size)</div>
+            <div class="product-price">₹2,599</div>
+          </div>
+          <button>Buy Now &rarr;</button>
+        </div>
+
+        <!-- Pads -->
+        <div class="store-product-card" data-category="gloves" onclick="buyProduct('Destroyer Batting Pads (Pro Protection)', 'Screenshot pad.png', 2899, 3999, 'gloves')">
+          <img src="Screenshot pad.png" alt="Batting Pads">
+          <div>
+            <div class="product-title">Destroyer Batting Pads (Pro Protection)</div>
+            <div class="product-price">₹2,899</div>
+          </div>
+          <button>Buy Now &rarr;</button>
+        </div>
+
+        <!-- Training T-shirt -->
+        <div class="store-product-card" data-category="jerseys" onclick="selectCustomProduct('CricMates Training T-shirt (Quick-Dry)', 'Screenshot tsrt.png', 499, 799, 'jerseys')">
+          <img src="Screenshot tsrt.png" alt="Training T-shirt">
+          <div>
+            <div class="product-title">CricMates Training T-shirt (Quick-Dry)</div>
+            <div class="product-price">₹499</div>
+          </div>
+          <button>Personalise & Buy &rarr;</button>
+        </div>
+
+        <!-- Training Wear -->
+        <div class="store-product-card" data-category="jerseys" onclick="selectCustomProduct('CricMates Active Training Wear', 'Screenshot wear.png', 1299, 1999, 'jerseys')">
+          <img src="Screenshot wear.png" alt="Active Wear">
+          <div>
+            <div class="product-title">CricMates Active Training Wear</div>
+            <div class="product-price">₹1,299</div>
+          </div>
+          <button>Personalise & Buy &rarr;</button>
         </div>
       </div>
 
-      <div class="form">
-        <!-- <div class="row">
-          <div class="input-group">
-            <label>Name*</label>
-              <input type="text" maxlength="12">
+      <!-- Personalisation Banner -->
+      <div class="customise-banner-card">
+        <div class="customise-left">
+          <div class="customise-left-canvas">
+            <img id="mainImg" src="Screenshot jer.png" alt="Jersey Mockup">
+          </div>
+        </div>
+
+        <div class="customise-right">
+          <h2>Personalise Your Team Kits</h2>
+          <p>Choose from our premium templates, add your name and team number, and walk onto the field looking like a professional team. Select a color layout below to preview:</p>
+          
+          <div class="store-thumb-slider" id="thumbContainer">
+            <img class="active" src="Screenshot jer.png" onclick="changeImg(this)">
+            <img src="Screenshot jer1.png" onclick="changeImg(this)">
+            <img src="Screenshot jer2.png" onclick="changeImg(this)">
+            <img src="Screenshot jer3.png" onclick="changeImg(this)">
+            <img src="Screenshot jer4.png" onclick="changeImg(this)">
+            <img src="Screenshot jer5.png" onclick="changeImg(this)">
+            <img src="Screenshot jer6.png" onclick="changeImg(this)">
+            <img src="Screenshot jer7.png" onclick="changeImg(this)">
+            <img src="Screenshot jer8.png" onclick="changeImg(this)">
+            <img src="Screenshot jer9.png" onclick="changeImg(this)">
           </div>
 
-          <div class="input-group">
-            <label>Number*</label>
-              <input type="number" maxlength="3">
-          </div>
-        </div> -->
-        
-          <button class="butt" onclick="openProduct()">
-            <span>Get it now</span>
-            <span>→</span>
+          <button class="btn-teal" onclick="openProduct()" style="padding: 14px 30px;">
+            Customize Your Jersey &rarr;
           </button>
+        </div>
       </div>
+
     </div>
-    
-    <script>
+  </div>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">About Us</a>
+            <a href="Jobs.html">Careers</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms Of Service</a>
+      <a href="#">Paid Service Terms</a>
+      <a href="#">ICC Policy</a>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function toggleMobileNav() {
+      document.querySelector('.nav').classList.toggle('active');
+    }
+
+    function openProduct() {
+      window.location.href = "product.html";
+    }
+
+    function changeImg(el) {
+      document.getElementById("mainImg").src = el.src;
+      document.querySelectorAll(".store-thumb-slider img").forEach(t => t.classList.remove("active"));
+      el.classList.add("active");
+    }
+
+    function selectCustomProduct(title, image, price, mrp, category) {
+      localStorage.setItem("cartProductTitle", title);
+      localStorage.setItem("cartProductImage", image);
+      localStorage.setItem("cartProductPrice", price);
+      localStorage.setItem("cartProductMRP", mrp);
+      localStorage.setItem("cartProductCategory", category);
       
-      function openProduct() {
-        window.location.href = "product.html";
-      }
+      window.location.href = "product.html";
+    }
 
-      function changeImg(el) {
-        document.getElementById("mainImg").src = el.src;
-        document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
-        el.classList.add("active");
-      }
-    
-      function scrollLeft() {
-        document.getElementById("thumbContainer").scrollBy({
-        left: -100,
-        behavior: "smooth"
+    function buyProduct(title, image, price, mrp, category) {
+      localStorage.setItem("cartProductTitle", title);
+      localStorage.setItem("cartProductImage", image);
+      localStorage.setItem("cartProductPrice", price);
+      localStorage.setItem("cartProductMRP", mrp);
+      localStorage.setItem("cartProductCategory", category);
+      
+      localStorage.removeItem("customJerseyName");
+      localStorage.removeItem("customJerseyNumber");
+      localStorage.removeItem("customJerseySize");
+      
+      window.location.href = "buy.html";
+    }
+
+    // Category Filtering Logic
+    const buttons = document.querySelectorAll(".store-categories button");
+    const cards = document.querySelectorAll(".store-product-card");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        buttons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const category = button.getAttribute("data-category");
+
+        cards.forEach(card => {
+          if (category === "all" || card.getAttribute("data-category") === category) {
+            card.style.display = "flex";
+          } else {
+            card.style.display = "none";
+          }
         });
-      }
-
-      function scrollRight() {
-        document.getElementById("thumbContainer").scrollBy({
-        left: 100,
-        behavior: "smooth"
-       });
-      }
-    </script>
-
+      });
+    });
+  </script>
+    <script src="search.js"></script>
 </body>
 </html>

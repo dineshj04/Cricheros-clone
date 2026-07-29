@@ -3,125 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore awards</title>
+    <title>CricMates Awards - Explore</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body{
-            background: #0b0b0b;
-            color: #fff;
-        }
-        .awards-section{
-            width: 90%;
-            display: flex;
-            align-items: center;
-            justify-content: center
-        }
-        .content{
-            text-align: center;
-            max-width: 700px;
+        .awards-section {
+            max-width: 800px;
+            margin: 40px auto;
             padding: 40px 20px;
+            text-align: center;
         }
-        .award-logo{
-            font-size: 60px;
-            color: #c89b5c;
+
+        .award-logo-large {
+            margin-bottom: 25px;
+        }
+
+        .award-logo-large img {
+            max-height: 180px;
+            filter: drop-shadow(0 0 20px var(--accent-gold-glow));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .awards-section h1 {
+            font-size: 44px;
+            color: var(--accent-gold);
             margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px var(--accent-gold-glow);
         }
-        h1{
-            font-size: 26px;
-            margin-bottom: 10px;
+
+        .awards-section p.desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 40px;
         }
-        .desc{
-            font-size: 15px;
-            color: #bbb;
-            line-height: 1.6;
-            margin-bottom: 15px;
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
-        .know-more{
-            color: #c89b5c;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 30px;
-        }
-        .cards{
+
+        .award-card {
+            padding: 40px 30px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-        }
-        .card{
-            border: 1px solid #c89b5c;
-            border-radius: 14px;
-            padding: 20px;
-            background: #121212;
-        }
-        .card-header{
-            display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 26px;
-            margin-bottom: 15px;
+            gap: 20px;
+            border-color: rgba(255, 215, 0, 0.15);
         }
-        .card-header i {
-            color: #c89b5c;
+
+        .award-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
-        .card-header img{
-            width: 30px;
-            height: 30px;
+
+        .award-card span {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-header);
         }
-        .card button{
-            width: 50%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(90deg, #8b5a2b, #c89b5c);
-            color: #fff;
-            font-size: 15px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        .card button:hover{
-            transform: scale(1.03);
+
+        .award-card button {
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <section class="awards-section">
-        <div class="content">
-            <div class="award-logo">
-                <img src="awards-logo" alt="award">
-            </div>
-            <h1>Awards 2025</h1>
-            <p class="desc"> This is our tribute to the passion and dedication of players and 
-                community members who created sheer magic in grassroots cricket throughout 2025.
-            </p>
-            <a href="#" class="know-more">Know more</a>
-
-            <div class="cards">
-
-                <div class="card">
-                    <div class="card-header">
-                        <img src="awardtrophy.png" alt="award">
-                        <span>Award winners</span>
-                    </div>
-                    <button onclick="goToWinners()">Explore</button>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa-solid fa-layer-group"></i>
-                        <span>Categories & criteria</span>
-                    </div>
-                    <button onclick="goToCategories()">Explore</button>
-                </div>
-
-            </div>
+    <!-- Navbar Header -->
+    <header class="navbar">
+      <div class="logo">
+        <a href="cricmates.html">
+          <img src="unnamed.png" alt="CricMates Logo">
+          <div class="logo-text">
+            <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
+            <span class="tagline">Your cricket matters</span>
+          </div>
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <div class="dropdown">
+          <button class="drop-btn">Live Scores ▾</button>
+          <div class="dropdown-content">
+            <a href="matches.html">Matches</a>
+            <a href="Tournaments.html">Tournaments</a>
+            <a href="Associations.html">Associations</a>
+          </div>
         </div>
-    </section>
+
+        <div class="dropdown">
+          <button class="drop-btn">Network ▾</button>
+          <div class="dropdown-content">
+            <a href="Community.html">Community</a>
+            <a href="#">Looking</a>
+          </div>
+        </div>      
+
+        <div class="dropdown">
+          <button class="drop-btn">Add ons ▾</button>
+          <div class="dropdown-content">
+            <a href="#">CricMates PRO</a>
+            <a href="#">Go Live ▶</a>
+            <a href="#">Yourapp</a>  
+            <a href="#">Yourweb</a> 
+            <a href="Supersponser.html">Supersponser</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="drop-btn">More ▾</button>
+          <div class="dropdown-content">
+            <a href="Tournamentsguide.html">Tournaments guide</a>
+            <a href="#">Cricket tips</a>
+            <a href="#">News</a>
+            <a href="#">FAQs</a>
+            <a href="#">Blogs</a>
+          </div>
+        </div>
+
+        <a href="store.html" class="nav-link-item">Store</a>
+        <a href="Jobs.html" class="nav-link-item">Jobs</a>
+        <a href="Contactus.html" class="nav-link-item">Contact us</a>
+        <a href="buy.html" class="nav-link-item">Cart</a>
+        <a href="signin.html" class="signin-btn">Sign In</a>
+
+        <div class="search-icon-btn" onclick="toggleSearch()">
+          <img src="search.png" alt="Search" width="18" height="18">
+        </div>
+      </nav>
+
+      <div class="hamburger" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div id="searchBox" class="search-box">
+        <div class="search-top">
+          <input type="text" id="searchInput" placeholder="Search Tournaments, Matches, Teams, Players..." onfocus="showPopular()">
+          <span class="close-btn-span" onclick="closeSearch()">✖</span>
+        </div>
+        <div id="popularBox" class="search-dropdown">
+          <p>Popular searches</p>
+          <div onclick="goPage('matches.html')">Matches Near Me</div>
+          <div onclick="goPage('Tournaments.html')">Tournaments Near Me</div>
+          <div onclick="goPage('Associations.html')">Cricket Associations</div>
+          <div onclick="goPage('Community.html')">Looking For - Tournament, Team, Player</div>
+        </div>
+      </div>
+    </header> 
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="awards-section">
+            <div class="award-logo-large">
+                <img src="awards-logo" alt="Awards Trophy Logo">
+            </div>
+            <h1>Awards 2026</h1>
+            <p class="desc">
+                Celebrating the sheer passion, dedication, and sportsmanship of grassroots cricketers. This is our tribute to the players, scorers, umpires, and organizers who created magic on local grounds throughout the year.
+            </p>
+
+            <div class="awards-grid">
+                <!-- Winners Card -->
+                <div class="glass-card glass-card-hover award-card">
+                    <img src="awardtrophy.png" alt="Trophy icon">
+                    <span>Award Winners</span>
+                    <button class="btn-outline-gold" onclick="goToWinners()">Explore Winners</button>
+                </div>
+
+                <!-- Criteria Card -->
+                <div class="glass-card glass-card-hover award-card">
+                    <img src="awards-logo" alt="Award categories icon" style="filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(15deg);">
+                    <span>Categories & Criteria</span>
+                    <button class="btn-outline-gold" onclick="goToCategories()">View Criteria</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="Jobs.html">Careers</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Service</a>
+            <a href="#">Paid Service Terms</a>
+            <a href="#">ICC Policy</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
+    </footer>
+
     <script>
+        function toggleMobileNav() {
+            document.querySelector('.nav').classList.toggle('active');
+        }
+
+        
+
+        
+
+        
+
+        
+
         function goToWinners(){
-            window.location.href ="award-winners.html"
+            alert("Winners list will be announced soon!");
         }
         function goToCategories(){
-            window.location.href = "categories.html";
+            alert("Categories and criteria are being finalized!");
         }
     </script>
+    <script src="search.js"></script>
 </body>
 </html>

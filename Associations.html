@@ -3,325 +3,542 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Associations</title>
+  <title>Cricket Associations - CricMates</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      margin:0;
-      font-family:Arial;
-    }
-    .hero{
-      background: linear-gradient(rgba(220,0,0,0.85),rgba(180,0,0,0.85)),url(contactbg.jpg) center/cover no-repeat;
-      height: 50vh;
+    .assoc-hero {
+      min-height: 50vh;
+      background: linear-gradient(135deg, rgba(10, 12, 16, 0.9), rgba(226, 28, 40, 0.4)), url('contactbg.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: white;
-    }
-    .hero-content h1{
-      font-size: 35px;
-      font-weight: 700;
-    }
-    .hero-content p{
-      margin: 15px 0;
-      font-size: 18px;
+      padding: 100px 20px 40px 20px;
     }
 
-                                    /* NAV */
-    .navbar {
-      color:white;
-      padding:15px;
+    .assoc-hero-content {
+      max-width: 800px;
     }
-    .logo {
-      text-align:center;
-      padding:30px;
+
+    .assoc-hero-content h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      text-transform: uppercase;
     }
-    .logo-slider {
+
+    .assoc-hero-content p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 25px;
+    }
+
+    .assoc-hero-content h3 {
+      font-size: 22px;
+      color: var(--accent-teal);
+      text-shadow: 0 0 10px var(--accent-teal-glow);
+    }
+
+    .logo-section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .logo-section h3 {
+      font-size: 20px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+
+    .logo-slider-container {
       position: relative;
-      max-width: 1100px;
+      max-width: 1000px;
       margin: auto;
-    }
-    .sliderTrack{
       overflow: hidden;
     }
+
+    .sliderTrack {
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .sliderTrack::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
     .carousel-track {
       display: flex;
-      gap: 80px;
-      padding: 20px;
+      gap: 50px;
+      padding: 15px;
+      align-items: center;
       width: max-content;
     }
+
     .carousel-track img {
-      height: 120px;
-      flex-shrink: 0;
-    }
-    hr {
-      width: 80%;
-      margin: 30px auto;
+      height: 90px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(0.8);
+      transition: var(--transition);
     }
 
-/* Arrows */
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      color: white;
-      border: none;
-      padding: 10px 14px;
-      cursor: pointer;
-      border-radius: 50%;
-      font-size: 18px;
+    .carousel-track img:hover {
+      filter: grayscale(0%) brightness(1);
+      transform: scale(1.1);
     }
-    .left {
-      left: -10px;
-    }
-    .right {
-      right: -10px;
-    }
-    .arrow:hover {
-      background: black;
-    }
-    
 
-                                       /* STATS */
     .stats-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 80px 20px;
       text-align: center;
-      background: #f2f2f2;
-      padding: 60px 20px;
     }
-    .stats-title {
-      color: #e60000;
-      font-size: 40px;
-      margin-bottom: 40px;
+
+    .stats-section h2 {
+      font-size: 36px;
+      margin-bottom: 50px;
+      text-transform: uppercase;
     }
-    .stats-container {
+
+    .stats-flex {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 40px;
-    }
-    .stats h1 {
-      color: #e60000;
-      font-size: 70px;
-      margin: 0;
-      font-size: 40px;
-    } 
-    .stat p {
-      font-size: 34px;
-      margin-top: 10px;
-    }
-    .divider {
-      width: 1px;
-      height: 100px;
-      background: #ccc;
-    }
-    .stats-btn {
-      margin-top: 30px;
-      padding: 12px 25px;
-      background: #1e8e89;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .stats-btn:hover {
-      background: #157a75;
-    }
-    .platform {
-      text-align:center;
-      padding:40px;
-    }
-    .features {
-      padding:20px;
-    }
-    table {
-      width:100%;
-      border-collapse:collapse;
-    }
-    th, td {
-      border:1px solid #ddd;
-      padding:10px;
-      text-align:center;
-    }
-    
-    .testimonials {
-      padding:40px;
-      background:#fafafa;
-    }
-    .card {
-      background:white;
-      padding:20px;
-      margin:10px;
-      box-shadow:0 0 10px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: auto;
     }
 
-                                                        /* CTA */
-    .cta {
-      text-align:center;
-      padding:40px;
-      background:black;
-      color:white;
+    .stat-block {
+      flex: 1;
+      min-width: 200px;
     }
-    .cta button {
-      padding:10px 20px;
-      background:rgb(24, 149, 143);
-      border:none;
-      color:white;
+
+    .stat-block h1 {
+      font-size: 54px;
+      color: var(--accent-teal);
+      margin-bottom: 5px;
+      text-shadow: 0 0 15px var(--accent-teal-glow);
+    }
+
+    .stat-block p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .vertical-divider {
+      width: 1px;
+      height: 80px;
+      background: var(--border-color);
+    }
+
+    .stats-btn {
+      margin-top: 50px;
+    }
+
+    .features-section {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .features-section h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .features-section p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    /* Comparison Table */
+    .table-container {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-secondary);
+      text-align: left;
+    }
+
+    th, td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      font-family: var(--font-header);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.check-yes {
+      color: var(--accent-teal);
+      font-weight: bold;
+    }
+
+    td.check-no {
+      color: var(--accent-red);
+      font-weight: bold;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .testimonials h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .testimonial-card {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .testimonial-card p {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    .testimonial-card h4 {
+      font-size: 14px;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* CTA Section */
+    .cta-banner-bottom {
+      padding: 80px 20px;
+      text-align: center;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .cta-banner-bottom h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .vertical-divider {
+        display: none;
+      }
+      .stats-flex {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .assoc-hero-content h1 {
+        font-size: 28px;
+      }
     }
   </style>
 </head>
 <body>
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Ultimate tech platform for cricket associations</h1>
-      <p>
-        CricHeroes is built by cricketers for cricketers. Because of our relentless
-        focus on improving domestic cricket, we have become an invaluable platform
-        for cricket associations world-wide.
-      </p>
-      
-      <h3>You focus on cricket. Leave the tech to us.</h3>
+  <!-- Navbar Header -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="cricmates.html">
+        <img src="unnamed.png" alt="CricMates Logo">
+        <div class="logo-text">
+          <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
+          <span class="tagline">Your cricket matters</span>
+        </div>
+      </a>
     </div>
-  </section>
+    
+    <nav class="nav">
+      <div class="dropdown">
+        <button class="drop-btn">Live Scores ▾</button>
+        <div class="dropdown-content">
+          <a href="matches.html">Matches</a>
+          <a href="Tournaments.html">Tournaments</a>
+          <a href="Associations.html">Associations</a>
+        </div>
+      </div>
 
-  <section class="logo">
-    <h3>Proud Associations</h3>
-    <div class="logo-slider">
-        <button class="arrow left" onclick="moveSlide(-1)">&#10094;</button>
+      <div class="dropdown">
+        <button class="drop-btn">Network ▾</button>
+        <div class="dropdown-content">
+          <a href="Community.html">Community</a>
+          <a href="#">Looking</a>
+        </div>
+      </div>      
 
-      <div class="sliderTrack">
-       
-      <div class="carousel-track" id="track">
+      <div class="dropdown">
+        <button class="drop-btn">Add ons ▾</button>
+        <div class="dropdown-content">
+          <a href="#">CricMates PRO</a>
+          <a href="#">Go Live ▶</a>
+          <a href="#">Yourapp</a>  
+          <a href="#">Yourweb</a> 
+          <a href="Supersponser.html">Supersponser</a>
+        </div>
+      </div>
 
-        <img src="bcci logo.webp">
-        <img src="tnca.avif">
-        <img src="mumbai logo.jpeg" >
-        <img src="bengal.jpeg" >
-        <img src="dehli.avif" >
-        <img src="karnataka.jpeg" >
-        <img src="kerala.jpeg">
+      <div class="dropdown">
+        <button class="drop-btn">More ▾</button>
+        <div class="dropdown-content">
+          <a href="Tournamentsguide.html">Tournaments guide</a>
+          <a href="#">Cricket tips</a>
+          <a href="#">News</a>
+          <a href="#">FAQs</a>
+          <a href="#">Blogs</a>
+        </div>
+      </div>
 
+      <a href="store.html" class="nav-link-item">Store</a>
+        <a href="Jobs.html" class="nav-link-item">Jobs</a>
+      <a href="Contactus.html" class="nav-link-item">Contact us</a>
+        <a href="buy.html" class="nav-link-item">Cart</a>
+      <a href="signin.html" class="signin-btn">Sign In</a>
+
+      <div class="search-icon-btn" onclick="toggleSearch()">
+        <img src="search.png" alt="Search" width="18" height="18">
+      </div>
+    </nav>
+
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div id="searchBox" class="search-box">
+      <div class="search-top">
+        <input type="text" id="searchInput" placeholder="Search Tournaments, Matches, Teams, Players..." onfocus="showPopular()">
+        <span class="close-btn-span" onclick="closeSearch()">✖</span>
+      </div>
+      <div id="popularBox" class="search-dropdown">
+        <p>Popular searches</p>
+        <div onclick="goPage('matches.html')">Matches Near Me</div>
+        <div onclick="goPage('Tournaments.html')">Tournaments Near Me</div>
+        <div onclick="goPage('Associations.html')">Cricket Associations</div>
+        <div onclick="goPage('Community.html')">Looking For - Tournament, Team, Player</div>
       </div>
     </div>
-    <button class="arrow right" onclick="moveSlide(1)">&#10095;</button>
-    </div>
-    <hr>
-  </section>
-<script>
+  </header> 
 
-const container = document.querySelector(".sliderTrack");
-const track = document.getElementById("track");
+  <!-- Main Content -->
+  <div class="main-content">
+    <section class="assoc-hero">
+      <div class="assoc-hero-content">
+        <h1>Ultimate Tech Platform For Cricket Associations</h1>
+        <p>
+          CricMates is built by cricketers for cricketers. Because of our relentless
+          focus on improving domestic cricket, we have become an invaluable technology
+          partner for cricket associations worldwide.
+        </p>
+        <h3>You focus on cricket. Leave the tech to us.</h3>
+      </div>
+    </section>
 
-// duplicate ONLY logos (correct way)
-track.innerHTML += track.innerHTML;
+    <!-- Logo Track -->
+    <section class="logo-section">
+      <h3>Proud Associations</h3>
+      <div class="logo-slider-container">
+        <div class="sliderTrack" id="sliderTrack">
+          <div class="carousel-track" id="track">
+            <img src="bcci logo.webp" alt="BCCI">
+            <img src="tnca.avif" alt="TNCA">
+            <img src="mumbai logo.jpeg" alt="MCA">
+            <img src="bengal.jpeg" alt="CAB">
+            <img src="dehli.avif" alt="DDCA">
+            <img src="karnataka.jpeg" alt="KSCA">
+            <img src="kerala.jpeg" alt="KCA">
+          </div>
+        </div>
+      </div>
+    </section>
 
-let speed = 1;
+    <!-- Stats -->
+    <section class="stats-section">
+      <h2>Stats don’t lie!</h2>
+      <div class="stats-flex">
+        <div class="stat-block">
+          <h1>52+</h1>
+          <p>ICC Members</p>
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="stat-block">
+          <h1>23+</h1>
+          <p>BCCI Affiliates</p>
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="stat-block">
+          <h1>200+</h1>
+          <p>Districts & Leagues</p>
+        </div>
+      </div>
+      <button class="btn-teal stats-btn" onclick="goToContact()">View All Associations</button>
+    </section>
 
-function autoScroll() {
-  container.scrollLeft += speed;
+    <!-- Features Section -->
+    <section class="features-section">
+      <h2>One platform to rule them all</h2>
+      <p>Manage leagues, teams, players, and matches easily with CricMates</p>
+      
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature Description</th>
+              <th style="text-align: center;">Free Plan</th>
+              <th style="text-align: center;">Premium Plan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>League & Tournament Management</td>
+              <td class="check-yes" style="text-align: center;">✔</td>
+              <td class="check-yes" style="text-align: center;">✔</td>
+            </tr>
+            <tr>
+              <td>Live ball-by-ball scoring</td>
+              <td class="check-yes" style="text-align: center;">✔</td>
+              <td class="check-yes" style="text-align: center;">✔</td>
+            </tr>
+            <tr>
+              <td>Custom White-Labeled Association App</td>
+              <td class="check-no" style="text-align: center;">❌</td>
+              <td class="check-yes" style="text-align: center;">✔</td>
+            </tr>
+            <tr>
+              <td>Full Match Live HD Streaming</td>
+              <td class="check-no" style="text-align: center;">❌</td>
+              <td class="check-yes" style="text-align: center;">✔</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  // correct reset point (half only)
-  if (container.scrollLeft >= track.scrollWidth / 2) {
-    container.scrollLeft = 0;
-  }
-}
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <h2>What Associations Say</h2>
+      <div class="testimonials-grid">
+        <div class="glass-card testimonial-card">
+          <p>"CricMates helped us digitize our local tournaments, player analytics, and live scoring effortlessly. It has truly revolutionized Baroda cricket."</p>
+          <h4>Baroda Cricket Association</h4>
+        </div>
+        <div class="glass-card testimonial-card">
+          <p>"The best software platform for grassroots cricket tournament management, player profiling, and historical records lookup."</p>
+          <h4>Nigeria Cricket Federation</h4>
+        </div>
+      </div>
+    </section>
 
-// start auto scroll
-let scrollInterval = setInterval(autoScroll, 20);
+    <!-- CTA -->
+    <section class="cta-banner-bottom">
+      <h2>Let's build a better cricket ecosystem together</h2>
+      <button class="btn-teal" onclick="goToContact()">Contact Us Now</button>
+    </section>
+  </div>
 
-// pause on hover
-container.addEventListener("mouseenter", () => {
-  clearInterval(scrollInterval);
-});
+  <!-- Footer -->
+  <footer class="footer">
+      <div class="footer-links">
+          <a href="#">About Us</a>
+            <a href="Jobs.html">Careers</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms Of Service</a>
+          <a href="#">Paid Service Terms</a>
+          <a href="#">ICC Policy</a>
+      </div>
+      <div class="footer-divider"></div>
+      <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
+  </footer>
 
-container.addEventListener("mouseleave", () => {
-  scrollInterval = setInterval(autoScroll, 20);
-});
-</script>
+  <!-- Scripts -->
+  <script>
+    function toggleMobileNav() {
+      document.querySelector('.nav').classList.toggle('active');
+    }
 
-                                                 <!-- stats -->
-
-  <section class="stats-section">
-    <h1 class="stats-title">Stats don’t lie!</h1>
-    <div class="stats-container">
-      <div class="stats">
-      <h1>52+</h1>
-      <p>ICC</p>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="stats">
-      <h1>23+</h1>
-      <p>BCCI</p>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="stats">
-      <h1>200+</h1>
-      <p>District</p>
-    </div>
-    </div>
-    <button class="stats-btn">View all associations</button>
-  </section>
-
-  <section class="platform">
-    <h2>One platform to rule them all</h2>
-    <p>Manage leagues, teams, players and matches easily</p>
-  </section>
-  
-  <section class="features">
-    <table>
-      <tr>
-        <th>Feature</th>
-        <th>Free</th>
-        <th>Premium</th>
-      </tr>
     
-      <tr>
-        <td>League Management</td>
-        <td>✔</td>
-        <td>✔</td>
-      </tr>
-    
-      <tr>
-        <td>Live Scoring</td>
-        <td>✔</td>
-        <td>✔</td>
-      </tr>
-    
-      <tr>
-        <td>Custom App</td>
-        <td>❌</td>
-        <td>✔</td>
-      </tr>
-    
-      <tr>
-        <td>Live Streaming</td>
-        <td>❌</td>
-        <td>✔</td>
-      </tr>
-    </table>
-  </section>
 
-  <section class="testimonials">
-    <h2>What Associations Say</h2>
-    <div class="card">
-      <p>CricHeroes helped us manage our tournaments and live scoring easily.</p>
-      <h4>Baroda Cricket Association</h4>
-    </div>
+    
 
-    <div class="card">
-      <p>Best platform for cricket management and analytics.</p>
-      <h4>Nigeria Cricket Federation</h4>
-    </div>
+    
 
-  </section>
-  <section class="cta">
-    <h2>Let's make cricket for better everywere </h2>
-    <button>Contact us</button>
-  </section>
+    
+
+    function goToContact() {
+      window.location.href = "Contactus.html";
+    }
+
+    // Carousel Logo Scroll Setup
+    const container = document.getElementById("sliderTrack");
+    const track = document.getElementById("track");
+    if (track && container) {
+      track.innerHTML += track.innerHTML; // Duplicate images
+      let speed = 1;
+      
+      function autoScroll() {
+        container.scrollLeft += speed;
+        if (container.scrollLeft >= track.scrollWidth / 2) {
+          container.scrollLeft = 0;
+        }
+      }
+
+      let scrollInterval = setInterval(autoScroll, 20);
+
+      container.addEventListener("mouseenter", () => {
+        clearInterval(scrollInterval);
+      });
+
+      container.addEventListener("mouseleave", () => {
+        scrollInterval = setInterval(autoScroll, 20);
+      });
+    }
+  </script>
+    <script src="search.js"></script>
 </body>
 </html>

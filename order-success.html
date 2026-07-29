@@ -3,69 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>order-success</title>
+    <title>Order Confirmed - CricMates Store</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f5f5f5;
-    }
+        .success-page-container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
 
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+        .success-card {
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
+        .success-circle-badge {
+            width: 90px;
+            height: 90px;
+            background: rgba(0, 245, 196, 0.1);
+            border: 2px solid var(--accent-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            color: var(--accent-teal);
+            margin-bottom: 30px;
+            box-shadow: 0 0 25px var(--accent-teal-glow);
+            animation: pulseGlowSuccess 2s infinite alternate;
+        }
 
-    .red { color: red; }
-    .black { color: black; }
-    .gray { color: gray; font-size: 12px; }
+        .success-card h1 {
+            font-size: 28px;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-family: var(--font-header);
+        }
 
-    .success {
-      font-size: 20px;
-      color: green;
-      margin: 20px 0;
-    }
+        .success-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 35px;
+            max-width: 420px;
+        }
 
-    button {
-      padding: 10px 20px;
-      background: red;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+        .receipt-summary-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .receipt-row span:last-child {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .success-card button {
+            width: 100%;
+            max-width: 320px;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--accent-teal), #00c3ff);
+            border: none;
+            color: #050508;
+            font-family: var(--font-header);
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--accent-teal-glow);
+            transition: var(--transition);
+        }
+
+        .success-card button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--accent-teal-hover);
+        }
+
+        @keyframes pulseGlowSuccess {
+            from {
+                box-shadow: 0 0 10px var(--accent-teal-glow);
+                transform: scale(1);
+            }
+            to {
+                box-shadow: 0 0 25px rgba(0, 245, 196, 0.5);
+                transform: scale(1.05);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="logo">
-            <span class="red">cric</span><span class="black">heroes</span><br>
-            <span class="gray">Your cricket matters</span>
+    <!-- Navbar Header -->
+    <header class="navbar">
+      <div class="logo">
+        <a href="cricmates.html">
+          <img src="unnamed.png" alt="CricMates Logo">
+          <div class="logo-text">
+            <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
+            <span class="tagline">Your cricket matters</span>
+          </div>
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <div class="dropdown">
+          <button class="drop-btn">Live Scores ▾</button>
+          <div class="dropdown-content">
+            <a href="matches.html">Matches</a>
+            <a href="Tournaments.html">Tournaments</a>
+            <a href="Associations.html">Associations</a>
+          </div>
         </div>
 
-        <div class="success">✅ Order Placed Successfully!</div>
-        
-        <p>Your order has been placed.</p>
+        <div class="dropdown">
+          <button class="drop-btn">Network ▾</button>
+          <div class="dropdown-content">
+            <a href="Community.html">Community</a>
+            <a href="#">Looking</a>
+          </div>
+        </div>      
 
-        <button onclick="goHome()">Go to Home</button>
+        <div class="dropdown">
+          <button class="drop-btn">Add ons ▾</button>
+          <div class="dropdown-content">
+            <a href="#">CricMates PRO</a>
+            <a href="#">Go Live ▶</a>
+            <a href="#">Yourapp</a>  
+            <a href="#">Yourweb</a> 
+            <a href="Supersponser.html">Supersponser</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="drop-btn">More ▾</button>
+          <div class="dropdown-content">
+            <a href="Tournamentsguide.html">Tournaments guide</a>
+            <a href="#">Cricket tips</a>
+            <a href="#">News</a>
+            <a href="#">FAQs</a>
+            <a href="#">Blogs</a>
+          </div>
+        </div>
+
+        <a href="store.html" class="nav-link-item">Store</a>
+        <a href="Jobs.html" class="nav-link-item">Jobs</a>
+        <a href="Contactus.html" class="nav-link-item">Contact us</a>
+        <a href="buy.html" class="nav-link-item">Cart</a>
+        <a href="signin.html" class="signin-btn">Sign In</a>
+
+        <div class="search-icon-btn" onclick="toggleSearch()">
+          <img src="search.png" alt="Search" width="18" height="18">
+        </div>
+      </nav>
+
+      <div class="hamburger" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div id="searchBox" class="search-box">
+        <div class="search-top">
+          <input type="text" id="searchInput" placeholder="Search Tournaments, Matches, Teams, Players..." onfocus="showPopular()">
+          <span class="close-btn-span" onclick="closeSearch()">✖</span>
+        </div>
+        <div id="popularBox" class="search-dropdown">
+          <p>Popular searches</p>
+          <div onclick="goPage('matches.html')">Matches Near Me</div>
+          <div onclick="goPage('Tournaments.html')">Tournaments Near Me</div>
+          <div onclick="goPage('Associations.html')">Cricket Associations</div>
+          <div onclick="goPage('Community.html')">Looking For - Tournament, Team, Player</div>
+        </div>
+      </div>
+    </header> 
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="success-page-container">
+            <div class="glass-card success-card">
+                
+                <div class="success-circle-badge">✓</div>
+                
+                <h1>Order Confirmed!</h1>
+                <p>Thank you for your purchase! Your custom jersey specifications have been registered and sent directly to our printing department.</p>
+
+                <!-- Receipt -->
+                <div class="receipt-summary-box">
+                    <div class="receipt-row">
+                        <span>Invoice Reference:</span>
+                        <span id="orderId">CM-706122-TX</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Delivery Recipient:</span>
+                        <span id="custName">Cricketer</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Estimated Arrival:</span>
+                        <span id="deliveryDate" style="color: var(--accent-teal);">28-April-2026</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Fulfillment Status:</span>
+                        <span style="color: var(--accent-gold);">In Production</span>
+                    </div>
+                </div>
+
+                <button onclick="goHome()">Return to Dashboard &rarr;</button>
+
+            </div>
+        </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="Jobs.html">Careers</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Service</a>
+            <a href="#">Paid Service Terms</a>
+            <a href="#">ICC Policy</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. </p>
+    </footer>
+
+    <!-- Scripts -->
     <script>
+        // Retrieve name dynamically from localStorage
+        const name = localStorage.getItem("shippingName") || "Cricketer";
+        document.getElementById("custName").innerText = name;
+
+        // Generate dynamic Order ID
+        const randId = Math.floor(100000 + Math.random() * 900000);
+        document.getElementById("orderId").innerText = "CM-" + randId + "-TX";
+
+        // Calculate delivery date (5 days from today)
+        const date = new Date();
+        date.setDate(date.getDate() + 5);
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        document.getElementById("deliveryDate").innerText = date.toLocaleDateString('en-US', options);
+
         function goHome() {
-            window.location.href = "index.html";
+            // Clear storage checkout data
+            localStorage.removeItem("customJerseyName");
+            localStorage.removeItem("customJerseyNumber");
+            localStorage.removeItem("customJerseySize");
+            
+            window.location.href = "cricmates.html";
         }
-  </script>
+
+        function toggleMobileNav() {
+            document.querySelector('.nav').classList.toggle('active');
+        }
+
+        
+
+        
+
+        
+
+        
+    </script>
+    <script src="search.js"></script>
 </body>
 </html>

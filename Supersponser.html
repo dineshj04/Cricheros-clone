@@ -3,208 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supersponser</title>
+    <title>Super Sponsor - CricMates</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        .hero{
-            background: linear-gradient(rgba(220,0,0,0.85),rgba(180,0,0,0.85)),url(contactbg.jpg) center/cover no-repeat;
-            height: 50vh;
+        .spons-hero {
+            min-height: 50vh;
+            background: linear-gradient(135deg, rgba(10, 12, 16, 0.9), rgba(226, 28, 40, 0.45)), url('contactbg.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
-        }
-        .spons h1{
-            font-size: 35px;
-            font-weight: 700;
-        }
-        .spons span{
-            font-size: 30px;
-            font-weight: 500;
-        }
-        .spons p{
-            margin: 10px 0;
-            font-size: 25px;
-        }
-        .btn{
-            padding: 12px 30px;
-            margin: 10px;
-            border: 2px solid white;
-            background: transparent;
-            color: white;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn:hover{
-            color:white;
-            transform: scale(1.1);
-            box-shadow: 0 12px 24px gold;
-        }
-        .hen{
-            text-align: center;
-            padding: 60px 80px;
-        }
-        .hen h1{
-            text-align: center;
-            font-size: 42px;
-            margin-bottom: 50px;
-            font-weight: 500;
-            color: red;
-        }
-        .sponser{
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           gap: 100px;
-           flex-wrap: wrap;
-        }
-        .phone{
-            width: 40%;
-        }
-        .phone img {
-            width: 280px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-left: 80px;
-        }
-        .text {
-            width: 50%;
-        }
-        .number {
-            font-size: 60px;
-            color: #999;
-            margin-bottom: 10px;
-            max-width: 400px;
-        }
-        .description {
-            font-size: 18px;
-            color: #333;
-            line-height: 1.6;
+            padding: 100px 20px 40px 20px;
         }
 
-        .top-banner{
-            background: #e5e5e5;
-            margin: 40px auto;
-            width: 80%;
-            padding: 20px;
-            border-radius: 8px;
+        .spons-hero-content {
+            max-width: 800px;
+        }
+
+        .spons-hero-content h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .spons-hero-content h1 span {
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px var(--accent-gold-glow);
+        }
+
+        .spons-hero-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .benefits-section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .benefits-section h2 {
+            font-size: 36px;
+            color: var(--accent-red);
+            margin-bottom: 60px;
+            text-transform: uppercase;
+        }
+
+        .benefit-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+
+        .benefit-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .benefit-phone {
+            width: 40%;
             display: flex;
             justify-content: center;
+            position: relative;
+        }
+
+        .benefit-phone img {
+            width: 250px;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border: 3px solid var(--border-color);
+        }
+
+        .benefit-text {
+            width: 50%;
+            text-align: left;
+        }
+
+        .benefit-number {
+            font-size: 54px;
+            font-weight: 800;
+            color: var(--accent-teal);
+            margin-bottom: 10px;
+            font-family: var(--font-header);
+            text-shadow: 0 0 15px var(--accent-teal-glow);
+        }
+
+        .benefit-desc {
+            font-size: 20px;
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .cta-banner-spons {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 30px 40px;
+            border-radius: var(--radius-md);
+            margin: 40px auto;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
             gap: 20px;
+            text-align: left;
         }
-        .top-banner p {
-            font-size: 22px;
-            color: #333;
+
+        .cta-banner-spons p {
+            font-size: 18px;
             margin: 0;
+            color: var(--text-primary);
         }
-        .top-banner button {
-            background: #1aa39c;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
+
+        .cta-banner-spons button {
+            flex-shrink: 0;
         }
-        .top-banner button:hover {
-            background: #168b84;
-        }
-        .bottom-banner {
-            background: #111;
+
+        .bottom-banner-spons {
+            background: linear-gradient(135deg, #0e1118, #1c2230);
             color: white;
             text-align: center;
-            padding: 20px 20px;
+            padding: 60px 20px;
+            border-top: 1px solid var(--border-color);
         }
-        .bottom-banner h2 {
-            font-size: 28px;
-            font-weight: normal;
+
+        .bottom-banner-spons h2 {
+            font-size: 32px;
             margin-bottom: 15px;
+            text-transform: uppercase;
         }
-        .bottom-banner span {
-            font-weight: bold;
+
+        .bottom-banner-spons h2 span {
+            color: var(--accent-gold);
         }
-        .bottom-banner p {
+
+        .bottom-banner-spons p {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        .bottom-banner-spons strong {
+            color: var(--accent-teal);
             font-size: 22px;
         }
-        .bottom-banner strong {
-            font-weight: bold;
+
+        @media (max-width: 768px) {
+            .benefit-phone, .benefit-text {
+                width: 100%;
+                text-align: center;
+            }
+            .benefit-text {
+                margin-top: 20px;
+            }
+            .benefit-number {
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <div class="spons">
-            <h1>Super Sponser <span>from CricHeroes</span></h1>
-            <p>Give maximum visibility to your sponser on your tournament page and match scorecard</p>
-            <button class="btn" onclick="get()">Getapp</button>
-        </div>
-    </section>
-
-    <script>
-        function get() {
-            window.location.href = "#";
-        }
-    </script>
-
-    <section class="hen">
-        <h1>Benefits for your sponser</h1>
-
-        <div class="sponser">
-
-            <div class="phone">
-                <img src="Screenshot mobileimg1.png" alt="Mobile UI">
-            </div>
-            <div class="text">
-                <div class="number">01.</div>
-                <div class="description">Maximum visibility of your sponsors to the <br>audience viewing the live scores.</div>
-            </div>
-
-        </div>
- 
-        <div class="sponser">
-            <div class="text">
-                <div class="number">02.</div>
-                <div class="description">Strategic Placements for your sponsers on <br> tournament page & match scorecard </div>
-            </div>
-            <div class="phone">
-                <img src="Screenshot mobileimg2.png" alt="">
-            </div>
+    <!-- Navbar Header -->
+    <header class="navbar">
+      <div class="logo">
+        <a href="cricmates.html">
+          <img src="unnamed.png" alt="CricMates Logo">
+          <div class="logo-text">
+            <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
+            <span class="tagline">Your cricket matters</span>
+          </div>
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <div class="dropdown">
+          <button class="drop-btn">Live Scores ▾</button>
+          <div class="dropdown-content">
+            <a href="matches.html">Matches</a>
+            <a href="Tournaments.html">Tournaments</a>
+            <a href="Associations.html">Associations</a>
+          </div>
         </div>
 
-        <div class="sponser">
-            <div class="phone">
-                <img src="Screenshot mobileimg3.png" alt="">
-            </div>
-            <div class="text">
-                <div class="number">03.</div>
-                <div class="description">Redirect viewers to your sponser' Website or the <br> offer pages </div>
-            </div>
+        <div class="dropdown">
+          <button class="drop-btn">Network ▾</button>
+          <div class="dropdown-content">
+            <a href="Community.html">Community</a>
+            <a href="#">Looking</a>
+          </div>
+        </div>      
+
+        <div class="dropdown">
+          <button class="drop-btn">Add ons ▾</button>
+          <div class="dropdown-content">
+            <a href="#">CricMates PRO</a>
+            <a href="#">Go Live ▶</a>
+            <a href="#">Yourapp</a>  
+            <a href="#">Yourweb</a> 
+            <a href="Supersponser.html">Supersponser</a>
+          </div>
         </div>
 
-        <div class="sponser">
-            <div class="text">
-                <div class="number">04.</div>
-                <div class="description">perpetual visibility on your past matches scorecard and <br>
-                    completed tournament pages </div>
-            </div>
-            <div class="phone">
-                <img src="Screenshot mobileimg4.png" alt="">
-            </div>
+        <div class="dropdown">
+          <button class="drop-btn">More ▾</button>
+          <div class="dropdown-content">
+            <a href="Tournamentsguide.html">Tournaments guide</a>
+            <a href="#">Cricket tips</a>
+            <a href="#">News</a>
+            <a href="#">FAQs</a>
+            <a href="#">Blogs</a>
+          </div>
         </div>
 
-        <section class="top-banner">
-            <p>Earn more from your sponsors offering them these advantages. <button>Contact us</button></p>
+        <a href="store.html" class="nav-link-item">Store</a>
+        <a href="Jobs.html" class="nav-link-item">Jobs</a>
+        <a href="Contactus.html" class="nav-link-item">Contact us</a>
+        <a href="buy.html" class="nav-link-item">Cart</a>
+        <a href="signin.html" class="signin-btn">Sign In</a>
+
+        <div class="search-icon-btn" onclick="toggleSearch()">
+          <img src="search.png" alt="Search" width="18" height="18">
+        </div>
+      </nav>
+
+      <div class="hamburger" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div id="searchBox" class="search-box">
+        <div class="search-top">
+          <input type="text" id="searchInput" placeholder="Search Tournaments, Matches, Teams, Players..." onfocus="showPopular()">
+          <span class="close-btn-span" onclick="closeSearch()">✖</span>
+        </div>
+        <div id="popularBox" class="search-dropdown">
+          <p>Popular searches</p>
+          <div onclick="goPage('matches.html')">Matches Near Me</div>
+          <div onclick="goPage('Tournaments.html')">Tournaments Near Me</div>
+          <div onclick="goPage('Associations.html')">Cricket Associations</div>
+          <div onclick="goPage('Community.html')">Looking For - Tournament, Team, Player</div>
+        </div>
+      </div>
+    </header> 
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero -->
+        <section class="spons-hero">
+            <div class="spons-hero-content">
+                <h1>Super Sponsor <span>from CricMates</span></h1>
+                <p>Give maximum visibility to your sponsors on your tournament page and match scorecard, driving premium branding value.</p>
+                <button class="btn-teal" onclick="goToContact()">Get Started</button>
+            </div>
         </section>
 
-    </section>
+        <!-- Benefits -->
+        <section class="benefits-section">
+            <h2>Benefits For Your Sponsors</h2>
 
+            <!-- Row 1 -->
+            <div class="benefit-row">
+                <div class="benefit-phone">
+                    <img src="Screenshot mobileimg1.png" alt="App placement screenshot">
+                </div>
+                <div class="benefit-text">
+                    <div class="benefit-number">01</div>
+                    <div class="benefit-desc">Maximum visibility of your sponsors to the massive local audience actively viewing live match scorecards.</div>
+                </div>
+            </div>
 
-    <section class="bottom-banner">
-        <h2>Make your sponsors <span>'Super Sponsors'</span> with CricHeroes.</h2>
-        <p> Contact us on <strong>+91 8778234617</strong> today! </p>
-    </section>
+            <!-- Row 2 (Reverse) -->
+            <div class="benefit-row reverse">
+                <div class="benefit-phone">
+                    <img src="Screenshot mobileimg2.png" alt="Branding display screenshot">
+                </div>
+                <div class="benefit-text">
+                    <div class="benefit-number">02</div>
+                    <div class="benefit-desc">Strategic logo placements on primary tournament landing pages, match lists, and individual score summaries.</div>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="benefit-row">
+                <div class="benefit-phone">
+                    <img src="Screenshot mobileimg3.png" alt="Redirection links screenshot">
+                </div>
+                <div class="benefit-text">
+                    <div class="benefit-number">03</div>
+                    <div class="benefit-desc">Direct call-to-action click events redirecting score viewers straight to your sponsor's website or product offer pages.</div>
+                </div>
+            </div>
+
+            <!-- Row 4 (Reverse) -->
+            <div class="benefit-row reverse">
+                <div class="benefit-phone">
+                    <img src="Screenshot mobileimg4.png" alt="Historical records visibility screenshot">
+                </div>
+                <div class="benefit-text">
+                    <div class="benefit-number">04</div>
+                    <div class="benefit-desc">Perpetual brand visibility on completed tournament archives and past match scorecard lookups.</div>
+                </div>
+            </div>
+
+            <!-- Middle CTA -->
+            <section class="cta-banner-spons">
+                <p>Help your tournament sponsors secure greater return on investment with premium digital slots.</p>
+                <button class="btn-teal" onclick="goToContact()">Contact Us &rarr;</button>
+            </section>
+        </section>
+
+        <!-- Bottom Banner Info -->
+        <section class="bottom-banner-spons">
+            <h2>Upgrade Sponsors to <span>'Super Sponsors'</span> Today</h2>
+            <p>Get in touch with our partnerships squad at <strong>+91 8778234617</strong> or click to drop an inquiry.</p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="Jobs.html">Careers</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Service</a>
+            <a href="#">Paid Service Terms</a>
+            <a href="#">ICC Policy</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function toggleMobileNav() {
+            document.querySelector('.nav').classList.toggle('active');
+        }
+
+        
+
+        
+
+        
+
+        
+
+        function goToContact() {
+            window.location.href = "Contactus.html";
+        }
+    </script>
+    <script src="search.js"></script>
 </body>
 </html>

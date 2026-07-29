@@ -1,483 +1,725 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart UI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - CricMates Store</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    margin-left: 30%;
-    width: 40%;
-    align-items: center;
-  }
+        /* Left Column: Cart items & delivery info */
+        .cart-left {
+            flex: 1.6;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
 
-  .header {
-    background: #e41e2b;
-    color: white;
-    padding: 15px;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-  }
+        .cart-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 30px;
+        }
 
-  .header span {
-    margin-left: 10px;
-  }
+        .cart-product-row {
+            display: flex;
+            gap: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
 
-  .container {
-    padding: 15px;
-    width: 95%;
-  }
-                                                            /* card */
-  .card {
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
-  }
+        .cart-product-row img {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-tertiary);
+            object-fit: contain;
+            border: 1px solid var(--border-color);
+            padding: 5px;
+        }
 
-                                                          /* Product */
-  .product {
-    display: flex;
-    gap: 12px;
-  }
-  .product img {
-    width: 90px;
-    border-radius: 10px;
-  }
-  .product-info {
-    flex: 1;
-  }
-  .title {
-    font-weight: bold;
-  }
-  .label {
-  font-size: 14px;
-  margin: 6px 0;
-}
+        .cart-product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
 
-.edit-btn {
-  padding: 2px 8px;
-  font-size: 12px;
-  margin-left: 50%;
-  cursor: pointer;
-}
-  
-  .dropdown {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  select {
-    padding: 6px;
-    border-radius: 6px;
-  }
+        .cart-product-info .title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
 
-                                                            /* Price */
-  .price {
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  .old-price {
-    text-decoration: line-through;
-    color: gray;
-    margin-left: 70%;
-  }
-  .new-price {
-    font-size: 20px;
-    font-weight: bold;
-  }
+        .cart-product-info .specs {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
 
-                                                         /* Address */
-  .address-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .address-box span {
-    color: teal;
-    cursor: pointer;
-  }
+        .cart-product-info .specs span {
+            font-weight: 600;
+            color: var(--accent-teal);
+        }
 
-                                                            /* Coupon */
-  .coupon {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .apply-btn {
-    background: teal;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
+        .btn-edit-specs {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            width: fit-content;
+        }
 
-                                                        /* Price details */
-  .details div {
-    display: flex;
-    justify-content: space-between;
-    margin: 6px 0;
-  }
-  .total {
-    font-weight: bold;
-    font-size: 18px;
-  }
+        .btn-edit-specs:hover {
+            color: var(--accent-teal);
+            border-color: var(--accent-teal);
+        }
 
-                                                           /* Bottom button */
-  .bottom-btn {
-    position: fixed;
-    bottom: 0;
-    width: 40%;
-    background: white;
-    padding: 10px;
-  }
-  .bottom-btn button {
-    width: 100%;
-    padding: 12px;
-    background: teal;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-  }
+        .qty-size-toggles {
+            display: flex;
+            gap: 15px;
+        }
 
-                                                          /* model */
-  .modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: flex-end; /* 👈 bottom sheet */
-  z-index: 999;
-}
+        .qty-size-toggles button {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
 
-.modal-content {
-  background: #fff;
-  width: 100%;
-  max-width: 420px;
-  border-radius: 20px 20px 0 0;
-  padding: 20px;
-  animation: slideUp 0.3s ease;
-}
+        .qty-size-toggles button:hover {
+            border-color: var(--accent-teal);
+            color: var(--accent-teal);
+        }
 
-.options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
-}
+        .address-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.options button {
-  padding: 10px 16px;
-  border-radius: 12px;
-  border: none;
-  background: #eee;
-  cursor: pointer;
-  min-width: 55px;
-}
+        .address-box .address-label {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
 
-.options button.active {
-  background: teal;
-  color: white;
-}
+        .address-box .address-details {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 5px;
+        }
 
-.actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
+        .address-box .btn-address-action {
+            color: var(--accent-teal);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
 
-.actions button {
-  flex: 1;
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  font-size: 16px;
-}
+        .address-box .btn-address-action:hover {
+            text-shadow: 0 0 10px var(--accent-teal-glow);
+        }
 
-.actions button:first-child {
-  background: #eee;
-}
+        /* Right Column: Pricing & billing summary */
+        .cart-right {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: sticky;
+            top: 100px;
+        }
 
-.update {
-  background: teal;
-  color: white;
-}
-.bottom-btn {
-  z-index: 1; /* 👈 lower than modal */
-}
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
+        .promo-coupon-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
+        .promo-coupon-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .promo-coupon-card button {
+            background: var(--accent-teal-glow);
+            border: 1px solid var(--accent-teal);
+            color: var(--accent-teal);
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .promo-coupon-card button:hover {
+            background: var(--accent-teal);
+            color: #050508;
+            box-shadow: 0 0 10px var(--accent-teal-glow);
+        }
+
+        .billing-summary-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 30px;
+        }
+
+        .billing-summary-card h3 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .billing-summary-card .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .billing-summary-card .summary-row.grand-total {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .billing-summary-card .summary-row.grand-total span:last-child {
+            color: var(--accent-teal);
+        }
+
+        .btn-checkout-primary {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--accent-teal), #00c3ff);
+            border: none;
+            color: #050508;
+            font-family: var(--font-header);
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--accent-teal-glow);
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .btn-checkout-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--accent-teal-hover);
+        }
+
+        .dispatch-disclaimer {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Modal Styles */
         .modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
-}
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            backdrop-filter: blur(4px);
+        }
 
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 250px;
-}
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
 
-.buttons {
-  margin-top: 10px;
+        .modal-content h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
 
-  display: flex;
-  justify-content: space-between;
-}          
-              
-</style>
+        .modal-input {
+            width: 100%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            outline: none;
+            font-size: 14px;
+        }
 
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+        }
+
+        .modal-buttons .btn-cancel {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-buttons .btn-confirm {
+            background: var(--accent-teal);
+            color: #050508;
+        }
+
+        @media (max-width: 900px) {
+            .cart-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .cart-left, .cart-right {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="header">← <span>Cart</span></div>
-  
-  <div class="container">
-    
-    <div class="card">
-      <div class="product">
-        <img src="Screenshot jer.png" alt="jersey">
-        
-        <div class="product-info">
-          <div class="title">Bright Blaze Half Sleeve</div>
-                                             
-                                        <!-- edit -->
-       
-          <div class="label">
-            Name: <span id="nameText">---</span>
-            <button class="edit-btn" onclick="openEdit()">Edit</button>
+    <!-- Navbar Header -->
+    <header class="navbar">
+      <div class="logo">
+        <a href="cricmates.html">
+          <img src="unnamed.png" alt="CricMates Logo">
+          <div class="logo-text">
+            <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
+            <span class="tagline">Your cricket matters</span>
           </div>
-          
-          <div class="label">
-            Number: <span id="numberText">---</span>
-          </div>
-          
-          <div id="editModal" class="modal">
-            <div class="modal-content">
-              <h3>Edit Details</h3>
-              <label>Name:</label>
-              <input type="text" id="editName">
-                
-              <label>Number:</label>
-              <input type="number" id="editNumber">
-
-              <div class="buttons">
-                <button onclick="closeEdit()">Cancel</button>
-                <button onclick="updateDetails()">Update</button>
-              </div>
-            </div>
-          </div>
-          
-          <script>
-            function openEdit() {
-              document.getElementById("editModal").style.display = "flex";
-
-              document.getElementById("editName").value =
-              document.getElementById("nameText").innerText;
-
-              document.getElementById("editNumber").value =
-              document.getElementById("numberText").innerText;
-            }
-
-            function closeEdit() {
-              document.getElementById("editModal").style.display = "none";
-            }
-
-            function updateDetails() {
-              let newName = document.getElementById("editName").value;
-              let newNumber = document.getElementById("editNumber").value;
-
-              document.getElementById("nameText").innerText = newName;
-              document.getElementById("numberText").innerText = newNumber;
-
-              closeEdit();
-            }
-          </script>
-
-          <div class="dropdown">
-
-            <button onclick="openModal('size')">
-              Size: <span id="sizeValue">M</span>
-            </button>
-
-            <button onclick="openModal('qty')">
-              Qty: <span id="qtyValue">1</span>
-            </button>
-
-            <div class="modal" id="modal">
-              <div class="modal-content">
-                <h3 id="modalTitle">Select</h3>
-                
-                <div id="options" class="options"></div>
-                
-                <div class="actions">
-                  <button onclick="closeModal()">Cancel</button>
-                  <button class="update" onclick="updateValue()">Update</button>
-                </div>
-              </div>
-            </div>
-
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <div class="dropdown">
+          <button class="drop-btn">Live Scores ▾</button>
+          <div class="dropdown-content">
+            <a href="matches.html">Matches</a>
+            <a href="Tournaments.html">Tournaments</a>
+            <a href="Associations.html">Associations</a>
           </div>
         </div>
-      </div>
-      
-      <div class="price">
-        <div>Coupon Discount: ₹0 </div>
-          <span class="old-price" id="oldPrice">₹1,149</span>
-          <span class="new-price" id="newPrice">₹699</span>
-        <div>PRO Discount: ₹0</div>
-      </div> 
 
-    </div>
-    
-    <div class="card address-box">
-      <div>Where do we send this?</div>
-        <span>Add Address</span>
-      </div>
-      
-      <div class="card coupon">
-        <div>Save ₹139.8 with 'WELCOME20'</div>
-        <button class="apply-btn">Apply</button>
-      </div>
-      <div class="note">
-        To ensure faster delivery, we begin processing your order immediately after it is placed. 
-        Because of this, cancellations or edits aren’t possible, so we request you to please review 
-        your details carefully before confirming your order.<br><br>
+        <div class="dropdown">
+          <button class="drop-btn">Network ▾</button>
+          <div class="dropdown-content">
+            <a href="Community.html">Community</a>
+            <a href="#">Looking</a>
+          </div>
+        </div>      
 
-        If something isn’t right with your product after delivery, please let us know within 48 hours and 
-        team will be assit you.
+        <div class="dropdown">
+          <button class="drop-btn">Add ons ▾</button>
+          <div class="dropdown-content">
+            <a href="#">CricMates PRO</a>
+            <a href="#">Go Live ▶</a>
+            <a href="#">Yourapp</a>  
+            <a href="#">Yourweb</a> 
+            <a href="Supersponser.html">Supersponser</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="drop-btn">More ▾</button>
+          <div class="dropdown-content">
+            <a href="Tournamentsguide.html">Tournaments guide</a>
+            <a href="#">Cricket tips</a>
+            <a href="#">News</a>
+            <a href="#">FAQs</a>
+            <a href="#">Blogs</a>
+          </div>
+        </div>
+
+        <a href="store.html" class="nav-link-item">Store</a>
+        <a href="Jobs.html" class="nav-link-item">Jobs</a>
+        <a href="Contactus.html" class="nav-link-item">Contact us</a>
+        <a href="buy.html" class="nav-link-item">Cart</a>
+        <a href="signin.html" class="signin-btn">Sign In</a>
+
+        <div class="search-icon-btn" onclick="toggleSearch()">
+          <img src="search.png" alt="Search" width="18" height="18">
+        </div>
+      </nav>
+
+      <div class="hamburger" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <div class="card details">
-        <h3>Price Details</h3>
-        <div><span>Total MRP</span><span>₹1,149</span></div>
-        <div><span>Discount</span><span>- ₹450</span></div>
-        <div><span>Delivery</span><span>Free</span></div>
-        <hr>
-        <div class="total"><span>Total</span><span>₹699</span></div>
+
+      <div id="searchBox" class="search-box">
+        <div class="search-top">
+          <input type="text" id="searchInput" placeholder="Search Tournaments, Matches, Teams, Players..." onfocus="showPopular()">
+          <span class="close-btn-span" onclick="closeSearch()">✖</span>
+        </div>
+        <div id="popularBox" class="search-dropdown">
+          <p>Popular searches</p>
+          <div onclick="goPage('matches.html')">Matches Near Me</div>
+          <div onclick="goPage('Tournaments.html')">Tournaments Near Me</div>
+          <div onclick="goPage('Associations.html')">Cricket Associations</div>
+          <div onclick="goPage('Community.html')">Looking For - Tournament, Team, Player</div>
+        </div>
       </div>
+    </header> 
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="cart-container">
+            
+            <!-- Left Column: Items & Address -->
+            <div class="cart-left">
+                <!-- Cart list card -->
+                <div class="cart-card">
+                    <div class="cart-product-row">
+                        <img src="Screenshot jer.png" alt="Jersey selection thumbnail">
+                        <div class="cart-product-info">
+                            <div class="title">Green Blaze 2.0 Custom Jersey</div>
+                            <div class="specs">Name on Back: <span id="nameText">YOUR NAME</span></div>
+                            <div class="specs">Number on Back: <span id="numberText">00</span></div>
+                            <button class="btn-edit-specs" onclick="openEditModal()">Edit Customization Specs</button>
+                        </div>
+                    </div>
+
+                    <div class="qty-size-toggles">
+                        <button onclick="openSelector('size')">Size: <span id="sizeValue">M</span></button>
+                        <button onclick="openSelector('qty')">Qty: <span id="qtyValue">1</span></button>
+                    </div>
+                </div>
+
+                <!-- Shipping Address card -->
+                <div class="address-box">
+                    <div>
+                        <div class="address-label">Shipping Destination:</div>
+                        <div id="addressStatus" class="address-details">No address saved yet</div>
+                    </div>
+                    <a href="address.html" class="btn-address-action" id="addressLink">Add Delivery Address &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Right Column: Summary & Checkout -->
+            <div class="cart-right">
+                
+                <!-- Coupon banner -->
+                <div class="promo-coupon-card">
+                    <div>
+                        <p style="font-weight: 700; color: var(--text-primary);">WELCOME20</p>
+                        <p>Save an additional 20% on checkout</p>
+                    </div>
+                    <button onclick="applyPromo()">Apply</button>
+                </div>
+
+                <!-- Billing breakdown -->
+                <div class="billing-summary-card">
+                    <h3>Billing Summary</h3>
+                    <div class="summary-row">
+                        <span>Base MRP</span>
+                        <span id="mrpTotal">₹1,199</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Personalisation Discount</span>
+                        <span style="color:#00ff66;" id="discountTotal">- ₹500</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Coupon Discount</span>
+                        <span style="color:#00ff66;" id="couponTotal">- ₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Standard Delivery</span>
+                        <span style="color:#00ff66;">FREE</span>
+                    </div>
+                    
+                    <div class="summary-row grand-total">
+                        <span>Grand Total</span>
+                        <span id="grandTotal">₹699</span>
+                    </div>
+
+                    <button class="btn-checkout-primary" onclick="proceedToCheckout()" id="checkoutBtn">Add Shipping Address</button>
+                    <p class="dispatch-disclaimer">Review all customized spelling and sizes before placing order. Customized jerseys cannot be canceled or returned once placed.</p>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-    
-    <div class="bottom-btn">
-      <button onclick="addAddress()">Add address</button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="Jobs.html">Careers</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms Of Service</a>
+            <a href="#">Paid Service Terms</a>
+            <a href="#">ICC Policy</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. </p>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Custom Spec Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h3>Edit Customization Specs</h3>
+            <div class="form-group">
+                <label class="form-label">Name on Back</label>
+                <input type="text" id="editName" class="modal-input" maxlength="12">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Number on Back</label>
+                <input type="text" id="editNumber" class="modal-input" maxlength="3">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+                <button class="btn-confirm" onclick="saveSpecs()">Save Changes</button>
+            </div>
+        </div>
     </div>
-    
+
+    <!-- Selector Modal for Qty/Size -->
+    <div id="selectorModal" class="modal">
+        <div class="modal-content">
+            <h3 id="selectorTitle">Select</h3>
+            <select id="selectorOptions" class="modal-input"></select>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeSelector()">Cancel</button>
+                <button class="btn-confirm" onclick="saveSelector()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
-      function addAddress() {
-        window.location.href = "address.html"
-      }
-    </script>
-    
-    <script>
-      let currentType = "";
-      let selectedValue = "";
+        // Load custom product details from localStorage
+        const productTitle = localStorage.getItem("cartProductTitle") || "Green Blaze 2.0 Jersey (Customisable)";
+        const productImage = localStorage.getItem("cartProductImage") || "Screenshot jer.png";
+        const productPrice = parseInt(localStorage.getItem("cartProductPrice")) || 699;
+        const productMRP = parseInt(localStorage.getItem("cartProductMRP")) || 1199;
+        const productCategory = localStorage.getItem("cartProductCategory") || "jerseys";
 
-// Open Modal
-      function openModal(type) {
-        document.getElementById("modal").style.display = "flex";
-        currentType = type;
+        // Render product details
+        const imgEl = document.querySelector(".cart-product-row img");
+        if (imgEl) imgEl.src = productImage;
 
-        let optionsDiv = document.getElementById("options");
-        optionsDiv.innerHTML = "";
+        const titleEl = document.querySelector(".cart-product-info .title");
+        if (titleEl) titleEl.innerText = productTitle;
 
-        if (type === "size") {
-          document.getElementById("modalTitle").innerText = "Select Size";
-          let sizes = ["XS","S","M","L","XL","2XL","3XL","4XL"];
+        // Render customization specs or hide them if not customizable
+        const specsEls = document.querySelectorAll(".cart-product-info .specs");
+        const editBtn = document.querySelector(".btn-edit-specs");
+        const sizeBtn = document.querySelector(".qty-size-toggles button:first-child");
 
-          sizes.forEach(size => {
-            let btn = document.createElement("button");
-            btn.innerText = size;
-            btn.onclick = () => selectOption(btn, size);
-            optionsDiv.appendChild(btn);
-          });
+        const customName = localStorage.getItem("customJerseyName");
+        const customNumber = localStorage.getItem("customJerseyNumber");
+        const customSize = localStorage.getItem("customJerseySize") || "M";
 
+        if (productCategory === "jerseys" && customName !== null) {
+            document.getElementById("nameText").innerText = customName.toUpperCase();
+            document.getElementById("numberText").innerText = customNumber || "00";
+            document.getElementById("sizeValue").innerText = customSize;
+            specsEls.forEach(el => el.style.display = "block");
+            if (editBtn) editBtn.style.display = "inline-block";
+            if (sizeBtn) sizeBtn.style.display = "inline-block";
         } else {
-          document.getElementById("modalTitle").innerText = "Qty";
-          let qty = [1,2,3,4,5,6];
-          
-          qty.forEach(q => {
-            let btn = document.createElement("button");
-            btn.innerText = q;
-            btn.onclick = () => selectOption(btn, q);
-            optionsDiv.appendChild(btn);
-          });
+            specsEls.forEach(el => el.style.display = "none");
+            if (editBtn) editBtn.style.display = "none";
+            if (sizeBtn) sizeBtn.style.display = "none"; // Hide size selection for equipment
         }
-      }
 
-// Select option
-function selectOption(btn, value) {
-  selectedValue = value;
+        document.getElementById("sizeValue").innerText = customSize;
 
-  // remove active from all
-  let allBtns = document.querySelectorAll(".options button");
-  allBtns.forEach(b => b.classList.remove("active"));
+        // Check if address is already saved
+        const isAddressSaved = localStorage.getItem("addressSaved") === "true";
+        if (isAddressSaved) {
+            document.getElementById("addressStatus").innerText = "Saved (Standard Home / Office)";
+            document.getElementById("addressLink").innerText = "Edit Delivery Address";
+            document.getElementById("checkoutBtn").innerText = "Proceed to Payment &rarr;";
+        }
 
-  btn.classList.add("active");
-}
+        // Modal triggers
+        function openEditModal() {
+            document.getElementById("editName").value = document.getElementById("nameText").innerText;
+            document.getElementById("editNumber").value = document.getElementById("numberText").innerText;
+            document.getElementById("editModal").style.display = "flex";
+        }
 
-// Update value
-function updateValue() {
-  if (!selectedValue) return;
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
 
-  if (currentType === "size") {
-    document.getElementById("sizeValue").innerText = selectedValue;
-  } else {
-    document.getElementById("qtyValue").innerText = selectedValue;
-    updatePrice(selectedValue); // 👈 update price
-  }
+        function saveSpecs() {
+            const newName = document.getElementById("editName").value.trim().toUpperCase();
+            const newNumber = document.getElementById("editNumber").value.trim();
+            if (newName) {
+                document.getElementById("nameText").innerText = newName;
+                localStorage.setItem("customJerseyName", newName);
+            }
+            if (newNumber) {
+                document.getElementById("numberText").innerText = newNumber;
+                localStorage.setItem("customJerseyNumber", newNumber);
+            }
+            closeEditModal();
+        }
 
-  closeModal();
-}
+        let selectorType = "";
 
-// Close modal
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-  selectedValue = "";
-}
-window.onclick = function(e) {
-  let modal = document.getElementById("modal");
-  if (e.target === modal) {
-    closeModal();
-  }
-}
-// Price Update Logic
-function updatePrice(qty) {
-  let baseOld = 1149;
-  let baseNew = 699;
+        function openSelector(type) {
+            selectorType = type;
+            const selectEl = document.getElementById("selectorOptions");
+            selectEl.innerHTML = "";
+            
+            if (type === "size") {
+                document.getElementById("selectorTitle").innerText = "Select Size";
+                const sizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
+                sizes.forEach(s => {
+                    const opt = document.createElement("option");
+                    opt.value = s;
+                    opt.innerText = s;
+                    if (s === document.getElementById("sizeValue").innerText) opt.selected = true;
+                    selectEl.appendChild(opt);
+                });
+            } else {
+                document.getElementById("selectorTitle").innerText = "Select Quantity";
+                const qtys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+                qtys.forEach(q => {
+                    const opt = document.createElement("option");
+                    opt.value = q;
+                    opt.innerText = q;
+                    if (q === document.getElementById("qtyValue").innerText) opt.selected = true;
+                    selectEl.appendChild(opt);
+                });
+            }
 
-  let totalOld = baseOld * qty;
-  let totalNew = baseNew * qty;
+            document.getElementById("selectorModal").style.display = "flex";
+        }
 
-  document.getElementById("oldPrice").innerText = "₹" + totalOld;
-  document.getElementById("newPrice").innerText = "₹" + totalNew;
+        function closeSelector() {
+            document.getElementById("selectorModal").style.display = "none";
+        }
 
-  // Update price details section also
-  document.querySelector(".details div:nth-child(2) span:last-child").innerText = "₹" + totalOld;
-  document.querySelector(".total span:last-child").innerText = "₹" + totalNew;
-}
-</script>
+        function saveSelector() {
+            const val = document.getElementById("selectorOptions").value;
+            if (selectorType === "size") {
+                document.getElementById("sizeValue").innerText = val;
+                localStorage.setItem("customJerseySize", val);
+            } else {
+                document.getElementById("qtyValue").innerText = val;
+                updatePriceTotals(parseInt(val));
+            }
+            closeSelector();
+        }
+
+        let isPromoApplied = false;
+
+        function updatePriceTotals(qty) {
+            let mrpTotal = productMRP * qty;
+            let currentPriceTotal = productPrice * qty;
+            let discountTotal = mrpTotal - currentPriceTotal;
+            let promoTotal = isPromoApplied ? Math.round(currentPriceTotal * 0.2) : 0;
+            let grandTotal = currentPriceTotal - promoTotal;
+
+            document.getElementById("mrpTotal").innerText = "₹" + mrpTotal;
+            document.getElementById("discountTotal").innerText = "- ₹" + discountTotal;
+            document.getElementById("couponTotal").innerText = "- ₹" + promoTotal;
+            document.getElementById("grandTotal").innerText = "₹" + grandTotal;
+        }
+
+        // Initialize price totals
+        updatePriceTotals(1);
+
+        function applyPromo() {
+            if (isPromoApplied) {
+                alert("Promo code already applied!");
+                return;
+            }
+            isPromoApplied = true;
+            alert("WELCOME20 Applied! Extra 20% discount added.");
+            const qty = parseInt(document.getElementById("qtyValue").innerText);
+            updatePriceTotals(qty);
+        }
+
+        function proceedToCheckout() {
+            const isSaved = localStorage.getItem("addressSaved") === "true";
+            if (!isSaved) {
+                window.location.href = "address.html";
+            } else {
+                localStorage.setItem("addressSaved", "false");
+                window.location.href = "order-success.html";
+            }
+        }
+
+        function toggleMobileNav() {
+            document.querySelector('.nav').classList.toggle('active');
+        }
+
+        
+
+        
+
+        
+
+        
+    </script>
+    <script src="search.js"></script>
 </body>
 </html>

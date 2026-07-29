@@ -3,111 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CricHeroes</title>
+    <title>CricMates - Grassroots Cricket App</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        .hero{
-            height: 20vh;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background-color:brown;
-        }
-        .hero img{
-            width: 50px;
-            height: 50px;
-        }
-        .logo{
-            font-size: 30px;
-            text-align: center;
-            align-items: center;
-            margin-top: 20px;
-            padding: 30px;
-        }
-        .red{
-            color: goldenrod;
-        }
-        .black{
-            color: goldenrod;
-        }
-        .her {
-            display: flex;
-            height: 80vh;
-        }
-        .sec{
-            background-color: #f2c94c;
-        }
-/* LEFT IMAGE */
-        .left {
-            flex: 1;
-            background: url('your-image.jpg') no-repeat center;
-            background-size: cover;
-            clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
-        }
+      .hero-landing {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(135deg, rgba(10, 12, 16, 0.85), rgba(226, 28, 40, 0.45)), 
+                    url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1600') center/cover no-repeat;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .hero-landing::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, transparent 20%, var(--bg-primary) 90%);
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
 
-/* RIGHT CONTENT */
-        .right {
-            flex: 1;
-            background: #f2c94c;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 60px;
-        }
-        .right h1 {
-            color: #7b1e1e;
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-        .right p {
-           color: #7b1e1e;
-           margin-bottom: 20px;
-        }
+      .landing-card {
+        position: relative;
+        z-index: 2;
+        max-width: 500px;
+        width: 100%;
+        padding: 50px 40px;
+      }
 
-/* BUTTON */
-        button {
-            padding: 12px 25px;
-            width: 30%;
-            border: 2px solid #7b1e1e;
-            background: transparent;
-            color: #7b1e1e;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        button:hover {
-            background: #7b1e1e;
-            color: white;
-        }
+      .landing-logo {
+        margin-bottom: 30px;
+      }
+
+      .landing-logo img {
+        width: 90px;
+        margin-top: 15px;
+        filter: drop-shadow(0 0 15px var(--accent-red-glow));
+        animation: pulseGlow 2s infinite alternate;
+      }
+
+      .landing-logo .title-glow {
+        font-family: var(--font-header);
+        font-size: 48px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+      }
+
+      .landing-logo .red {
+        color: var(--accent-red);
+        text-shadow: 0 0 10px var(--accent-red-glow);
+      }
+
+      .landing-logo .teal {
+        color: var(--accent-teal);
+        text-shadow: 0 0 10px var(--accent-teal-glow);
+      }
+
+      .landing-card h1 {
+        font-size: 38px;
+        margin-bottom: 15px;
+        color: var(--text-primary);
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      .landing-card p {
+        font-size: 16px;
+        color: var(--text-secondary);
+        margin-bottom: 35px;
+        font-family: var(--font-body);
+      }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <div class="logo">
-            <span class="red">Cric</span><span class="black">heroes</span><br>
-            <img src="unnamed.png" alt="cricheroes">
+    
+    <section class="hero-landing">
+        <div class="landing-card glass-card">
+            <div class="landing-logo">
+                <span class="landing-logo-text title-glow"><span class="red">Cric</span><span class="teal">mate</span></span><br>
+                <img src="unnamed.png" alt="logo">
+            </div>
+            
+            <h1>Dream For Every Cricketer</h1>
+            <p>Experience the thrill of grassroots cricket and showcase your achievements to the world.</p>
+
+            <button class="btn-teal" onclick="goToWelcome()">Let's Go &rarr;</button>
         </div>
     </section>
-
-    <section class="sec">
-        <div class="her">
-            <div class="left">
-                <img src="frontpageimage.png" alt="frontpageimage">
-            </div>
-
-            <div class="right">
-                <h1>Dream For Every Cricketers</h1>
-                <p>Experience the thrill of cricket and achieve your goals.</p>
-
-                <button onclick="goToWelcome()">Register Now</button>
-            </div>
-        </div>
         
-        <script>
-            function goToWelcome() {
-                window.location.href = "welcome.html";
-            }
-        </script>
-
-    </section>
-
+    <script>
+        function goToWelcome() {
+            window.location.href = "welcome.html";
+        }
+    </script>
 </body>
 </html>

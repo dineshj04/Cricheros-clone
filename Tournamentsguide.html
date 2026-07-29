@@ -3,331 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tournament Guide</title>
+    <title>Tournament Organizer Guide - CricMates</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        .hero{
-            height: 260px;
-            background:linear-gradient(rgba(200,0,0,0.85), rgba(200,0,0,0.85)),url(contactbg.jpg);
-            background-size:cover;
-            background-position:center;
-            display:flex;                 
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-            color:white;
-        }
-        .hero h1{
-            font-size:40px;
-            margin:0;
-        }
-        .hero p {
-            font-size:20px;
-            margin-top:10px;
-            color: white;
-        }
-        .container{
+        .guide-hero {
+            height: 220px;
+            background: linear-gradient(135deg, rgba(10, 12, 16, 0.9), rgba(226, 28, 40, 0.45)), url('contactbg.jpg') center/cover;
             display: flex;
-        }
-        .sidebar{
-            width:300px;
-            height:100vh;
-            position: absolute;
-            background:#eeeeee;
-            padding:30px;
-            overflow-y:auto;
-        }
-        .sidebar ul{
-            list-style:none;
-        }
-        .sidebar li{
-            padding:14px 18px;
-            margin:8px 0;
-            font-weight:600;
-            cursor:pointer;
-            position:relative;
-            transition:0.3s;
-        }
-        .sidebar li:hover{
-           color:red;
-        }
-        .sidebar li.active{
-            background:#ddd;
-            color:#e53935;
-            border-left:4px solid red;
-        }
-        .sidebar li.active::after {
-            content:"";
-            position:absolute;
-            right:0;
-            top:0;
-            height:100%;
-            width:4px;
-        }
-        .content{
-            margin-left:300px;
-            padding:60px 80px;
-            background:#fff;
-            width:100%;
-        }
-        .section{
-            margin-bottom:120px;
-        }
-        .section h1{
-            font-size:34px;
-            margin-bottom:8px;
-        }
-        .underline{
-            width:90px;
-            height:4px;
-            background:#e53935;
-            margin-bottom:25px;
-        }
-        .section p{
-            margin-bottom:18px;
-            line-height:1.8;
-        }
-        section ul{
-            margin-left:25px;
-            margin-bottom:20px;
-        }
-        .html{
-            scroll-behavior:smooth;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
         }
 
-@media(max-width:900px){
-    .sidebar{
-        position:relative;
-        width:100%;
-        height:auto;
-    }
-    .content{
-        margin-left:0;
-        padding:30px;
-    }
-}
-    .highlight{
-        font-weight:bold;
-    }
-    .footer{
-            background: #0f0f0f;
-            padding: 30px 10%;
-            text-align: center;
-            color: #bbb;
+        .guide-hero h1 {
+            font-size: 38px;
+            color: white;
+            text-transform: uppercase;
+            margin-bottom: 5px;
         }
-        .footer-links{
+
+        .guide-hero p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .guide-container {
+            max-width: 1200px;
+            margin: auto;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
+            padding: 50px 20px;
+            gap: 40px;
+        }
+
+        .guide-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        .guide-sidebar-menu {
+            position: sticky;
+            top: 100px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 15px 8px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .guide-sidebar-menu li {
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .guide-sidebar-menu li:hover {
+            background: var(--bg-tertiary);
+            color: var(--accent-teal);
+        }
+
+        .guide-sidebar-menu li.active {
+            background: var(--bg-tertiary);
+            color: var(--accent-teal);
+            font-weight: 700;
+            border-left: 3px solid var(--accent-teal);
+            padding-left: 12px;
+        }
+
+        .guide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .guide-section {
+            scroll-margin-top: 100px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .guide-section h2 {
+            font-size: 26px;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .underline {
+            width: 50px;
+            height: 3px;
+            background: var(--accent-teal);
+            margin-bottom: 25px;
+        }
+
+        .guide-section h3 {
+            font-size: 18px;
+            color: var(--accent-gold);
+            margin: 20px 0 10px 0;
+        }
+
+        .guide-section p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
             margin-bottom: 15px;
         }
-        .footer-links a{
-            text-decoration: none;
-            color:rgb(152, 152, 152);
-            font-size: 18px;
-            transition: 0.3s;
+
+        .guide-section ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
         }
-        .footer-links a:hover {
-            color: #fff;
+
+        .guide-section ul li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.6;
         }
-        .footer-divider {
-            height: 1px;
-            background: #2a2a2a;
-            margin: 15px auto;
-            width: 80%;
+
+        .guide-section strong {
+            color: var(--text-primary);
         }
-        .copyright {
-            font-size: 18px;
-            color: #aaa;
-        }  
+
+        .highlight {
+            color: var(--accent-teal);
+            font-weight: 700;
+        }
+
+        @media (max-width: 900px) {
+            .guide-container {
+                flex-direction: column;
+            }
+            .guide-sidebar {
+                width: 100%;
+            }
+            .guide-sidebar-menu {
+                position: relative;
+                top: 0;
+                flex-direction: row;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding: 10px;
+            }
+            .guide-sidebar-menu li.active {
+                border-left: none;
+                border-bottom: 3px solid var(--accent-teal);
+                padding-left: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <h1>Cricket Tournament Organizing Handbook</h1>
-        <p>9 easy steps to organise a Local cricket tournament</p>
-    </section>
-    
-    <div class="container">
-        <div class="sidebar">
-            <ul>
-                <li class="menu active" data-target="intro">Introduction</li>
-                <li class="menu" data-target="ground">Groundwork</li>
-                <li class="menu" data-target="venue">Venue & match officials</li>
-                <li class="menu" data-target="scoring">A scoring platform</li>
-                <li class="menu" data-target="registration">Tournament registration</li>
-                <li class="menu" data-target="promotion">Tournament promotion</li>
-                <li class="menu" data-target="scoring">Scoring</li>
-                <li class="menu" data-target="streaming">Live streaming</li>
-                <li class="menu" data-target="sponsors">Recognize Sponsors</li>
-                <li class="menu" data-target="mobile">Personalized mobile app</li>
-                <li class="menu" data-target="solution">One stop solution</li>
-            </ul>
+    <!-- Navbar Header -->
+    <header class="navbar">
+      <div class="logo">
+        <a href="cricmates.html">
+          <img src="unnamed.png" alt="CricMates Logo">
+          <div class="logo-text">
+            <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
+            <span class="tagline">Your cricket matters</span>
+          </div>
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <div class="dropdown">
+          <button class="drop-btn">Live Scores ▾</button>
+          <div class="dropdown-content">
+            <a href="matches.html">Matches</a>
+            <a href="Tournaments.html">Tournaments</a>
+            <a href="Associations.html">Associations</a>
+          </div>
         </div>
 
-        <div class="content">
-            <section id="intro">
-                <h1>Introduction</h1>
-                <div class="underline"></div>
-                <p>Whether you are organising a Cricket Tournament for the first time or have done so multiple times, 
-                we all agree that it is a challenging job. Many questions arise in the mind of a cricket tournament 
-                organiser before organising a tournament, like,</p>
-                <ul>
-                    <li>How will I get teams, scorers, umpires, commentators etc?</li>
-                    <li>How do I book ground?</li>
-                    <li>How can I convince sponsors for my cricket tournament?</li>
-                    <li>Is there an app which can help organise a local cricket tournament?</li>
-                    <li>How can I successfully conduct a local cricket tournament after all?</li>
-                </ul>
-            </section>
-            
-            <section id="ground">
-                <h1>Groundwork</h1>
-                <div class="underline"></div>
-                <p>Firstly you need to do some groundwork before going to the main steps.
-                    Decide the dates and determine what kind of tournament you are going to hold.</p>
-                <p><strong>Based upon ball type :</strong> Tennis ball, Leather ball or Tape ball tournament</p>
-                <p><strong>Tournament-style:</strong> Knock out tournament, League matches, etc</p>
-                <p><strong>Tournament category:</strong></p>
-                <ul>
-                    <li>Age dependent tournament (U-16 , U-19 etc.)</li>
-                    <li>Corporate Cricket Tournament</li>
-                    <li>Box Cricket Tournament</li>
-                    <li>Open Cricket Tournament</li>
-                </ul>
-                <p>If you are holding an intra-company tournament, you will probably not need any sponsors for funding.
-                    But in the other types you may need sponsorship to fund your tournament.</p>
-                <p><strong>So, How to attract sponsors?</strong></p>
-                <p>Firstly, contact the brands which are connected to sports or cricket.
-                    Make a good offline and online marketing plan for their brand in your cricket tournament
-                    and convey them the benefits clearly. If they see the value, you may get them easily</p>
+        <div class="dropdown">
+          <button class="drop-btn">Network ▾</button>
+          <div class="dropdown-content">
+            <a href="Community.html">Community</a>
+            <a href="#">Looking</a>
+          </div>
+        </div>      
 
-            </section>
-            
-            <section id="venue">
-                <h1>Venue & match officials</h1>
-                <div class="underline"></div>
-                <p>Browsing through the internet or references, selecting a suitable cricket ground 
-                    can take up a good amount of time as you have to compare the pitch and costing as well..</p>
-                <p>But don’t worry! <strong>CricHeroes</strong> has got you covered here. You will be able to see 
-                    <a href="#">Cricket Grounds</a> near you with details of costing, matches played, photos 
-                    and most importantly reviews on that particular ground. Everything is available on the 
-                    single platform so you can compare and then directly contact for ground booking from 
-                    <strong>CricHeroes</strong>.</p>
-                <p>All you have to do is,</p>
-                <ul>
-                    <li>Go to the community section from the bottom bar of <strong>CricHeroes App</strong>.</li>
-                    <li>Go to the grounds. And there you will be able to see it all.</li>
-                </ul>
-            </section>
+        <div class="dropdown">
+          <button class="drop-btn">Add ons ▾</button>
+          <div class="dropdown-content">
+            <a href="#">CricMates PRO</a>
+            <a href="#">Go Live ▶</a>
+            <a href="#">Yourapp</a>  
+            <a href="#">Yourweb</a> 
+            <a href="Supersponser.html">Supersponser</a>
+          </div>
+        </div>
 
-            <section id="scoring">
-                <h1>A scoring platform for tournament matches</h1>
-                <div class="underline"></div>
-                <p>There are two ways to score any tournaments</p>
-                <ul>
-                    <li>offline</li>
-                    <li>online</li>
-                </ul>
-                <h2>Offline Scoring</h2>
-                <p>Offline scoring or paper-based is the traditional way of scoring matches, 
-                    but it comes with many drawbacks such as,</p>
-                <ul>
-                    <li>No live updates for the audience</li>
-                    <li>Fear of losing the scores along with the paper</li>
-                    <li>No permanent record of good innings</li>
-                    <li>Error Prone and tedious for scorers</li>
-                </ul>
-                <h2>Online Scoring</h2>
-                <p>But nowadays with cheap data plans and easily available smartphones,
-                    it is possible to broadcast scores LIVE ball to ball, just using smartphones.</p>
-                <p>There are many benefits of online scoring.</p>
-                <ul>
-                    <li>Life-time record of the scores</li>
-                    <li>Live score broadcasting</li>
-                    <li>Increased audience</li>
-                    <li>Increased Online Visibility to Sponsors</li>
-                </ul>
-                <p>With almost <span class="highlight">40,000</span> cricket tournaments and more than 
-                    <span class="highlight">42 million</span> players registered, 
-                    <span class="highlight">CricHeroes</span> is the most trusted and number one scoring platform in the world!
-                </p>
+        <div class="dropdown">
+          <button class="drop-btn">More ▾</button>
+          <div class="dropdown-content">
+            <a href="Tournamentsguide.html">Tournaments guide</a>
+            <a href="#">Cricket tips</a>
+            <a href="#">News</a>
+            <a href="#">FAQs</a>
+            <a href="#">Blogs</a>
+          </div>
+        </div>
 
-                <ul>
-                    <li>CricHeroes</li>
-                    <li>Chauka</li>
-                    <li>CricHQ</li>
-                    <li>CricClubs</li>
+        <a href="store.html" class="nav-link-item">Store</a>
+        <a href="Jobs.html" class="nav-link-item">Jobs</a>
+        <a href="Contactus.html" class="nav-link-item">Contact us</a>
+        <a href="buy.html" class="nav-link-item">Cart</a>
+        <a href="signin.html" class="signin-btn">Sign In</a>
+
+        <div class="search-icon-btn" onclick="toggleSearch()">
+          <img src="search.png" alt="Search" width="18" height="18">
+        </div>
+      </nav>
+
+      <div class="hamburger" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div id="searchBox" class="search-box">
+        <div class="search-top">
+          <input type="text" id="searchInput" placeholder="Search Tournaments, Matches, Teams, Players..." onfocus="showPopular()">
+          <span class="close-btn-span" onclick="closeSearch()">✖</span>
+        </div>
+        <div id="popularBox" class="search-dropdown">
+          <p>Popular searches</p>
+          <div onclick="goPage('matches.html')">Matches Near Me</div>
+          <div onclick="goPage('Tournaments.html')">Tournaments Near Me</div>
+          <div onclick="goPage('Associations.html')">Cricket Associations</div>
+          <div onclick="goPage('Community.html')">Looking For - Tournament, Team, Player</div>
+        </div>
+      </div>
+    </header> 
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero -->
+        <section class="guide-hero">
+            <h1>Tournament Organizing Handbook</h1>
+            <p>9 essential steps to organize and execute a local cricket tournament successfully</p>
+        </section>
+
+        <!-- Container -->
+        <div class="guide-container">
+            <!-- Sidebar -->
+            <div class="guide-sidebar">
+                <ul class="guide-sidebar-menu">
+                    <li class="menu active" data-target="intro">Introduction</li>
+                    <li class="menu" data-target="ground">Groundwork</li>
+                    <li class="menu" data-target="venue">Venue & Officials</li>
+                    <li class="menu" data-target="scoring">Scoring Platform</li>
+                    <li class="menu" data-target="registration">Registration</li>
+                    <li class="menu" data-target="promotion">Promotion</li>
+                    <li class="menu" data-target="streaming">Live Streaming</li>
+                    <li class="menu" data-target="sponsors">Sponsors</li>
+                    <li class="menu" data-target="mobile">Personalized App</li>
+                    <li class="menu" data-target="solution">One Stop Solution</li>
                 </ul>
+            </div>
 
-            </section>
+            <!-- Content -->
+            <div class="guide-content">
+                <!-- Section 1: Intro -->
+                <section id="intro" class="glass-card guide-section">
+                    <h2>Introduction</h2>
+                    <div class="underline"></div>
+                    <p>Whether you are organizing a cricket tournament for the first time or have done so multiple times, we all agree that it is a challenging job. Many questions arise in the mind of a cricket tournament organizer before taking the plunge, like:</p>
+                    <ul>
+                        <li>How will I source local teams, umpires, scorers, and commentators?</li>
+                        <li>How do I securely book and pay for grounds?</li>
+                        <li>How can I convince corporate sponsors to fund my matches?</li>
+                        <li>Is there an application that can streamline organizing local leagues?</li>
+                    </ul>
+                    <p>CricMates is built specifically to address these challenges, simplifying tournament logistics so you can focus on the sport.</p>
+                </section>
 
-            <section id="registration">
-                <h1>Tournament registration</h1>
-                <div class="underline"></div>
-                <p>Register teams and collect entry fees.</p>
-                <p>Here is the step by step process on registering a tournament.</p>
-                <ul class="points">
-                    <li>Select “Add A Tournament” option from the side menu.</li>
-                    <li>Fill tournament details such as name, ground and category.</li>
-                    <li>Add teams and tournament officials.</li>
-                    <li>Define tournament schedule.</li>
-                    <li>Define rules of the tournament.</li>
-                    <li>Define registration fees if needed.</li>
-                    <li>Define prizes for the tournament.</li>
-                </ul>
-                <p class="link"> Refer article for detailed description.</p>
-                <h2>Scoring cricket tournament</h2>
-            </section>
+                <!-- Section 2: Groundwork -->
+                <section id="ground" class="glass-card guide-section">
+                    <h2>Groundwork</h2>
+                    <div class="underline"></div>
+                    <p>Firstly, you need to do some groundwork before going to the main steps. Decide the dates and determine what kind of tournament you are going to hold:</p>
+                    <p><strong>Based upon ball type:</strong> Tennis ball, Leather ball, or Tape ball tournament.</p>
+                    <p><strong>Tournament style:</strong> Knockout matches, Round-robin League, Super-Sixes, etc.</p>
+                    <p><strong>Tournament category:</strong></p>
+                    <ul>
+                        <li>Age dependent tournament (U-16, U-19, etc.)</li>
+                        <li>Corporate Cricket leagues</li>
+                        <li>Box Cricket or indoor tournament</li>
+                        <li>Open Cricket Tournament</li>
+                    </ul>
+                    <p>For internal corporate tournaments, funding is usually simple. For open tournaments, securing sponsors is key. Contact sports-related local brands, outline your marketing reach, and pitching online visibility on scorecard apps will yield results.</p>
+                </section>
 
+                <!-- Section 3: Venue & Officials -->
+                <section id="venue" class="glass-card guide-section">
+                    <h2>Venue & Match Officials</h2>
+                    <div class="underline"></div>
+                    <p>Selecting a suitable cricket ground takes up a good amount of time as you have to compare pitches, facilities, and costings.</p>
+                    <p><strong>CricMates</strong> has got you covered here. You will be able to see verified Cricket Grounds near you with details of booking costs, matches played, photos, and player reviews. Everything is available on a single portal so you can compare and contact owners directly.</p>
+                    <p>To access grounds: Go to the community section from the navigation bar on CricMates, select Grounds, and you will see all listings in your vicinity.</p>
+                </section>
+
+                <!-- Section 4: Scoring Platform -->
+                <section id="scoring" class="glass-card guide-section">
+                    <h2>A Scoring Platform</h2>
+                    <div class="underline"></div>
+                    <p>Broadcasting tournament match scores is critical for engagement. There are two primary routes:</p>
+                    <h3>Offline Scoring (Paper-Based)</h3>
+                    <p>Offline scoring is the traditional way, but it has severe drawbacks: no live updates for fans, risk of physical damage to score sheets, error-prone entries, and lack of permanent career records for local players.</p>
+                    <h3>Online Scoring (Digital)</h3>
+                    <p>Broadcasting scorecards LIVE ball-by-ball via smartphones is now the gold standard. Benefits include permanent player records, real-time fan engagement, and increased online branding slots for sponsors.</p>
+                    <p>With over <span class="highlight">8.7 Lakhs+</span> tournaments and more than <span class="highlight">4.2 Crores+</span> players registered, <strong>CricMates</strong> is the world's most trusted grassroots scoring platform.</p>
+                </section>
+
+                <!-- Section 5: Registration -->
+                <section id="registration" class="glass-card guide-section">
+                    <h2>Tournament Registration</h2>
+                    <div class="underline"></div>
+                    <p>Setting up your tournament on the platform allows teams to register online and helps you collect entry fees systematically:</p>
+                    <ul>
+                        <li>Select "Add A Tournament" option from the menu.</li>
+                        <li>Fill details such as tournament name, ground, and category.</li>
+                        <li>Add participating teams and designate match officials (umpires/scorers).</li>
+                        <li>Define match schedule, brackets, and rules.</li>
+                        <li>Specify entry registration fees and custom prizes.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 6: Promotion -->
+                <section id="promotion" class="glass-card guide-section">
+                    <h2>Tournament Promotion</h2>
+                    <div class="underline"></div>
+                    <p>Promoting your tournament is crucial for player registration and spectator turnout. Leverage local social media groups, cricket WhatsApp circles, and CricMates community pages to market your schedule. With digital flyers showing dates, cash prizes, and ground locations, you can quickly fill team slots.</p>
+                </section>
+
+                <!-- Section 7: Live Streaming -->
+                <section id="streaming" class="glass-card guide-section">
+                    <h2>Live Streaming</h2>
+                    <div class="underline"></div>
+                    <p>Adding live video broadcasts makes your local tournament look professional. CricMates allows you to stream matches directly using a smartphone connected to a tripod on the boundary. Fans can watch HD live video complete with automatic overlays showing runs, wickets, overs, and batsman names, matching TV broadcast styles.</p>
+                </section>
+
+                <!-- Section 8: Recognize Sponsors -->
+                <section id="sponsors" class="glass-card guide-section">
+                    <h2>Recognize Sponsors</h2>
+                    <div class="underline"></div>
+                    <p>Sponsors want return on investment. With CricMates, you can sell premium digital banner ads, offer scorecard sponsorship, and display logo watermarks on your live streams. By offering automated sponsors slots, corporate partners see direct value, making it easier to secure funding.</p>
+                </section>
+
+                <!-- Section 9: Personalized Mobile App -->
+                <section id="mobile" class="glass-card guide-section">
+                    <h2>Personalized Mobile App</h2>
+                    <div class="underline"></div>
+                    <p>For high-profile leagues or large cricket associations, having a custom mobile application is a game-changer. CricMates builds white-labeled custom apps featuring your association logo, custom colors, match schedules, points tables, player rankings, and dedicated sponsor banners published on the Google Play Store and iOS App Store.</p>
+                </section>
+
+                <!-- Section 10: One Stop Solution -->
+                <section id="solution" class="glass-card guide-section">
+                    <h2>One Stop Solution</h2>
+                    <div class="underline"></div>
+                    <p>CricMates serves as the ultimate ecosystem for grassroots cricket organizers. From finding umpires and scorers in the community to digital scoring, tournament scheduling, automated highlights, sponsor integration, and digital payments, the entire tournament lifecycle is managed seamlessly in one unified platform.</p>
+                </section>
+            </div>
         </div>
     </div>
 
-<script>
-
-// Click scroll
-document.querySelectorAll(".menu").forEach(menu=>{
-    menu.addEventListener("click", function(){
-        document.getElementById(this.dataset.target)
-        .scrollIntoView({behavior:"smooth"});
-    });
-});
-
-// Auto highlight while scrolling
-window.addEventListener("scroll", ()=>{
-    let sections = document.querySelectorAll("section");
-    let scrollPos = window.scrollY + 150;
-
-    sections.forEach(section=>{
-        if(scrollPos >= section.offsetTop &&
-           scrollPos < section.offsetTop + section.offsetHeight){
-
-            document.querySelectorAll(".menu")
-            .forEach(m=>m.classList.remove("active"));
-
-            document.querySelector(`.menu[data-target="${section.id}"]`)
-            .classList.add("active");
-        }
-    });
-});
-
-</script>
-
+    <!-- Footer -->
     <footer class="footer">
-
         <div class="footer-links">
-            <a href="#">About</a>
-            <a href="#">Jobs</a>
+            <a href="#">About Us</a>
+            <a href="Jobs.html">Careers</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms Of Service</a>
             <a href="#">Paid Service Terms</a>
             <a href="#">ICC Policy</a>
         </div>
         <div class="footer-divider"></div>
-        <p class="copyright"> © CricHeroes Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
-
+        <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
     </footer>
 
+    <!-- Scripts -->
+    <script>
+        function toggleMobileNav() {
+            document.querySelector('.nav').classList.toggle('active');
+        }
+
+        
+
+        
+
+        
+
+        
+
+        // Sidebar active tab toggle while clicking
+        document.querySelectorAll(".menu").forEach(menu => {
+            menu.addEventListener("click", function() {
+                const target = document.getElementById(this.dataset.target);
+                if (target) {
+                    target.scrollIntoView({behavior: "smooth"});
+                }
+            });
+        });
+
+        // Sidebar active tab toggle while scrolling
+        const sections = document.querySelectorAll(".guide-section");
+        const menuItems = document.querySelectorAll(".menu");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            menuItems.forEach(li => {
+                li.classList.remove("active");
+                if (li.dataset.target === current) {
+                    li.classList.add("active");
+                }
+            });
+        });
+    </script>
+    <script src="search.js"></script>
 </body>
 </html>
