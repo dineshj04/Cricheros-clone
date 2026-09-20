@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,104 +15,177 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            position: relative;
+            background-color: #050508;
+            font-family: 'Outfit', 'Inter', sans-serif;
         }
 
-        body::before {
-            content: "";
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(10, 12, 16, 0.85), rgba(10, 12, 16, 0.95)),
-                        url('https://img.freepik.com/free-photo/portrait-person-playing-cricket-sport_23-2151702096.jpg') no-repeat center center;
-            background-size: cover; 
-            z-index: -2;
-            animation: zoomBg 20s ease-in-out infinite alternate;
-        }
-
-        @keyframes zoomBg {
-            from { transform: scale(1); }
-            to { transform: scale(1.08); }
-        }
-
-        .box {
-            max-width: 400px;
-            width: 90%;
-            padding: 50px 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 24px;
-        }
-
-        h1 {
-            font-size: 32px;
-            margin-bottom: 5px;
-            color: var(--text-primary);
-            line-height: 1.2;
-        }
-
-        p {
-            color: var(--text-secondary);
-            font-size: 15px;
-            margin: 0;
-        }
-
-        /* Premium Loader */
-        .loader-container {
-            position: relative;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .loader-ring {
-            width: 100%;
-            height: 100%;
-            border: 4px dashed rgba(255, 255, 255, 0.05);
-            border-top: 4px solid var(--accent-teal);
-            border-bottom: 4px solid var(--accent-teal);
-            border-radius: 50%;
-            animation: spin 1.5s linear infinite;
-            filter: drop-shadow(0 0 10px var(--accent-teal-glow));
-        }
-
-        .loader-inner {
+        /* Animated Glowing Orbs Background */
+        .bg-orb {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 3px solid transparent;
-            border-left: 3px solid var(--accent-red);
-            border-right: 3px solid var(--accent-red);
             border-radius: 50%;
-            animation: spinReverse 1s linear infinite;
-            filter: drop-shadow(0 0 8px var(--accent-red-glow));
+            filter: blur(80px);
+            opacity: 0.5;
+            z-index: -1;
+            animation: floatOrb 10s infinite alternate ease-in-out;
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 255, 204, 0.4);
+            top: -100px;
+            left: -100px;
         }
 
-        @keyframes spinReverse {
-            100% { transform: rotate(-360deg); }
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 0, 255, 0.3);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(50px, 50px) scale(1.2);
+            }
+        }
+
+        .splash-card {
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 2px solid #00ffcc;
+            border-radius: 24px;
+            padding: 60px 50px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 255, 204, 0.1);
+            animation: cardEntrance 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        @keyframes cardEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .logo-container img {
+            width: 48px;
+            height: 48px;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 204, 0.5));
+            animation: pulseIcon 2s infinite alternate;
+        }
+
+        @keyframes pulseIcon {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        .brand-title {
+            font-size: 42px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            background: linear-gradient(90deg, #fff, #00ffcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #a0a0b0;
+            font-size: 16px;
+            margin-bottom: 40px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Futuristic Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff00ff, #00ffcc);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+            animation: fillProgress 2.8s ease-in-out forwards;
+        }
+
+        @keyframes fillProgress {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .welcome-footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 1px;
         }
     </style>
 </head>
+
 <body>
-    
-    <div class="box glass-card">
-        <h1>🏏 Welcome to CricMates</h1>
-        <p>Loading your grassroots experience...</p>
-        <div class="loader-container">
-            <div class="loader-ring"></div>
-            <div class="loader-inner"></div>
+    <!-- Animated Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div class="splash-card">
+        <div class="logo-container">
+            <img src="cricmates_logo.png" alt="CricMates Logo" width="48" height="48" style="object-fit: contain; border-radius: 50%; mix-blend-mode: screen;">
+            <h1 class="brand-title">CricMates</h1>
+        </div>
+        <p class="subtitle">Initializing your grassroots experience...</p>
+
+        <div class="progress-container">
+            <div class="progress-bar"></div>
         </div>
     </div>
+
+    <footer class="welcome-footer">
+        <p>Â© CricMates Pvt Ltd. All rights reserved.</p>
+    </footer>
 
     <script>
         setTimeout(() => {
@@ -119,4 +193,5 @@
         }, 3000);
     </script>
 </body>
+
 </html>

@@ -1,31 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg-primary: #121214;
-  --bg-secondary: #18181b;
-  --bg-tertiary: #27272a;
-  --accent-red: #ff9f1c;
-  --accent-red-hover: #ffb703;
-  --accent-red-glow: rgba(255, 159, 28, 0.2);
-  --accent-teal: #ffd700;
-  --accent-teal-hover: #ffea70;
-  --accent-teal-glow: rgba(255, 215, 0, 0.2);
+  --bg-primary: #0b0c10;
+  --bg-secondary: #1f2833;
+  --bg-tertiary: #2b3a4a;
+  --accent-red: #ff3b5c;
+  --accent-red-hover: #ff1f44;
+  --accent-red-glow: rgba(255, 59, 92, 0.2);
+  --accent-teal: #00ffcc;
+  --accent-teal-hover: #33ffdb;
+  --accent-teal-glow: rgba(0, 255, 204, 0.2);
   --accent-gold: #ffd700;
   --accent-gold-hover: #ffea70;
   --accent-gold-glow: rgba(255, 215, 0, 0.2);
   --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --glass-bg: rgba(24, 24, 27, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-secondary: #c5c6c7;
+  --text-muted: #8a8d91;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(11, 12, 16, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.1);
   --font-header: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-glow: 0 8px 24px rgba(255, 215, 0, 0.1);
+  --shadow-glow: 0 8px 24px rgba(0, 255, 204, 0.15);
 }
 
 * {
@@ -189,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 100%;
   left: 0;
-  margin-top: 12px;
+  margin-top: 0; /* Removed margin to fix hover dead-zone */
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -198,9 +198,9 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   min-width: 200px;
   overflow: hidden;
-  z-index: 1001;
+  z-index: 9999; /* Increased to ensure it floats above all */
   padding: 8px 0;
-  transform: translateY(10px);
+  transform: translateY(0px); /* Adjusted to keep it flush */
   animation: slideDown 0.25s forwards cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -703,38 +703,106 @@ select.form-input {
   100% { transform: translateY(0px); }
 }
 
-/* RESPONSIVE DESIGN */
-@media (max-width: 900px) {
-  .navbar {
-    padding: 15px 20px;
-  }
-  .nav {
-    display: none; /* hidden, handled by hamburger toggle */
-  }
-  .hamburger {
-    display: flex;
-  }
-  .footer {
-    padding: 40px 20px 20px 20px;
-  }
-  .footer-links {
-    gap: 20px;
-  }
+/* =========================================
+   RESPONSIVE DESIGN (Media Queries)
+   ========================================= */
+
+/* 1. DESKTOP VIEW (Base Styles apply here, > 1024px) */
+/* No media query needed. Base CSS handles widths larger than 1024px. */
+
+/* 2. TABLET VIEW (max-width: 1024px) */
+@media (max-width: 1024px) {
+  /* Shrink navbar spacing */
+  .nav { gap: 15px; }
+  .navbar { padding: 15px 30px; }
+  
+  /* Shrink hero and typography slightly */
+  h1 { font-size: 48px; }
+  h2 { font-size: 40px; }
+  
+  /* Allow flex containers to wrap earlier if needed */
+  .container { gap: 30px; }
 }
 
-@media (max-width: 800px) {
-  .phone-frame {
-    width: 100%;
-    height: 100vh;
-    border: none;
-    border-radius: 0;
-    margin: 0;
-    box-shadow: none;
-  }
-  .phone-frame::before, .phone-frame::after {
+/* 3. MOBILE VIEW (max-width: 768px) */
+@media (max-width: 768px) {
+  /* -- Navbar & Hamburger -- */
+  .navbar { padding: 15px 20px; }
+  .hamburger { display: flex; }
+  
+  .nav {
     display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 65px; left: 0;
+    width: 100%;
+    background: rgba(20, 20, 30, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 25px 0;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.9);
+    border-bottom: 1px solid var(--border-color);
   }
-  .store-body-wrapper {
-    padding: 0;
+  .nav > * {
+    margin: 10px 0;
+  }
+  .nav.active { display: flex !important; }
+  .dropdown-content {
+    position: relative;
+    box-shadow: none; border: none; background: transparent;
+    padding-left: 20px;
+  }
+
+  .search-box { width: 90%; right: 5%; top: 75px; }
+
+  /* -- Global Layouts -- */
+  .main-content { margin-top: 65px; }
+  
+  .container {
+    flex-direction: column !important;
+    gap: 30px;
+  }
+
+  .features-column, .mobile-showcase {
+    width: 100% !important;
+    min-width: 100%;
+  }
+
+  .glass-card { padding: 20px 15px; }
+
+  /* -- Store Buttons -- */
+  .store-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .store-buttons img {
+    height: 55px;
+    object-fit: contain;
+  }
+
+  /* -- Typography -- */
+  h1 { font-size: 36px !important; }
+  h2 { font-size: 28px !important; }
+  h3 { font-size: 22px !important; }
+
+  /* -- Store Phone Mockup -- */
+  .phone-frame {
+    width: 100%; height: 100vh;
+    border: none; border-radius: 0;
+    margin: 0; box-shadow: none;
+  }
+  .phone-frame::before, .phone-frame::after { display: none; }
+  .store-body-wrapper { padding: 0; }
+
+  /* -- Footer -- */
+  .footer { padding: 40px 20px 20px 20px; }
+  .footer-links {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
   }
 }

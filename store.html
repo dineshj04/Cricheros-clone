@@ -6,249 +6,199 @@
   <title>CricMates Store</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .store-hero {
-      height: 300px;
-      background: linear-gradient(135deg, rgba(10, 12, 16, 0.9), rgba(226, 28, 40, 0.45)), url('contactbg.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
+    /* ===== STORE PAGE ===== */
+    .store-page { background: var(--bg-primary); min-height: 100vh; padding-top: 80px; padding-bottom: 20px; }
+    .store-container { width: 70%; max-width: 1400px; margin: 0 auto; background: var(--bg-primary); border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color); }
+    @media (max-width: 1024px) { .store-container { width: 90%; } }
+    @media (max-width: 768px) { .store-container { width: 100%; border: none; } }
+
+    /* Banner Carousel */
+    .banner-carousel { position: relative; width: 100%; overflow: hidden; }
+    .banner-track { display: flex; transition: transform 0.5s ease; }
+    .banner-slide { min-width: 100%; }
+    .banner-slide img { width: 100%; height: auto; max-height: 400px; object-fit: contain; display: block; background: var(--bg-secondary); border-radius: 10px; }
+    .banner-dots { display: flex; justify-content: center; gap: 6px; padding: 12px 0; }
+    .banner-dots span {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--border-color);
+      cursor: pointer; transition: var(--transition);
+    }
+    .banner-dots span.active { background: var(--accent-teal); width: 20px; border-radius: 4px; }
+
+    /* Category Filter Bar */
+    .category-bar {
+      display: flex; gap: 10px; padding: 12px 16px; overflow-x: auto;
+      -ms-overflow-style: none; scrollbar-width: none;
+      border-bottom: 1px solid var(--border-color); background: var(--bg-primary);
+      position: sticky; top: 60px; z-index: 100;
+    }
+    .category-bar::-webkit-scrollbar { display: none; }
+    .category-bar button {
+      flex-shrink: 0; padding: 8px 16px; border-radius: 20px;
+      border: 1px solid var(--border-color); background: var(--bg-secondary);
+      color: var(--text-secondary); font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: var(--transition); white-space: nowrap;
+    }
+    .category-bar button.active {
+      background: var(--accent-teal); color: #050508;
+      border-color: var(--accent-teal); box-shadow: 0 0 12px var(--accent-teal-glow);
     }
 
-    .store-hero h1 {
-      font-size: 44px;
-      color: white;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+    /* Category Cards Row */
+    .category-cards-row {
+      display: flex; gap: 12px; padding: 20px 16px; overflow-x: auto;
+      -ms-overflow-style: none; scrollbar-width: none;
+    }
+    .category-cards-row::-webkit-scrollbar { display: none; }
+    .category-card-item {
+      flex-shrink: 0; text-align: center; text-decoration: none; width: 30%; min-width: 100px;
+    }
+    .category-card-item img {
+      width: 100%; border-radius: 10px; border: 1px solid var(--border-color);
+      aspect-ratio: 3/4; object-fit: cover; background: var(--bg-tertiary);
+    }
+    .category-card-item span {
+      display: block; font-size: 12px; font-weight: 600; color: var(--text-primary); margin-top: 6px;
     }
 
-    .store-hero p {
-      font-size: 18px;
-      color: var(--text-secondary);
+    /* Collection Section */
+    .collection-section { margin-bottom: 8px; }
+    .collection-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 12px 16px 4px;
+    }
+    .collection-subtitle {
+      font-size: 10px; color: var(--text-muted); font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;
+    }
+    .collection-title {
+      font-size: 18px; color: var(--text-primary); font-weight: 700;
+      margin: 0; line-height: 1.3;
+    }
+    .collection-viewall {
+      font-size: 12px; color: var(--text-secondary); text-decoration: none;
+      white-space: nowrap; padding: 4px 0; display: flex; align-items: center; gap: 4px;
     }
 
-    .store-container {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 20px;
+    /* Products Horizontal Scroll */
+    .products-row {
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      /* custom thin scrollbar */
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-teal) var(--bg-tertiary);
+
+      display: flex; gap: 12px; padding: 8px 16px 16px; overflow-x: auto;
+      -ms-overflow-style: none; scrollbar-width: none;
+    }
+    .products-row::-webkit-scrollbar { height: 6px; }
+    .products-row::-webkit-scrollbar-track { background: var(--bg-primary); border-radius: 10px; }
+    .products-row::-webkit-scrollbar-thumb { background: var(--bg-tertiary); border-radius: 10px; }
+    .products-row::-webkit-scrollbar-thumb:hover { background: var(--accent-teal); }
+
+    /* Product Card */
+    .product-card {
+      scroll-snap-align: start;
+
+      flex-shrink: 0; width: 155px; border: 1px solid var(--border-color);
+      border-radius: 10px; overflow: hidden; position: relative;
+      cursor: pointer; transition: var(--transition); background: var(--bg-secondary);
+    }
+    .product-card:hover { transform: translateY(-3px); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+
+    .card-badge {
+      position: absolute; top: 0; left: 0; padding: 4px 8px; font-size: 10px;
+      font-weight: 700; z-index: 2; border-top-left-radius: 10px;
+      border-bottom-right-radius: 10px; backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px); box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+    .card-badge.new { background: var(--accent-teal); color: #050508; }
+    .card-badge.bestseller { background: #ff6b35; color: #fff; }
+    .card-badge.discount { background: #e63946; color: #fff; }
+    .card-badge.express { background: #2d6a4f; color: #fff; }
+
+    .card-img-wrap { width: 100%; aspect-ratio: 1; overflow: hidden; background: var(--bg-tertiary); }
+    .card-img-wrap img {
+      width: 100%; height: 100%; object-fit: contain; padding: 8px;
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover .card-img-wrap img { transform: scale(1.05); }
+
+    .card-express-tag {
+      position: absolute; bottom: 0; left: 0; background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+      font-size: 10px; letter-spacing: 0.5px; color: #fff; padding: 4px 8px;
+      border-top-right-radius: 8px; display: flex; align-items: center; gap: 4px;
     }
 
-    .offer-strip {
-      background: linear-gradient(90deg, #10044a, #1b2030);
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-      border-radius: var(--radius-md);
-      margin-bottom: 40px;
-      border: 1px solid var(--border-color);
-      font-weight: 500;
+    .card-info { padding: 8px 10px 10px; }
+    .card-prices { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin-bottom: 4px; }
+    .card-price-mrp {
+      font-size: 12px; color: var(--text-muted); opacity: 0.5;
+      text-decoration: line-through; font-weight: 400;
+    }
+    .card-price-sale { font-size: 14px; color: var(--text-primary); font-weight: 700; line-height: 1; }
+    .card-price-pro {
+      font-size: 12px; font-weight: 600; color: var(--accent-teal);
+      padding-left: 4px; border-left: 1px solid var(--accent-teal); margin-left: 2px;
+    }
+    .card-name {
+      font-size: 12px; font-weight: 500; color: var(--text-primary); line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; margin-top: 4px;
     }
 
-    .offer-strip b {
-      color: var(--accent-teal);
+    .explore-more-card {
+      flex-shrink: 0; width: 155px; min-height: 260px; border: 1px solid var(--border-color);
+      border-radius: 10px; overflow: hidden; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+    }
+    .explore-more-card::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 40%, transparent 100%);
+      border-radius: 10px;
+    }
+    .explore-more-card span {
+      position: relative; z-index: 1; color: #fff; font-size: 14px;
+      font-weight: 600; text-align: center; padding: 16px; line-height: 1.4;
     }
 
-    .store-categories {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-
-    .store-categories button {
-      padding: 10px 24px;
-      border-radius: 30px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-secondary);
-      color: var(--text-secondary);
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    .store-categories button.active, .store-categories button:hover {
-      background: var(--accent-teal);
-      color: #050508;
-      border-color: var(--accent-teal);
-      box-shadow: 0 0 15px var(--accent-teal-glow);
-    }
-
-    /* Grid Layout */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
-    }
-
-    .store-product-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-      cursor: pointer;
-      height: 380px;
-    }
-
-    .store-product-card:hover {
-      border-color: var(--accent-teal);
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-glow);
-    }
-
-    .store-product-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: contain;
-      border-radius: var(--radius-sm);
-      margin-bottom: 15px;
-      background: rgba(255, 255, 255, 0.01);
-      padding: 10px;
-    }
-
-    .product-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-      height: 44px;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-
-    .product-price {
-      color: var(--accent-teal);
-      font-weight: 800;
-      font-size: 18px;
-      margin-bottom: 15px;
-    }
-
-    .store-product-card button {
-      width: 100%;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-color);
-      color: var(--text-primary);
-      padding: 10px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .store-product-card:hover button {
-      background: var(--accent-teal);
-      color: #050508;
-      border-color: var(--accent-teal);
-    }
-
-    /* Personalisation Showcase Section */
+    /* Personalisation Section */
     .customise-banner-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 40px;
-      margin-top: 60px;
-      display: flex;
-      gap: 50px;
-      align-items: center;
-      flex-wrap: wrap;
+      background: var(--bg-secondary); border: 1px solid var(--border-color);
+      border-radius: 10px; padding: 30px 20px; margin: 16px 16px 24px;
+      display: flex; gap: 30px; align-items: center; flex-wrap: wrap;
     }
-
-    .customise-left {
-      flex: 1.2;
-      min-width: 300px;
-      display: flex;
-      justify-content: center;
-    }
-
+    .customise-left { flex: 1.2; min-width: 250px; display: flex; justify-content: center; }
     .customise-left-canvas {
-      width: 100%;
-      max-width: 380px;
-      height: 320px;
-      border-radius: var(--radius-md);
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      width: 100%; max-width: 300px; height: 280px; border-radius: 10px;
+      background: var(--bg-tertiary); border: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
-
     .customise-left-canvas img {
-      max-height: 280px;
-      object-fit: contain;
-      animation: float 6s ease-in-out infinite;
+      max-height: 240px; object-fit: contain; animation: float 6s ease-in-out infinite;
     }
-
-    .customise-right {
-      flex: 1.5;
-      min-width: 300px;
-    }
-
-    .customise-right h2 {
-      font-size: 32px;
-      color: var(--text-primary);
-      margin-bottom: 15px;
-      text-transform: uppercase;
-    }
-
-    .customise-right p {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
+    .customise-right { flex: 1.5; min-width: 280px; }
+    .customise-right h2 { font-size: 24px; color: var(--text-primary); margin-bottom: 10px; font-weight: 700; }
+    .customise-right p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
 
     .store-thumb-slider {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      margin-bottom: 30px;
-      padding: 5px 0;
+      display: flex; gap: 10px; overflow-x: auto; margin-bottom: 20px;
+      padding: 4px 0; -ms-overflow-style: none; scrollbar-width: none;
     }
-
+    .store-thumb-slider::-webkit-scrollbar { display: none; }
     .store-thumb-slider img {
-      width: 60px;
-      height: 60px;
-      border-radius: var(--radius-sm);
-      border: 2px solid transparent;
-      cursor: pointer;
-      object-fit: cover;
-      background: var(--bg-tertiary);
-      padding: 4px;
-      transition: var(--transition);
+      width: 55px; height: 55px; border-radius: 8px; border: 2px solid transparent;
+      cursor: pointer; object-fit: cover; background: var(--bg-tertiary);
+      padding: 3px; flex-shrink: 0; transition: var(--transition);
     }
-
     .store-thumb-slider img.active, .store-thumb-slider img:hover {
-      border-color: var(--accent-teal);
-      transform: scale(1.05);
+      border-color: var(--accent-teal); transform: scale(1.05);
     }
 
-    @media (max-width: 900px) {
-      .customise-banner-card {
-        flex-direction: column;
-        padding: 30px 20px;
-        gap: 30px;
-      }
-      .customise-left-canvas {
-        height: 260px;
-      }
-      .store-hero h1 {
-        font-size: 32px;
-      }
+    @media (max-width: 768px) {
+      .customise-banner-card { flex-direction: column; padding: 20px 16px; gap: 20px; }
+      .customise-left-canvas { height: 220px; }
     }
   </style>
 </head>
@@ -257,7 +207,7 @@
   <header class="navbar">
     <div class="logo">
       <a href="cricmates.html">
-        <img src="unnamed.png" alt="CricMates Logo">
+        <img src="cricmates_logo.png" alt="CricMates Logo" width="48" height="48" style="object-fit: contain; border-radius: 50%; mix-blend-mode: screen;">
         <div class="logo-text">
           <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
           <span class="tagline">Your cricket matters</span>
@@ -267,35 +217,32 @@
     
     <nav class="nav">
       <div class="dropdown">
-        <button class="drop-btn">Live Scores ▾</button>
+        <button class="drop-btn">Live Scores &#9662;</button>
         <div class="dropdown-content">
           <a href="matches.html">Matches</a>
           <a href="Tournaments.html">Tournaments</a>
           <a href="Associations.html">Associations</a>
         </div>
       </div>
-
       <div class="dropdown">
-        <button class="drop-btn">Network ▾</button>
+        <button class="drop-btn">Network &#9662;</button>
         <div class="dropdown-content">
           <a href="Community.html">Community</a>
           <a href="#">Looking</a>
         </div>
       </div>      
-
       <div class="dropdown">
-        <button class="drop-btn">Add ons ▾</button>
+        <button class="drop-btn">Add ons &#9662;</button>
         <div class="dropdown-content">
           <a href="#">CricMates PRO</a>
-          <a href="#">Go Live ▶</a>
+          <a href="#">Go Live &#9654;</a>
           <a href="#">Yourapp</a>  
           <a href="#">Yourweb</a> 
           <a href="Supersponser.html">Supersponser</a>
         </div>
       </div>
-
       <div class="dropdown">
-        <button class="drop-btn">More ▾</button>
+        <button class="drop-btn">More &#9662;</button>
         <div class="dropdown-content">
           <a href="Tournamentsguide.html">Tournaments guide</a>
           <a href="#">Cricket tips</a>
@@ -304,28 +251,23 @@
           <a href="#">Blogs</a>
         </div>
       </div>
-
       <a href="store.html" class="nav-link-item">Store</a>
-        <a href="Jobs.html" class="nav-link-item">Jobs</a>
       <a href="Contactus.html" class="nav-link-item">Contact us</a>
-        <a href="buy.html" class="nav-link-item">Cart</a>
+      <a href="buy.html" class="nav-link-item">Cart</a>
       <a href="signin.html" class="signin-btn">Sign In</a>
-
       <div class="search-icon-btn" onclick="toggleSearch()">
         <img src="search.png" alt="Search" width="18" height="18">
       </div>
     </header>
 
     <div class="hamburger" onclick="toggleMobileNav()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
 
     <div id="searchBox" class="search-box">
       <div class="search-top">
         <input type="text" id="searchInput" placeholder="Search Tournaments, Matches, Teams, Players..." onfocus="showPopular()">
-        <span class="close-btn-span" onclick="closeSearch()">✖</span>
+        <span class="close-btn-span" onclick="closeSearch()">&#10006;</span>
       </div>
       <div id="popularBox" class="search-dropdown">
         <p>Popular searches</p>
@@ -335,227 +277,591 @@
         <div onclick="goPage('Community.html')">Looking For - Tournament, Team, Player</div>
       </div>
     </div>
-  </header> 
+  </header>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    
-    <!-- Hero Header -->
-    <section class="store-hero">
-      <h1>CricMates Gear Store</h1>
-      <p>Premium customized merchandise and cricket equipment for champions</p>
+  <div class="store-page">
+  <div class="store-container">
+
+    <!-- Banner Carousel -->
+    <div class="banner-carousel">
+      <div class="banner-track" id="bannerTrack">
+        <div class="banner-slide"><img src="prod_jersey.jpg" alt="Bestseller Jerseys"></div>
+        <div class="banner-slide"><img src="prod_jersey.jpg" alt="Training Wear"></div>
+        <div class="banner-slide"><img src="https://media.cricheroes.in/dressing_room/latest_collection/1773383889201_landing_page_gloves_1.png" alt="Batting Gear"></div>
+        <div class="banner-slide"><img src="https://media.cricheroes.in/dressing_room/latest_collection/1766830567239_banner_spreadhead_bag_1_720.jpg" alt="Equipment"></div>
+      </div>
+      <div class="banner-dots" id="bannerDots"></div>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="category-bar" id="categoryBar">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="jerseys">Jerseys</button>
+      <button data-filter="apparel">Apparel</button>
+      <button data-filter="batting">Batting</button>
+      <button data-filter="accessories">Accessories</button>
+    </div>
+
+    <!-- Category Cards -->
+    <div class="category-cards-row">
+      <a class="category-card-item" href="javascript:void(0)" onclick="document.querySelector('button[data-filter=\'jerseys\']').click()">
+        <img src="cat_jerseys.jpg" alt="Jerseys">
+        <span>Jerseys</span>
+      </a>
+      <a class="category-card-item" href="javascript:void(0)" onclick="document.querySelector('button[data-filter=\'batting\']').click()">
+        <img src="cat_batting.jpg" alt="Batting">
+        <span>Batting</span>
+      </a>
+      <a class="category-card-item" href="javascript:void(0)" onclick="document.querySelector('button[data-filter=\'accessories\']').click()">
+        <img src="cat_accessories.jpg" alt="Accessories">
+        <span>Accessories</span>
+      </a>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- COLLECTION 1: Bestsellers                    -->
+    <!-- Products: jers, kitbag, gloves, ball, pad, cap -->
+    <!-- ============================================ -->
+    <section class="collection-section" data-section="all">
+      <div class="collection-header">
+        <div class="collection-header-left">
+          <div class="collection-subtitle">Premium Quality Collection</div>
+          <h2 class="collection-title">Bestsellers</h2>
+        </div>
+        <a href="#" class="collection-viewall">View All <span>&#8250;</span></a>
+      </div>
+      <div class="products-row">
+        <!-- 1. Green Blaze Jersey -->
+        <div class="product-card" onclick="selectCustomProduct('Green Blaze 2.0 Jersey (Customisable)', 'https://media.cricheroes.in/dressing_room/latest_collection/1785937581507_monsoon_collection_landing_page_banner__1_.jpg', 699, 1199, 'jerseys')">
+          <span class="card-badge bestseller">Bestseller</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Green Blaze Jersey"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;1,199</span>
+              <span class="card-price-sale">&#8377;699</span>
+              <span class="card-price-pro">&#8377;629</span>
+            </div>
+            <div class="card-name">Green Blaze 2.0 Jersey (Customisable)</div>
+          </div>
+        </div>
+        <!-- 2. Kitbag -->
+        <div class="product-card" onclick="buyProduct('Professional Wheeled Duffle Kitbag', 'https://media.cricheroes.in/dressing_room/latest_collection/1766830567239_banner_spreadhead_bag_1_720.jpg', 2499, 3999, 'bags')">
+          <span class="card-badge discount">37% Off</span>
+          <div class="card-img-wrap"><img src="prod_kitbag.jpg" alt="Wheeled Duffle Kitbag"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;3,999</span>
+              <span class="card-price-sale">&#8377;2,499</span>
+              <span class="card-price-pro">&#8377;2,249</span>
+            </div>
+            <div class="card-name">Professional Wheeled Duffle Kitbag</div>
+          </div>
+        </div>
+        <!-- 3. Gloves -->
+        <div class="product-card" onclick="buyProduct('Destroyer Batting Gloves (Adult)', 'https://media.cricheroes.in/dressing_room/latest_collection/1773383889201_landing_page_gloves_1.png', 2599, 3499, 'batting')">
+          <span class="card-badge bestseller">Bestseller</span>
+          <div class="card-img-wrap"><img src="prod_gloves.jpg" alt="Batting Gloves"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;3,499</span>
+              <span class="card-price-sale">&#8377;2,599</span>
+              <span class="card-price-pro">&#8377;2,339</span>
+            </div>
+            <div class="card-name">Destroyer Batting Gloves (Adult)</div>
+          </div>
+        </div>
+        <!-- 4. Ball -->
+        <div class="product-card" onclick="buyProduct('Super-Test Leather Ball', 'https://media.cricheroes.in/dressing_room/latest_collection/1786102150489_ball_landing_page_banner.jpg', 699, 999, 'accessories')">
+          <span class="card-badge express">Express</span>
+          <span class="card-express-tag">&#9889; Ships Tomorrow</span>
+          <div class="card-img-wrap"><img src="prod_ball.jpg" alt="Leather Ball"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;999</span>
+              <span class="card-price-sale">&#8377;699</span>
+              <span class="card-price-pro">&#8377;629</span>
+            </div>
+            <div class="card-name">Super-Test Alum Tanned Leather Ball</div>
+          </div>
+        </div>
+        <!-- 5. Pads -->
+        <div class="product-card" onclick="buyProduct('Destroyer Batting Pads (Pro)', 'https://media.cricheroes.in/dressing_room/latest_collection/1773384012735_thigh_guard.png', 2899, 3999, 'batting')">
+          <span class="card-badge discount">27% Off</span>
+          <div class="card-img-wrap"><img src="prod_pads.jpg" alt="Batting Pads"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;3,999</span>
+              <span class="card-price-sale">&#8377;2,899</span>
+              <span class="card-price-pro">&#8377;2,609</span>
+            </div>
+            <div class="card-name">Destroyer Batting Pads (Pro Protection)</div>
+          </div>
+        </div>
+        <!-- 6. Cap -->
+        <div class="product-card" onclick="buyProduct('CricMates Baggy Cap', 'https://media.cricheroes.in/dressing_room/product-media/tdr_baggy_caps_common_0.jpg', 599, 899, 'accessories')">
+          <span class="card-badge new">New</span>
+          <div class="card-img-wrap"><img src="prod_kitbag.jpg" alt="Baggy Cap"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;899</span>
+              <span class="card-price-sale">&#8377;599</span>
+              <span class="card-price-pro">&#8377;539</span>
+            </div>
+            <div class="card-name">CricMates Baggy Cap (Non-Personalised)</div>
+          </div>
+        </div>
+        <div class="explore-more-card"><span>Explore More &#8250;</span></div>
+      </div>
     </section>
 
-    <!-- Main Container -->
-    <div class="store-container">
-      
-      <!-- Promo Offer Strip -->
-      <div class="offer-strip">
-        Gear up like 91,081+ local champions. Extra 20% off all batting gear! Code: <b>GEARUP20</b>
+    <!-- ============================================ -->
+    <!-- COLLECTION 2: Jerseys & Apparel              -->
+    <!-- Products: jer, jer1, jer2, jer3, jer4, jer5  -->
+    <!-- ============================================ -->
+    <section class="collection-section" data-section="jerseys">
+      <div class="collection-header">
+        <div class="collection-header-left">
+          <div class="collection-subtitle">Personalise & Play</div>
+          <h2 class="collection-title">Jersey Collection</h2>
+        </div>
+        <a href="#" class="collection-viewall">View All <span>&#8250;</span></a>
       </div>
-
-      <!-- Category selectors -->
-      <div class="store-categories">
-        <button class="active" data-category="all">All Products</button>
-        <button data-category="jerseys">Jerseys</button>
-        <button data-category="bags">Bags</button>
-        <button data-category="balls">Balls</button>
-        <button data-category="caps">Caps</button>
-        <button data-category="gloves">Gloves & Pads</button>
+      <div class="products-row">
+        <!-- 1. Classic Blaze -->
+        <div class="product-card" onclick="selectCustomProduct('Classic Blaze Jersey', 'https://media.cricheroes.in/dressing_room/latest_collection/1781883275392_june_007_cricheros_resizer_3_1080x1080_with_cta.jpg', 699, 1199, 'jerseys')">
+          <span class="card-badge bestseller">Bestseller</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Classic Blaze Jersey"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;1,199</span>
+              <span class="card-price-sale">&#8377;699</span>
+              <span class="card-price-pro">&#8377;629</span>
+            </div>
+            <div class="card-name">Classic Blaze Jersey (Customisable)</div>
+          </div>
+        </div>
+        <!-- 2. Power Strike -->
+        <div class="product-card" onclick="selectCustomProduct('Power Strike Jersey', 'https://media.cricheroes.in/dressing_room/latest_collection/1783593691197_bestsellers_landing_page_banner__1_.jpg', 699, 1199, 'jerseys')">
+          <span class="card-badge new">New</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Power Strike Jersey"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;1,199</span>
+              <span class="card-price-sale">&#8377;699</span>
+              <span class="card-price-pro">&#8377;629</span>
+            </div>
+            <div class="card-name">Power Strike Jersey (Customisable)</div>
+          </div>
+        </div>
+        <!-- 3. Royal Edge -->
+        <div class="product-card" onclick="selectCustomProduct('Royal Edge Jersey', 'https://media.cricheroes.in/dressing_room/latest_collection/1781765250341_aero_active_landing__page_02.jpg', 699, 1199, 'jerseys')">
+          <span class="card-badge express">Express</span>
+          <span class="card-express-tag">&#9889; Ships Tomorrow</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Royal Edge Jersey"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;1,199</span>
+              <span class="card-price-sale">&#8377;699</span>
+              <span class="card-price-pro">&#8377;629</span>
+            </div>
+            <div class="card-name">Royal Edge Jersey (Customisable)</div>
+          </div>
+        </div>
+        <!-- 4. Neon Fury -->
+        <div class="product-card" onclick="selectCustomProduct('Neon Fury Jersey', 'https://media.cricheroes.in/dressing_room/latest_collection/1780994079916_whatsapp_image_2026_06_08_at_8_50_17_pm__1_.jpeg', 699, 1199, 'jerseys')">
+          <span class="card-badge discount">42% Off</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Neon Fury Jersey"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;1,199</span>
+              <span class="card-price-sale">&#8377;699</span>
+              <span class="card-price-pro">&#8377;629</span>
+            </div>
+            <div class="card-name">Neon Fury Jersey (Customisable)</div>
+          </div>
+        </div>
+        <!-- 5. Stealth Black -->
+        <div class="product-card" onclick="selectCustomProduct('Stealth Black Jersey', 'https://media.cricheroes.in/dressing_room/latest_collection/1781764480898_4__6_.jpg', 699, 1199, 'jerseys')">
+          <span class="card-badge new">New</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Stealth Black Jersey"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;1,199</span>
+              <span class="card-price-sale">&#8377;699</span>
+              <span class="card-price-pro">&#8377;629</span>
+            </div>
+            <div class="card-name">Stealth Black Jersey (Customisable)</div>
+          </div>
+        </div>
+        <!-- 6. Tricolour -->
+        <div class="product-card" onclick="selectCustomProduct('Tricolour Jersey', 'https://media.cricheroes.in/dressing_room/latest_collection/1783593795301_landing_page_banners_vibrant_victory.jpg', 699, 1199, 'jerseys')">
+          <span class="card-badge bestseller">Bestseller</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Tricolour Jersey"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;1,199</span>
+              <span class="card-price-sale">&#8377;699</span>
+              <span class="card-price-pro">&#8377;629</span>
+            </div>
+            <div class="card-name">Tricolour Jersey (Customisable)</div>
+          </div>
+        </div>
+        <div class="explore-more-card"><span>Explore More &#8250;</span></div>
       </div>
+    </section>
 
-      <!-- Products shelf grid -->
-      <div class="products-grid">
-        <!-- Jersey -->
-        <div class="store-product-card" data-category="jerseys" onclick="selectCustomProduct('Green Blaze 2.0 Jersey (Customisable)', 'Screenshot jers.png', 699, 1199, 'jerseys')">
-          <img src="Screenshot jers.png" alt="Team Jersey">
-          <div>
-            <div class="product-title">Green Blaze 2.0 Jersey (Customisable)</div>
-            <div class="product-price">₹699</div>
-          </div>
-          <button>Personalise & Buy &rarr;</button>
+    <!-- ============================================ -->
+    <!-- COLLECTION 3: Training Essentials            -->
+    <!-- Products: tsrt, wear, jer6, jer7, jer8, jer9 -->
+    <!-- ============================================ -->
+    <section class="collection-section" data-section="apparel">
+      <div class="collection-header">
+        <div class="collection-header-left">
+          <div class="collection-subtitle">Lightweight, Breathable, Performance-Driven</div>
+          <h2 class="collection-title">Training Essentials</h2>
         </div>
-
-        <!-- Kitbag -->
-        <div class="store-product-card" data-category="bags" onclick="buyProduct('Professional Wheeled Duffle Kitbag', 'Screenshot kitbag.png', 2499, 3999, 'bags')">
-          <img src="Screenshot kitbag.png" alt="Kitbag">
-          <div>
-            <div class="product-title">Professional Wheeled Duffle Kitbag</div>
-            <div class="product-price">₹2,499</div>
+        <a href="#" class="collection-viewall">View All <span>&#8250;</span></a>
+      </div>
+      <div class="products-row">
+        <!-- 1. Training T-shirt -->
+        <div class="product-card" onclick="selectCustomProduct('CricMates Training T-shirt (Quick-Dry)', 'https://media.cricheroes.in/dressing_room/product-media/1785221971257_storm_core_jacket_blue_1.jpg', 499, 799, 'apparel')">
+          <span class="card-badge express">Express</span>
+          <span class="card-express-tag">&#9889; Ships Tomorrow</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Training T-shirt"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;799</span>
+              <span class="card-price-sale">&#8377;499</span>
+              <span class="card-price-pro">&#8377;449</span>
+            </div>
+            <div class="card-name">CricMates Training T-shirt (Quick-Dry)</div>
           </div>
-          <button>Buy Now &rarr;</button>
         </div>
-
-        <!-- Ball -->
-        <div class="store-product-card" data-category="balls" onclick="buyProduct('Super-Test Alum Tanned Leather Ball', 'Screenshot ball.png', 699, 999, 'balls')">
-          <img src="Screenshot ball.png" alt="Ball">
-          <div>
-            <div class="product-title">Super-Test Alum Tanned Leather Ball</div>
-            <div class="product-price">₹699</div>
+        <!-- 2. Active Training Wear -->
+        <div class="product-card" onclick="selectCustomProduct('CricMates Active Training Wear', 'https://media.cricheroes.in/dressing_room/latest_collection/1786001559689_value_picks_landing_page_banner__1_.jpg', 1299, 1999, 'apparel')">
+          <span class="card-badge bestseller">Bestseller</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Active Training Wear"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;1,999</span>
+              <span class="card-price-sale">&#8377;1,299</span>
+              <span class="card-price-pro">&#8377;1,169</span>
+            </div>
+            <div class="card-name">CricMates Active Training Wear</div>
           </div>
-          <button>Buy Now &rarr;</button>
         </div>
-
-        <!-- Cap -->
-        <div class="store-product-card" data-category="caps" onclick="buyProduct('CricMates Baggy Cap (Non-Personalised)', 'Screenshot cap.png', 599, 899, 'caps')">
-          <img src="Screenshot cap.png" alt="Cap">
-          <div>
-            <div class="product-title">CricMates Baggy Cap (Non-Personalised)</div>
-            <div class="product-price">₹599</div>
+        <!-- 3. Training Jersey A -->
+        <div class="product-card" onclick="selectCustomProduct('Pro Training Jersey (Aqua)', 'https://media.cricheroes.in/dressing_room/latest_collection/1773383620629_timeless_blues_without_logo.jpg', 599, 899, 'apparel')">
+          <span class="card-badge new">New</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Pro Training Jersey Aqua"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;899</span>
+              <span class="card-price-sale">&#8377;599</span>
+              <span class="card-price-pro">&#8377;539</span>
+            </div>
+            <div class="card-name">Pro Training Jersey (Aqua)</div>
           </div>
-          <button>Buy Now &rarr;</button>
         </div>
-
-        <!-- Gloves -->
-        <div class="store-product-card" data-category="gloves" onclick="buyProduct('Destroyer Batting Gloves (Adult Size)', 'Screenshot gloves.png', 2599, 3499, 'gloves')">
-          <img src="Screenshot gloves.png" alt="Gloves">
-          <div>
-            <div class="product-title">Destroyer Batting Gloves (Adult Size)</div>
-            <div class="product-price">₹2,599</div>
+        <!-- 4. Training Jersey B -->
+        <div class="product-card" onclick="selectCustomProduct('Pro Training Jersey (Flame)', 'https://media.cricheroes.in/dressing_room/product-media/1785222154048_storm_core_jacket_black_1.jpg', 599, 899, 'apparel')">
+          <span class="card-badge discount">33% Off</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Pro Training Jersey Flame"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;899</span>
+              <span class="card-price-sale">&#8377;599</span>
+              <span class="card-price-pro">&#8377;539</span>
+            </div>
+            <div class="card-name">Pro Training Jersey (Flame)</div>
           </div>
-          <button>Buy Now &rarr;</button>
         </div>
-
-        <!-- Pads -->
-        <div class="store-product-card" data-category="gloves" onclick="buyProduct('Destroyer Batting Pads (Pro Protection)', 'Screenshot pad.png', 2899, 3999, 'gloves')">
-          <img src="Screenshot pad.png" alt="Batting Pads">
-          <div>
-            <div class="product-title">Destroyer Batting Pads (Pro Protection)</div>
-            <div class="product-price">₹2,899</div>
+        <!-- 5. Training Jersey C -->
+        <div class="product-card" onclick="selectCustomProduct('Pro Training Jersey (Storm)', 'https://media.cricheroes.in/dressing_room/product-media/1785222297865_stormcore_track_pants_1.jpg', 599, 899, 'apparel')">
+          <span class="card-badge new">New</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Pro Training Jersey Storm"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;899</span>
+              <span class="card-price-sale">&#8377;599</span>
+              <span class="card-price-pro">&#8377;539</span>
+            </div>
+            <div class="card-name">Pro Training Jersey (Storm)</div>
           </div>
-          <button>Buy Now &rarr;</button>
         </div>
-
-        <!-- Training T-shirt -->
-        <div class="store-product-card" data-category="jerseys" onclick="selectCustomProduct('CricMates Training T-shirt (Quick-Dry)', 'Screenshot tsrt.png', 499, 799, 'jerseys')">
-          <img src="Screenshot tsrt.png" alt="Training T-shirt">
-          <div>
-            <div class="product-title">CricMates Training T-shirt (Quick-Dry)</div>
-            <div class="product-price">₹499</div>
+        <!-- 6. Training Jersey D -->
+        <div class="product-card" onclick="selectCustomProduct('Pro Training Jersey (Elite)', 'https://media.cricheroes.in/dressing_room/product-media/1770814607645_assorted_pack_3.jpg', 599, 899, 'apparel')">
+          <span class="card-badge express">Express</span>
+          <span class="card-express-tag">&#9889; Ships Tomorrow</span>
+          <div class="card-img-wrap"><img src="prod_jersey.jpg" alt="Pro Training Jersey Elite"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;899</span>
+              <span class="card-price-sale">&#8377;599</span>
+              <span class="card-price-pro">&#8377;539</span>
+            </div>
+            <div class="card-name">Pro Training Jersey (Elite)</div>
           </div>
-          <button>Personalise & Buy &rarr;</button>
         </div>
+        <div class="explore-more-card"><span>Explore More &#8250;</span></div>
+      </div>
+    </section>
 
-        <!-- Training Wear -->
-        <div class="store-product-card" data-category="jerseys" onclick="selectCustomProduct('CricMates Active Training Wear', 'Screenshot wear.png', 1299, 1999, 'jerseys')">
-          <img src="Screenshot wear.png" alt="Active Wear">
-          <div>
-            <div class="product-title">CricMates Active Training Wear</div>
-            <div class="product-price">₹1,299</div>
+    <!-- ============================================ -->
+    <!-- COLLECTION 4: Batting Gear                   -->
+    <!-- Products: gloves, pad (reuse in dedicated)   -->
+    <!-- ============================================ -->
+    <section class="collection-section" data-section="batting">
+      <div class="collection-header">
+        <div class="collection-header-left">
+          <div class="collection-subtitle">Curated gear, crafted for peak performance</div>
+          <h2 class="collection-title">Batting Essentials</h2>
+        </div>
+        <a href="#" class="collection-viewall">View All <span>&#8250;</span></a>
+      </div>
+      <div class="products-row">
+        <!-- 1. Gloves -->
+        <div class="product-card" onclick="buyProduct('Destroyer Batting Gloves (Adult)', 'https://media.cricheroes.in/dressing_room/latest_collection/1773383889201_landing_page_gloves_1.png', 2599, 3499, 'batting')">
+          <span class="card-badge discount">26% Off</span>
+          <div class="card-img-wrap"><img src="prod_gloves.jpg" alt="Batting Gloves"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;3,499</span>
+              <span class="card-price-sale">&#8377;2,599</span>
+              <span class="card-price-pro">&#8377;2,339</span>
+            </div>
+            <div class="card-name">Destroyer Batting Gloves (Adult)</div>
           </div>
-          <button>Personalise & Buy &rarr;</button>
+        </div>
+        <!-- 2. Pads -->
+        <div class="product-card" onclick="buyProduct('Destroyer Batting Pads (Pro)', 'https://media.cricheroes.in/dressing_room/latest_collection/1773384012735_thigh_guard.png', 2899, 3999, 'batting')">
+          <span class="card-badge bestseller">Bestseller</span>
+          <div class="card-img-wrap"><img src="prod_pads.jpg" alt="Batting Pads"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;3,999</span>
+              <span class="card-price-sale">&#8377;2,899</span>
+              <span class="card-price-pro">&#8377;2,609</span>
+            </div>
+            <div class="card-name">Destroyer Batting Pads (Pro Protection)</div>
+          </div>
+        </div>
+        <!-- 3. Ball -->
+        <div class="product-card" onclick="buyProduct('Super-Test Leather Ball', 'https://media.cricheroes.in/dressing_room/latest_collection/1786102150489_ball_landing_page_banner.jpg', 699, 999, 'accessories')">
+          <span class="card-badge new">New</span>
+          <div class="card-img-wrap"><img src="prod_ball.jpg" alt="Leather Ball"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;999</span>
+              <span class="card-price-sale">&#8377;699</span>
+              <span class="card-price-pro">&#8377;629</span>
+            </div>
+            <div class="card-name">Super-Test Alum Tanned Leather Ball</div>
+          </div>
+        </div>
+        <!-- 4. Toss Coin -->
+        <div class="product-card" onclick="buyProduct('Premium Cricket Toss Coin', 'https://media.cricheroes.in/dressing_room/latest_collection/1776231787361_2__2_.jpg', 299, 499, 'accessories')">
+          <span class="card-badge discount">40% Off</span>
+          <div class="card-img-wrap"><img src="prod_ball.jpg" alt="Cricket Toss Coin"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;499</span>
+              <span class="card-price-sale">&#8377;299</span>
+              <span class="card-price-pro">&#8377;269</span>
+            </div>
+            <div class="card-name">Premium Cricket Toss Coin</div>
+          </div>
+        </div>
+        <div class="explore-more-card"><span>Explore More &#8250;</span></div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- COLLECTION 5: Accessories                    -->
+    <!-- Products: kitbag, cap, coin                   -->
+    <!-- ============================================ -->
+    <section class="collection-section" data-section="accessories">
+      <div class="collection-header">
+        <div class="collection-header-left">
+          <div class="collection-subtitle">Complete your cricket kit</div>
+          <h2 class="collection-title">Bags & Accessories</h2>
+        </div>
+        <a href="#" class="collection-viewall">View All <span>&#8250;</span></a>
+      </div>
+      <div class="products-row">
+        <!-- 1. Kitbag -->
+        <div class="product-card" onclick="buyProduct('Professional Wheeled Duffle Kitbag', 'https://media.cricheroes.in/dressing_room/latest_collection/1766830567239_banner_spreadhead_bag_1_720.jpg', 2499, 3999, 'accessories')">
+          <span class="card-badge bestseller">Bestseller</span>
+          <div class="card-img-wrap"><img src="prod_kitbag.jpg" alt="Wheeled Kitbag"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;3,999</span>
+              <span class="card-price-sale">&#8377;2,499</span>
+              <span class="card-price-pro">&#8377;2,249</span>
+            </div>
+            <div class="card-name">Professional Wheeled Duffle Kitbag</div>
+          </div>
+        </div>
+        <!-- 2. Cap -->
+        <div class="product-card" onclick="buyProduct('CricMates Baggy Cap', 'https://media.cricheroes.in/dressing_room/product-media/tdr_baggy_caps_common_0.jpg', 599, 899, 'accessories')">
+          <span class="card-badge new">New</span>
+          <div class="card-img-wrap"><img src="prod_kitbag.jpg" alt="Baggy Cap"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;899</span>
+              <span class="card-price-sale">&#8377;599</span>
+              <span class="card-price-pro">&#8377;539</span>
+            </div>
+            <div class="card-name">CricMates Baggy Cap (Non-Personalised)</div>
+          </div>
+        </div>
+        <!-- 3. Toss Coin -->
+        <div class="product-card" onclick="buyProduct('Premium Cricket Toss Coin', 'https://media.cricheroes.in/dressing_room/latest_collection/1776231787361_2__2_.jpg', 299, 499, 'accessories')">
+          <span class="card-badge express">Express</span>
+          <span class="card-express-tag">&#9889; Ships Tomorrow</span>
+          <div class="card-img-wrap"><img src="prod_ball.jpg" alt="Toss Coin"></div>
+          <div class="card-info">
+            <div class="card-prices">
+              <span class="card-price-mrp">&#8377;499</span>
+              <span class="card-price-sale">&#8377;299</span>
+              <span class="card-price-pro">&#8377;269</span>
+            </div>
+            <div class="card-name">Premium Cricket Toss Coin</div>
+          </div>
+        </div>
+        <div class="explore-more-card"><span>Explore More &#8250;</span></div>
+      </div>
+    </section>
+
+    <!-- Personalisation Section -->
+    <div class="customise-banner-card">
+      <div class="customise-left">
+        <div class="customise-left-canvas">
+          <img id="mainImg" src="prod_jersey.jpg" alt="Jersey Mockup">
         </div>
       </div>
-
-      <!-- Personalisation Banner -->
-      <div class="customise-banner-card">
-        <div class="customise-left">
-          <div class="customise-left-canvas">
-            <img id="mainImg" src="Screenshot jer.png" alt="Jersey Mockup">
-          </div>
+      <div class="customise-right">
+        <h2>Personalise Your Team Kits</h2>
+        <p>Choose from our premium templates, add your name and team number, and walk onto the field looking like a professional team.</p>
+        <div class="store-thumb-slider" id="thumbContainer">
+          <img class="active" src="prod_jersey.jpg" onclick="changeImg(this)">
+          <img src="prod_jersey.jpg" onclick="changeImg(this)">
+          <img src="prod_jersey.jpg" onclick="changeImg(this)">
+          <img src="prod_jersey.jpg" onclick="changeImg(this)">
+          <img src="prod_jersey.jpg" onclick="changeImg(this)">
+          <img src="prod_jersey.jpg" onclick="changeImg(this)">
+          <img src="prod_jersey.jpg" onclick="changeImg(this)">
+          <img src="prod_jersey.jpg" onclick="changeImg(this)">
+          <img src="prod_jersey.jpg" onclick="changeImg(this)">
+          <img src="prod_jersey.jpg" onclick="changeImg(this)">
         </div>
-
-        <div class="customise-right">
-          <h2>Personalise Your Team Kits</h2>
-          <p>Choose from our premium templates, add your name and team number, and walk onto the field looking like a professional team. Select a color layout below to preview:</p>
-          
-          <div class="store-thumb-slider" id="thumbContainer">
-            <img class="active" src="Screenshot jer.png" onclick="changeImg(this)">
-            <img src="Screenshot jer1.png" onclick="changeImg(this)">
-            <img src="Screenshot jer2.png" onclick="changeImg(this)">
-            <img src="Screenshot jer3.png" onclick="changeImg(this)">
-            <img src="Screenshot jer4.png" onclick="changeImg(this)">
-            <img src="Screenshot jer5.png" onclick="changeImg(this)">
-            <img src="Screenshot jer6.png" onclick="changeImg(this)">
-            <img src="Screenshot jer7.png" onclick="changeImg(this)">
-            <img src="Screenshot jer8.png" onclick="changeImg(this)">
-            <img src="Screenshot jer9.png" onclick="changeImg(this)">
-          </div>
-
-          <button class="btn-teal" onclick="openProduct()" style="padding: 14px 30px;">
-            Customize Your Jersey &rarr;
-          </button>
-        </div>
+        <button class="btn-teal" onclick="openProduct()" style="padding: 12px 28px; font-size: 14px; font-weight: 600; border-radius: 8px; cursor: pointer; border: none;">
+          Customize Your Jersey &#8594;
+        </button>
       </div>
-
     </div>
+
+  </div>
+
   </div>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-links">
       <a href="#">About Us</a>
-            <a href="Jobs.html">Careers</a>
       <a href="#">Privacy Policy</a>
       <a href="#">Terms Of Service</a>
       <a href="#">Paid Service Terms</a>
       <a href="#">ICC Policy</a>
     </div>
     <div class="footer-divider"></div>
-    <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. </p>
+    <p class="copyright"> &copy; CricMates Pvt Ltd. All rights reserved. </p>
   </footer>
 
-  <!-- Scripts -->
   <script>
     function toggleMobileNav() {
       document.querySelector('.nav').classList.toggle('active');
     }
-
     function openProduct() {
       window.location.href = "product.html";
     }
-
     function changeImg(el) {
       document.getElementById("mainImg").src = el.src;
       document.querySelectorAll(".store-thumb-slider img").forEach(t => t.classList.remove("active"));
       el.classList.add("active");
     }
-
     function selectCustomProduct(title, image, price, mrp, category) {
       localStorage.setItem("cartProductTitle", title);
       localStorage.setItem("cartProductImage", image);
       localStorage.setItem("cartProductPrice", price);
       localStorage.setItem("cartProductMRP", mrp);
       localStorage.setItem("cartProductCategory", category);
-      
       window.location.href = "product.html";
     }
-
     function buyProduct(title, image, price, mrp, category) {
       localStorage.setItem("cartProductTitle", title);
       localStorage.setItem("cartProductImage", image);
       localStorage.setItem("cartProductPrice", price);
       localStorage.setItem("cartProductMRP", mrp);
       localStorage.setItem("cartProductCategory", category);
-      
       localStorage.removeItem("customJerseyName");
       localStorage.removeItem("customJerseyNumber");
       localStorage.removeItem("customJerseySize");
-      
       window.location.href = "buy.html";
     }
 
-    // Category Filtering Logic
-    const buttons = document.querySelectorAll(".store-categories button");
-    const cards = document.querySelectorAll(".store-product-card");
+    // ===== Banner Carousel =====
+    const bannerTrack = document.getElementById('bannerTrack');
+    const bannerSlides = bannerTrack.querySelectorAll('.banner-slide');
+    const bannerDotsContainer = document.getElementById('bannerDots');
+    let bannerIndex = 0;
+    const totalSlides = bannerSlides.length;
 
-    buttons.forEach(button => {
-      button.addEventListener("click", () => {
-        buttons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
+    bannerSlides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToBanner(i));
+      bannerDotsContainer.appendChild(dot);
+    });
 
-        const category = button.getAttribute("data-category");
+    function goToBanner(idx) {
+      bannerIndex = idx;
+      bannerTrack.style.transform = 'translateX(-' + (bannerIndex * 100) + '%)';
+      document.querySelectorAll('.banner-dots span').forEach((d, i) => {
+        d.classList.toggle('active', i === bannerIndex);
+      });
+    }
 
-        cards.forEach(card => {
-          if (category === "all" || card.getAttribute("data-category") === category) {
-            card.style.display = "flex";
+    setInterval(() => {
+      bannerIndex = (bannerIndex + 1) % totalSlides;
+      goToBanner(bannerIndex);
+    }, 4000);
+
+    // ===== Category Filter =====
+    const catButtons = document.querySelectorAll('#categoryBar button');
+    const collectionSections = document.querySelectorAll('.collection-section');
+
+    catButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        collectionSections.forEach(sec => {
+          const secType = sec.getAttribute('data-section');
+          if (filter === 'all') {
+            sec.style.display = 'block';
+          } else if (secType === filter) {
+            sec.style.display = 'block';
           } else {
-            card.style.display = "none";
+            sec.style.display = 'none';
           }
         });
       });
     });
+
+    
+    });
   </script>
-    <script src="search.js"></script>
+  <script src="search.js"></script>
 </body>
 </html>

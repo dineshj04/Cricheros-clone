@@ -36,7 +36,7 @@
             max-width: 1200px;
             display: grid;
             margin: 60px auto;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
             gap: 30px;
             padding: 0 20px;
         }
@@ -162,7 +162,7 @@
     <header class="navbar">
       <div class="logo">
         <a href="cricmates.html">
-          <img src="unnamed.png" alt="CricMates Logo">
+          <img src="cricmates_logo.png" alt="CricMates Logo" width="48" height="48" style="object-fit: contain; border-radius: 50%; mix-blend-mode: screen;">
           <div class="logo-text">
             <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
             <span class="tagline">Your cricket matters</span>
@@ -173,7 +173,7 @@
       <nav class="nav">
         <!-- Live Scores Dropdown -->
         <div class="dropdown">
-          <button class="drop-btn">Live Scores ▾</button>
+          <button class="drop-btn">Live Scores &#9662;</button>
           <div class="dropdown-content">
             <a href="matches.html">Matches</a>
             <a href="Tournaments.html">Tournaments</a>
@@ -183,7 +183,7 @@
 
         <!-- Network Dropdown -->
         <div class="dropdown">
-          <button class="drop-btn">Network ▾</button>
+          <button class="drop-btn">Network &#9662;</button>
           <div class="dropdown-content">
             <a href="Community.html">Community</a>
             <a href="#">Looking</a>
@@ -192,10 +192,10 @@
 
         <!-- Add ons Dropdown -->
         <div class="dropdown">
-          <button class="drop-btn">Add ons ▾</button>
+          <button class="drop-btn">Add ons &#9662;</button>
           <div class="dropdown-content">
             <a href="#">CricMates PRO</a>
-            <a href="#">Go Live ▶</a>
+            <a href="#">Go Live &#9654;</a>
             <a href="#">Yourapp</a>  
             <a href="#">Yourweb</a> 
             <a href="Supersponser.html">Supersponser</a>
@@ -204,7 +204,7 @@
 
         <!-- More Dropdown -->
         <div class="dropdown">
-          <button class="drop-btn">More ▾</button>
+          <button class="drop-btn">More &#9662;</button>
           <div class="dropdown-content">
             <a href="Tournamentsguide.html">Tournaments guide</a>
             <a href="#">Cricket tips</a>
@@ -215,7 +215,6 @@
         </div>
 
         <a href="store.html" class="nav-link-item">Store</a>
-        <a href="Jobs.html" class="nav-link-item">Jobs</a>
         <a href="Contactus.html" class="nav-link-item">Contact us</a>
         <a href="buy.html" class="nav-link-item">Cart</a>
         <a href="signin.html" class="signin-btn">Sign In</a>
@@ -375,14 +374,13 @@
     <footer class="footer">
         <div class="footer-links">
             <a href="#">About Us</a>
-            <a href="Jobs.html">Careers</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms Of Service</a>
             <a href="#">Paid Service Terms</a>
             <a href="#">ICC Policy</a>
         </div>
         <div class="footer-divider"></div>
-        <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
+        <p class="copyright"> Â© CricMates Pvt Ltd. All rights reserved. CIN U72901GJ2016PTC092938 </p>
     </footer>
 
     <!-- Scripts -->

@@ -183,7 +183,7 @@
 
             if (userOTP === generatedOTP) {
                 msgEl.className = "success";
-                msgEl.innerText = "✓ OTP Verified successfully! Redirecting...";
+                msgEl.innerText = "âœ“ OTP Verified successfully! Redirecting...";
 
                 // Save simulation sign-in state
                 localStorage.setItem("userSignedIn", "true");
@@ -195,7 +195,7 @@
 
             } else {
                 msgEl.className = "error";
-                msgEl.innerText = "❌ Incorrect verification code. Please try again.";
+                msgEl.innerText = "âŒ Incorrect verification code. Please try again.";
             }
         }
 

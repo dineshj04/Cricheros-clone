@@ -342,7 +342,7 @@
     <header class="navbar">
       <div class="logo">
         <a href="cricmates.html">
-          <img src="unnamed.png" alt="CricMates Logo">
+          <img src="cricmates_logo.png" alt="CricMates Logo" width="48" height="48" style="object-fit: contain; border-radius: 50%; mix-blend-mode: screen;">
           <div class="logo-text">
             <span class="brand"><span class="red">cric</span><span class="white">mates</span></span>
             <span class="tagline">Your cricket matters</span>
@@ -352,7 +352,7 @@
       
       <nav class="nav">
         <div class="dropdown">
-          <button class="drop-btn">Live Scores ▾</button>
+          <button class="drop-btn">Live Scores &#9662;</button>
           <div class="dropdown-content">
             <a href="matches.html">Matches</a>
             <a href="Tournaments.html">Tournaments</a>
@@ -361,7 +361,7 @@
         </div>
 
         <div class="dropdown">
-          <button class="drop-btn">Network ▾</button>
+          <button class="drop-btn">Network &#9662;</button>
           <div class="dropdown-content">
             <a href="Community.html">Community</a>
             <a href="#">Looking</a>
@@ -369,10 +369,10 @@
         </div>      
 
         <div class="dropdown">
-          <button class="drop-btn">Add ons ▾</button>
+          <button class="drop-btn">Add ons &#9662;</button>
           <div class="dropdown-content">
             <a href="#">CricMates PRO</a>
-            <a href="#">Go Live ▶</a>
+            <a href="#">Go Live &#9654;</a>
             <a href="#">Yourapp</a>  
             <a href="#">Yourweb</a> 
             <a href="Supersponser.html">Supersponser</a>
@@ -380,7 +380,7 @@
         </div>
 
         <div class="dropdown">
-          <button class="drop-btn">More ▾</button>
+          <button class="drop-btn">More &#9662;</button>
           <div class="dropdown-content">
             <a href="Tournamentsguide.html">Tournaments guide</a>
             <a href="#">Cricket tips</a>
@@ -391,7 +391,6 @@
         </div>
 
         <a href="store.html" class="nav-link-item">Store</a>
-        <a href="Jobs.html" class="nav-link-item">Jobs</a>
         <a href="Contactus.html" class="nav-link-item">Contact us</a>
         <a href="buy.html" class="nav-link-item">Cart</a>
         <a href="signin.html" class="signin-btn">Sign In</a>
@@ -473,15 +472,15 @@
                     <h3>Billing Summary</h3>
                     <div class="summary-row">
                         <span>Base MRP</span>
-                        <span id="mrpTotal">₹1,199</span>
+                        <span id="mrpTotal">â‚¹1,199</span>
                     </div>
                     <div class="summary-row">
                         <span>Personalisation Discount</span>
-                        <span style="color:#00ff66;" id="discountTotal">- ₹500</span>
+                        <span style="color:#00ff66;" id="discountTotal">- â‚¹500</span>
                     </div>
                     <div class="summary-row">
                         <span>Coupon Discount</span>
-                        <span style="color:#00ff66;" id="couponTotal">- ₹0</span>
+                        <span style="color:#00ff66;" id="couponTotal">- â‚¹0</span>
                     </div>
                     <div class="summary-row">
                         <span>Standard Delivery</span>
@@ -490,7 +489,7 @@
                     
                     <div class="summary-row grand-total">
                         <span>Grand Total</span>
-                        <span id="grandTotal">₹699</span>
+                        <span id="grandTotal">â‚¹699</span>
                     </div>
 
                     <button class="btn-checkout-primary" onclick="proceedToCheckout()" id="checkoutBtn">Add Shipping Address</button>
@@ -506,14 +505,13 @@
     <footer class="footer">
         <div class="footer-links">
             <a href="#">About Us</a>
-            <a href="Jobs.html">Careers</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms Of Service</a>
             <a href="#">Paid Service Terms</a>
             <a href="#">ICC Policy</a>
         </div>
         <div class="footer-divider"></div>
-        <p class="copyright"> © CricMates Pvt Ltd. All rights reserved. </p>
+        <p class="copyright"> Â© CricMates Pvt Ltd. All rights reserved. </p>
     </footer>
 
     <!-- Modals -->
@@ -678,10 +676,10 @@
             let promoTotal = isPromoApplied ? Math.round(currentPriceTotal * 0.2) : 0;
             let grandTotal = currentPriceTotal - promoTotal;
 
-            document.getElementById("mrpTotal").innerText = "₹" + mrpTotal;
-            document.getElementById("discountTotal").innerText = "- ₹" + discountTotal;
-            document.getElementById("couponTotal").innerText = "- ₹" + promoTotal;
-            document.getElementById("grandTotal").innerText = "₹" + grandTotal;
+            document.getElementById("mrpTotal").innerText = "â‚¹" + mrpTotal;
+            document.getElementById("discountTotal").innerText = "- â‚¹" + discountTotal;
+            document.getElementById("couponTotal").innerText = "- â‚¹" + promoTotal;
+            document.getElementById("grandTotal").innerText = "â‚¹" + grandTotal;
         }
 
         // Initialize price totals
